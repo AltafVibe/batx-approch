@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziptrax Cleantech | B2B Revenue & Growth Autopsy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    colors: {
+                        deepSlate: '#050c14',
+                        panelBg: '#091322',
+                        cardBg: '#0e1d33',
+                        emeraldNeon: '#10b981',
+                        cyanNeon: '#06b6d4',
+                        goldNeon: '#f59e0b',
+                        borderCol: '#1e304b'
+                    },
+                    boxShadow: {
+                        'neon-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.3)',
+                        'neon-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.3)',
+                        'neon-gold': '0 0 25px -5px rgba(245, 158, 11, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #050c14; 
+            color: #e2e8f0; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0, transparent 50%), 
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.08) 0, transparent 50%);
+            background-attachment: fixed;
+        }
+        .glass-header {
+            background: rgba(9, 19, 34, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1e304b;
+        }
+        .glass-card { 
+            background: linear-gradient(135deg, rgba(14, 29, 51, 0.85), rgba(9, 19, 34, 0.95)); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid #1e304b; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
+        }
+        .gradient-text-emerald {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tab-btn {
+            transition: all 0.25s ease;
+            position: relative;
+            border-left: 3px solid transparent;
+        }
+        .tab-btn.active {
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), transparent);
+            border-left-color: #10b981;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #10b981;
+            box-shadow: 0 0 8px #10b981;
+        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #050c14; }
+        ::-webkit-scrollbar-thumb { background: #1e304b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-glow { animation: pulse-slow 4s infinite ease-in-out; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row">
+
+    <!-- Top Navigation for Mobile -->
+    <header class="glass-header md:hidden p-4 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emeraldNeon to-cyanNeon flex items-center justify-center font-bold text-slate-950 text-lg shadow-lg">Z</div>
+            <span class="font-extrabold text-lg tracking-tight text-white">ZIPTRAX <span class="text-emeraldNeon font-normal">PITCH</span></span>
+        </div>
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2 text-2xl focus:outline-none">☰</button>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="w-full md:w-72 border-r border-borderCol bg-panelBg flex-col shrink-0 hidden md:flex z-40 sticky top-0 h-screen overflow-y-auto">
+        <div class="h-20 flex items-center px-6 border-b border-borderCol shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emeraldNeon to-cyanNeon flex items-center justify-center font-black text-slate-950 text-xl shadow-lg mr-3">Z</div>
+            <div>
+                <span class="font-extrabold text-xl tracking-wider text-white">ZIPTRAX<span class="text-emeraldNeon">.IN</span></span>
+                <span class="block text-[10px] uppercase font-mono tracking-widest text-cyanNeon">Enterprise Pitch Deck</span>
+            </div>
+        </div>
+
+        <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+                <!-- Target Brief -->
+                <div class="bg-cardBg rounded-xl p-4 mb-6 border border-borderCol shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-mono uppercase tracking-wider text-gray-400">Target Profile</span>
+                        <span class="px-2 py-0.5 text-[10px] font-mono rounded-full bg-emeraldNeon/20 text-emeraldNeon border border-emeraldNeon/40">Verified Audit</span>
+                    </div>
+                    <h3 class="font-bold text-white text-base">Ziptrax Cleantech</h3>
+                    <p class="text-xs text-gray-400 mb-3">AI/IoT Li-ion Battery Second-Life Packaging & Diagnostics</p>
+                    <div class="pt-2 border-t border-borderCol/60 flex items-center justify-between text-xs font-mono">
+                        <span class="text-amber-400 flex items-center">⭐ Shell E4 Backed</span>
+                        <span class="text-gray-300">Seed ($120K)</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <div class="text-[11px] font-mono font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">Pitch Architecture</div>
+                <nav class="space-y-1.5" id="nav-group">
+                    <a href="#" onclick="switchTab('overview', event)" id="nav-overview" class="tab-btn active flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg">
+                        <span class="text-xl">🏆</span> <span class="text-sm">Executive Overview</span>
+                    </a>
+                    <a href="#" onclick="switchTab('autopsy', event)" id="nav-autopsy" class="tab-btn flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg">
+                        <span class="text-xl">🚨</span> <span class="text-sm">Live Website Autopsy</span>
+                    </a>
+                    <a href="#" onclick="switchTab('revenue', event)" id="nav-revenue" class="tab-btn flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg">
+                        <span class="text-xl">💰</span> <span class="text-sm">Core Revenue Engine</span>
+                    </a>
+                    <a href="#" onclick="switchTab('keywords', event)" id="nav-keywords" class="tab-btn flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg">
+                        <span class="text-xl">🎯</span> <span class="text-sm">Micro-Niche Keywords</span>
+                    </a>
+                    <a href="#" onclick="switchTab('roadmap', event)" id="nav-roadmap" class="tab-btn flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg">
+                        <span class="text-xl">🗺️</span> <span class="text-sm">90-Day Roadmap</span>
+                    </a>
+                    <a href="#" onclick="switchTab('contact', event)" id="nav-contact" class="tab-btn flex items-center space-x-3.5 text-emeraldNeon hover:text-white px-4 py-3 rounded-lg border border-emeraldNeon/30 mt-4 bg-emeraldNeon/10 shadow-neon-emerald">
+                        <span class="text-xl">🤝</span> <span class="text-sm font-bold">Action / Approach</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Developer Credentials / Footer -->
+            <div class="pt-4 border-t border-borderCol mt-6 text-center">
+                <div class="text-xs text-gray-400">Prepared for <strong class="text-white">Sonia Singh & Ankur Tyagi</strong></div>
+                <div class="text-[10px] text-gray-500 mt-1 font-mono">B2B Enterprise Growth Proposal</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-5 md:p-10 max-w-7xl mx-auto overflow-y-auto w-full">
+
+        <!-- TAB 1: EXECUTIVE OVERVIEW -->
+        <section id="tab-overview" class="space-y-8 block">
+            <div class="relative bg-gradient-to-r from-cardBg to-panelBg rounded-2xl p-8 border border-borderCol shadow-xl overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-emeraldNeon/10 blur-3xl pointer-events-none animate-glow"></div>
+                <div class="absolute right-1/3 -bottom-20 w-64 h-64 rounded-full bg-cyanNeon/10 blur-3xl pointer-events-none animate-glow" style="animation-delay: 2s;"></div>
+                
+                <div class="max-w-3xl relative z-10">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emeraldNeon/10 border border-emeraldNeon/30 text-emeraldNeon text-xs font-semibold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-emeraldNeon animate-ping"></span>
+                        <span>ENTERPRISE REVENUE TRANSFORMATION PITCH</span>
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+                        Bridging the Gap Between <span class="gradient-text-emerald">AI Diagnostic Deep-Tech</span> & Enterprise Sales.
+                    </h1>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+                        Ziptrax Cleantech is building state-of-the-art AI & IoT-powered second-life lithium-ion battery packs. Yet, your digital customer acquisition relies heavily on commodified directories like <strong>IndiaMART</strong>. This dashboard outlines how to transform <strong class="text-white">ziptrax.in</strong> into an automated, high-ticket B2B Enterprise Lead Generator.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('autopsy', event)" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emeraldNeon to-cyanNeon text-slate-950 font-extrabold text-sm hover:opacity-95 shadow-neon-emerald transition flex items-center space-x-2">
+                            <span>🔍 Explore Live Website Autopsy</span>
+                            <span>→</span>
+                        </button>
+                        <button onclick="switchTab('revenue', event)" class="px-6 py-3.5 rounded-xl bg-cardBg text-white border border-borderCol font-semibold text-sm hover:bg-slate-800 transition">
+                            💰 Discover Revenue Goldmines
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Company Snapshot Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                    <div class="text-xs font-mono text-gray-400 mb-1">CORE TECHNOLOGY</div>
+                    <div class="text-2xl font-black text-white mb-2 flex items-center">
+                        <span class="mr-2">⚡</span> AI + IoT ML
+                    </div>
+                    <p class="text-xs text-gray-400 leading-normal">Smart diagnostic grading & cell lifecycle testing for discarded EV batteries.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                    <div class="text-xs font-mono text-gray-400 mb-1">INVESTOR BACKING</div>
+                    <div class="text-2xl font-black text-amber-400 mb-2 flex items-center">
+                        <span class="mr-2">🛡️</span> Shell E4
+                    </div>
+                    <p class="text-xs text-gray-400 leading-normal">Backed by Shell Ventures Accelerator. Massive corporate trust anchor for enterprise sales.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                    <div class="text-xs font-mono text-gray-400 mb-1">CURRENT TRAFFIC ENGINE</div>
+                    <div class="text-2xl font-black text-rose-500 mb-2 flex items-center">
+                        <span class="mr-2">⚠️</span> IndiaMART
+                    </div>
+                    <p class="text-xs text-gray-400 leading-normal">High dependence on third-party directories leading to brutal price wars & low-margin bids.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden border-emeraldNeon/40">
+                    <div class="text-xs font-mono text-emeraldNeon mb-1">PROPOSED REVENUE GOAL</div>
+                    <div class="text-2xl font-black text-white mb-2 flex items-center">
+                        <span class="mr-2">🎯</span> Direct B2B
+                    </div>
+                    <p class="text-xs text-gray-400 leading-normal">10-15 Monthly High-Ticket Inbound RFQs directly from EV Fleet Operators via ziptrax.in.</p>
+                </div>
+            </div>
+
+            <!-- Visual Comparison Matrix: Where We Stand -->
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="text-xl font-extrabold text-white mb-2">The Digital Model Transition</h3>
+                <p class="text-sm text-gray-400 mb-6">Why migrating from third-party lead marketplace listings to direct enterprise domain authority accelerates deal valuation and contract size.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Current State -->
+                    <div class="p-6 rounded-xl bg-slate-900/80 border border-rose-500/30 relative">
+                        <div class="text-xs font-mono font-bold uppercase tracking-wider text-rose-400 mb-3 flex items-center justify-between">
+                            <span>CURRENT STATE: THIRD-PARTY DEPENDENCY</span>
+                            <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">Vulnerable</span>
+                        </div>
+                        <ul class="space-y-3.5 text-sm text-gray-300">
+                            <li class="flex items-start">
+                                <span class="text-rose-500 mr-2 font-bold">✕</span>
+                                <div><strong>Price-War Competitions:</strong> Leads on IndiaMART compare dozens of battery vendors solely on per-Ah cost, completely ignoring your AI testing edge.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-rose-500 mr-2 font-bold">✕</span>
+                                <div><strong>Zero Domain Asset Value:</strong> Traffic stays on IndiaMART. ziptrax.in builds zero Google search domain rating or proprietary SEO footprint.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-rose-500 mr-2 font-bold">✕</span>
+                                <div><strong>Low Enterprise Conversion:</strong> Corporate CTOs at Tier-1 EV fleets (e.g., Zypp, Yulu) do not negotiate multi-million rupee contracts via directory forms.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Future State -->
+                    <div class="p-6 rounded-xl bg-emerald-950/20 border border-emeraldNeon/40 relative shadow-neon-emerald">
+                        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emeraldNeon mb-3 flex items-center justify-between">
+                            <span>PROPOSED STATE: AUTHORITY ENGINE</span>
+                            <span class="px-2 py-0.5 rounded bg-emeraldNeon/20 text-emeraldNeon font-bold">High Margin</span>
+                        </div>
+                        <ul class="space-y-3.5 text-sm text-gray-200">
+                            <li class="flex items-start">
+                                <span class="text-emeraldNeon mr-2 font-bold">✓</span>
+                                <div><strong>Monopoly on Your USP:</strong> Enterprise landing pages showcase your Shell E4 backing, AI diagnostic safety, and second-life durability without competitors in sight.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-emeraldNeon mr-2 font-bold">✓</span>
+                                <div><strong>High-Intent B2B Organic Traffic:</strong> Ranking #1 for term-specific queries brings decision-makers actively searching for industrial suppliers.</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-emeraldNeon mr-2 font-bold">✓</span>
+                                <div><strong>Direct Executive Meetings:</strong> Integrated LinkedIn ABM drives Founders & CTOs straight to an executive calendar demo on your owned web estate.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: LIVE WEBSITE AUTOPSY & TECH DEBT -->
+        <section id="tab-autopsy" class="space-y-8 hidden">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-wider text-rose-400 mb-1 flex items-center">
+                    <span class="mr-2">🚨 DEEP TECHNICAL AUDIT</span> • PRODUCTION FRONTEND ANALYSIS
+                </div>
+                <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">Live Production Autopsy of <span class="text-rose-500">ziptrax.in</span></h2>
+                <p class="text-sm text-gray-400 mt-2 max-w-3xl">
+                    Our real-time diagnostic testing of your current website revealed fundamental flaws that block organic indexing and erode enterprise brand trust. Below is our direct problem-to-solution roadmap showing how I will swiftly transform each vulnerability into an asset.
+                </p>
+            </div>
+
+            <!-- Diagnostic Score Bar -->
+            <div class="glass-card p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 bg-rose-950/20 border-rose-500/30">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 rounded-2xl bg-rose-500/20 border-2 border-rose-500 flex items-center justify-center font-black text-rose-400 text-3xl shrink-0">F</div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg">Current SEO & Architecture Health Score: Grade F (Critically Deficient)</h4>
+                        <p class="text-xs text-gray-300">0% Meta tag optimization • Outdated legacy framework detected • Zero active Google organic rankings.</p>
+                    </div>
+                </div>
+                <div class="bg-cardBg px-5 py-3 rounded-xl border border-borderCol shrink-0 text-right">
+                    <span class="text-xs font-mono text-gray-400 block">ESTIMATED FIX TIMELINE</span>
+                    <span class="text-emeraldNeon font-black text-base">7-10 Days (Zero Downtime)</span>
+                </div>
+            </div>
+
+            <!-- Problem -> Solution -> Promise Cards -->
+            <div class="space-y-6">
+
+                <!-- Autopsy Item 1 -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-borderCol">
+                    <div class="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-borderCol gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">CRITICAL FAULT #01</span>
+                        <span class="text-xs font-mono text-gray-400">Impact: 100% Loss of Organic Search Engine Indexing</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- The Problem -->
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-rose-500">
+                            <div class="text-xs font-bold font-mono text-rose-400 flex items-center uppercase">
+                                <span class="mr-1.5">❌</span> The Problem (Observed Defect)
+                            </div>
+                            <h4 class="font-bold text-white text-base">Blank / Generic Title Tags</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Your homepage HTML title tag literally reads <code class="bg-rose-950 text-rose-300 px-1.5 py-0.5 rounded font-mono">&lt;title&gt;Home&lt;/title&gt;</code>. Sub-pages merely read "About Us" and "Technology". There is zero mention of Ziptrax, lithium recycling, or AI diagnostics. Google categorizes untitled pages as spam or dead placeholders, removing them from buyer SERPs.
+                            </p>
+                        </div>
+
+                        <!-- The Solution -->
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-cyanNeon">
+                            <div class="text-xs font-bold font-mono text-cyanNeon flex items-center uppercase">
+                                <span class="mr-1.5">💡</span> The Solution (Enterprise Strategy)
+                            </div>
+                            <h4 class="font-bold text-white text-base">High-Intent Semantic Keywords</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Deploy exact-match high-ticket SEO titles such as <code class="bg-cyan-950/80 text-cyan-300 px-1.5 py-0.5 rounded font-mono">Ziptrax | AI & IoT Lithium Battery Recycling & Second-Life Packs</code>. Inject targeted header hierarchy (H1, H2) that aligns with commercial engineering queries.
+                            </p>
+                        </div>
+
+                        <!-- What I Will Easily Do -->
+                        <div class="space-y-2 bg-emerald-950/20 p-5 rounded-xl border-l-4 border-emeraldNeon shadow-inner">
+                            <div class="text-xs font-bold font-mono text-emeraldNeon flex items-center uppercase">
+                                <span class="mr-1.5">⭐</span> What I Will Easily Do For You
+                            </div>
+                            <h4 class="font-bold text-white text-base">Complete Metadata & H-Tag Rewrite</h4>
+                            <p class="text-xs text-gray-200 leading-relaxed">
+                                <strong>I will cleanly overhaul and inject optimized meta tags across all your web pages within 48 hours.</strong> No website redevelopment required—I directly configure your markup to trigger Google indexing immediately.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autopsy Item 2 -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-borderCol">
+                    <div class="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-borderCol gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">HIGH RISK FAULT #02</span>
+                        <span class="text-xs font-mono text-gray-400">Impact: Zero Social Proof on LinkedIn & WhatsApp Shares</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- The Problem -->
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-rose-500">
+                            <div class="text-xs font-bold font-mono text-rose-400 flex items-center uppercase">
+                                <span class="mr-1.5">❌</span> The Problem (Observed Defect)
+                            </div>
+                            <h4 class="font-bold text-white text-base">Missing OpenGraph (OG) Metadata</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Our DOM scanner found zero <code class="font-mono text-rose-300">og:title</code>, <code class="font-mono text-rose-300">og:image</code>, or meta descriptions. When an enterprise investor or fleet CTO pastes a ziptrax.in link into LinkedIn, WhatsApp, or Slack, no preview image or business summary appears—leaving a blank, untrustworthy URL text snippet.
+                            </p>
+                        </div>
+
+                        <!-- The Solution -->
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-cyanNeon">
+                            <div class="text-xs font-bold font-mono text-cyanNeon flex items-center uppercase">
+                                <span class="mr-1.5">💡</span> The Solution (Enterprise Strategy)
+                            </div>
+                            <h4 class="font-bold text-white text-base">Custom Executive Share Cards</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Create branded, high-resolution social sharing preview banners highlighting your Shell E4 partnership and AI diagnostic testing hardware, embedded via standard OpenGraph and Twitter Twitter/X Card protocols.
+                            </p>
+                        </div>
+
+                        <!-- What I Will Easily Do -->
+                        <div class="space-y-2 bg-emerald-950/20 p-5 rounded-xl border-l-4 border-emeraldNeon shadow-inner">
+                            <div class="text-xs font-bold font-mono text-emeraldNeon flex items-center uppercase">
+                                <span class="mr-1.5">⭐</span> What I Will Easily Do For You
+                            </div>
+                            <h4 class="font-bold text-white text-base">Social Card & JSON-LD Schema Setup</h4>
+                            <p class="text-xs text-gray-200 leading-relaxed">
+                                <strong>I will create custom graphic OG share cards and generate verified JSON-LD corporate structured data.</strong> Every shared URL will command executive authority and look immaculate across corporate communication channels.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autopsy Item 3 -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-borderCol">
+                    <div class="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-borderCol gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">ARCHITECTURAL DEBT #03</span>
+                        <span class="text-xs font-mono text-gray-400">Impact: Severe Tech-Debt vs Modern Deep-Tech Expectations</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- The Problem -->
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-rose-500">
+                            <div class="text-xs font-bold font-mono text-rose-400 flex items-center uppercase">
+                                <span class="mr-1.5">❌</span> The Problem (Observed Defect)
+                            </div>
+                            <h4 class="font-bold text-white text-base">Ancient HTML Template & IE8 Warnings</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                The active production codebase contains hardcoded warning banners for Internet Explorer 8 (<code class="font-mono text-rose-300">.ie-panel</code>, <code class="font-mono text-rose-300">warning_bar_0000_us.jpg</code>) and legacy primitive table/float CSS layout rules from 2014. This contradicts your identity as an AI and IoT innovation leader.
+                            </p>
+                        </div>
+
+                        <!-- The Solution -->
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-cyanNeon">
+                            <div class="text-xs font-bold font-mono text-cyanNeon flex items-center uppercase">
+                                <span class="mr-1.5">💡</span> The Solution (Enterprise Strategy)
+                            </div>
+                            <h4 class="font-bold text-white text-base">Clean Modernization & Speed Optimization</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Erase legacy template bloat, remove visible <code class="font-mono text-cyan-300">.html</code> file extensions from navigation routes, and implement lightning-fast responsive layout styling optimized for mobile executive browsing.
+                            </p>
+                        </div>
+
+                        <!-- What I Will Easily Do -->
+                        <div class="space-y-2 bg-emerald-950/20 p-5 rounded-xl border-l-4 border-emeraldNeon shadow-inner">
+                            <div class="text-xs font-bold font-mono text-emeraldNeon flex items-center uppercase">
+                                <span class="mr-1.5">⭐</span> What I Will Easily Do For You
+                            </div>
+                            <h4 class="font-bold text-white text-base">Rapid Frontend Code Sanitization</h4>
+                            <p class="text-xs text-gray-200 leading-relaxed">
+                                <strong>I will clean out all obsolete legacy scripts, optimize asset delivery, and establish clean URL routing.</strong> I handle the technical cleanup seamlessly so your web architecture matches the brilliance of your ML battery diagnostics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 3: CORE REVENUE ENGINE & BUYER PROFILING -->
+        <section id="tab-revenue" class="space-y-8 hidden">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1 flex items-center">
+                    <span class="mr-2">💰 REVENUE ACCELERATION ENGINE</span> • BUSINESS MODEL ALIGNMENT
+                </div>
+                <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">Targeting Your Real <span class="gradient-text-gold">Revenue Goldmines</span></h2>
+                <p class="text-sm text-gray-400 mt-2 max-w-3xl">
+                    At the end of the day, enterprise valuations are driven by sustainable, predictable revenue pipelines. General social media advertisements do not drive B2B Deep-Tech sales. Below is our deep dive into where your core revenue originates and how our integrated B2B approach captures high-ticket contracts.
+                </p>
+            </div>
+
+            <!-- 3 Revenue Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="glass-card p-6 rounded-2xl relative border-t-4 border-emeraldNeon">
+                    <div class="w-12 h-12 rounded-xl bg-emeraldNeon/20 flex items-center justify-center font-bold text-2xl mb-4 text-emeraldNeon">🛵</div>
+                    <h3 class="font-extrabold text-white text-lg mb-2">1. EV Fleet & Logistics Operators</h3>
+                    <div class="text-xs font-mono text-emeraldNeon mb-3">ESTIMATED DEAL SIZE: $20,000 - $100,000+</div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        Last-mile electric mobility fleets (e.g., <strong>Zypp Electric, BluSmart, Yulu, Amazon/Zomato EV Partners</strong>) suffer from rapid Li-ion battery degradation. Buying brand new replacement battery packs destroys their operating margins.
+                    </p>
+                    <div class="pt-3 border-t border-borderCol text-xs font-semibold text-gray-300 flex items-center justify-between">
+                        <span>Why they buy:</span>
+                        <span class="text-emeraldNeon font-mono">30-40% Cost Savings</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative border-t-4 border-cyanNeon">
+                    <div class="w-12 h-12 rounded-xl bg-cyanNeon/20 flex items-center justify-center font-bold text-2xl mb-4 text-cyanNeon">🔋</div>
+                    <h3 class="font-extrabold text-white text-lg mb-2">2. Battery Swapping Networks</h3>
+                    <div class="text-xs font-mono text-cyanNeon mb-3">ESTIMATED DEAL SIZE: $15,000 - $75,000+</div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        City-wide EV battery swapping stations require huge inventories of standardized, reliable charged packs. Your AI/IoT tested second-life packs provide the exact durability required for continuous swap rotation at lower capital expenditure.
+                    </p>
+                    <div class="pt-3 border-t border-borderCol text-xs font-semibold text-gray-300 flex items-center justify-between">
+                        <span>Why they buy:</span>
+                        <span class="text-cyanNeon font-mono">High Rotation Durability</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative border-t-4 border-amber-400">
+                    <div class="w-12 h-12 rounded-xl bg-amber-400/20 flex items-center justify-center font-bold text-2xl mb-4 text-amber-400">☀️</div>
+                    <h3 class="font-extrabold text-white text-lg mb-2">3. Solar & Telecom Off-Grid Storage</h3>
+                    <div class="text-xs font-mono text-amber-400 mb-3">ESTIMATED DEAL SIZE: $10,000 - $50,000+</div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        Telecom towers and rural solar grid backup installations don't need lightweight vehicle batteries—they require steady, safe energy density. Repurposed second-life stationary battery arrays offer unmatched price-per-kWh value.
+                    </p>
+                    <div class="pt-3 border-t border-borderCol text-xs font-semibold text-gray-300 flex items-center justify-between">
+                        <span>Why they buy:</span>
+                        <span class="text-amber-400 font-mono">Unmatched per-kWh Price</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Approach: LinkedIn Account-Based Marketing (ABM) -->
+            <div class="glass-card p-8 rounded-2xl border border-emeraldNeon/40 shadow-xl">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-6">
+                    <div>
+                        <span class="text-xs font-mono text-emeraldNeon font-bold tracking-wider block mb-1">THE DIRECT APPROACH STRATEGY</span>
+                        <h3 class="text-2xl font-extrabold text-white">How We Capture These Revenue Streams: LinkedIn ABM</h3>
+                    </div>
+                    <span class="px-4 py-2 rounded-xl bg-emeraldNeon text-slate-950 font-extrabold text-xs shrink-0 shadow-neon-emerald">
+                        B2B Precision Targeted
+                    </span>
+                </div>
+                
+                <p class="text-sm text-gray-300 mb-6">
+                    Instead of passively waiting for anonymous inquiries on directory portals, we execute active <strong>Account-Based Marketing (ABM)</strong> directly on LinkedIn. We build customized outreach funnels leveraging your greatest corporate credential: <strong>The Shell Ventures E4 Accelerator partnership.</strong>
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-borderCol">
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white font-bold flex items-center justify-center shrink-0 border border-borderCol">1</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white mb-1">Identify Target Decision-Makers</h4>
+                            <p class="text-xs text-gray-400">Extract verified profiles of CTOs, Fleet Operations VPs, and Procurement Officers at India's top 50 EV logistic and mobility companies.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white font-bold flex items-center justify-center shrink-0 border border-borderCol">2</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white mb-1">Send Authority-Driven Pitch</h4>
+                            <p class="text-xs text-gray-400">Deploy high-converting message sequences sharing technical case studies on "How Ziptrax AI Diagnostics Extends Battery Lifecycle by 300%."</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-emeraldNeon font-bold flex items-center justify-center shrink-0 border border-emeraldNeon">3</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-emeraldNeon mb-1">Close on Your Modern Domain</h4>
+                            <p class="text-xs text-gray-300">Direct qualified leads to an exclusive enterprise calculator on ziptrax.in to schedule immediate ROI evaluation calls with your engineering leads.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: MICRO-NICHE KEYWORDS -->
+        <section id="tab-keywords" class="space-y-8 hidden">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-wider text-cyanNeon mb-1 flex items-center">
+                    <span class="mr-2">🎯 ORGANIC TRAFFIC VAULT</span> • ENTERPRISE SEARCH OPTIMIZATION
+                </div>
+                <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">High-Intent <span class="text-cyanNeon">Micro-Niche Keyword Strategy</span></h2>
+                <p class="text-sm text-gray-400 mt-2 max-w-3xl">
+                    Broad consumer search keywords like "lithium battery price" generate thousands of worthless retail clicks. Our strategy isolates ultra-specific, high-commercial-intent B2B search phrases typed directly by procurement executives looking for enterprise recycling or bulk battery suppliers.
+                </p>
+            </div>
+
+            <!-- Keyword Vault Table -->
+            <div class="glass-card rounded-2xl overflow-hidden border border-borderCol">
+                <div class="p-6 bg-slate-900/60 border-b border-borderCol flex flex-wrap justify-between items-center gap-4">
+                    <div>
+                        <h3 class="font-extrabold text-white text-lg">Targeted Commercial Keyword Matrix</h3>
+                        <p class="text-xs text-gray-400">Rankings targeted for Top 3 Google Organic SERP within 60-90 days.</p>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs font-mono text-emeraldNeon bg-emerald-950/40 px-3 py-1.5 rounded-lg border border-emeraldNeon/30">
+                        <span>🔥 Avg. Conversion Value: $12,500+</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-borderCol text-xs font-mono text-gray-400 uppercase bg-cardBg/50">
+                                <th class="p-4 pl-6">Micro-Niche Target Query</th>
+                                <th class="p-4">Target Buyer Profile</th>
+                                <th class="p-4">Search Intent</th>
+                                <th class="p-4">Difficulty</th>
+                                <th class="p-4 pr-6 text-right">Est. Contract Value</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-borderCol/60 text-sm font-medium">
+                            
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-4 pl-6 font-mono text-white flex items-center space-x-2">
+                                    <span class="w-2 h-2 rounded-full bg-emeraldNeon"></span>
+                                    <span>"commercial second life li-ion battery supplier India"</span>
+                                </td>
+                                <td class="p-4 text-gray-300">2W/3W Fleet CTOs</td>
+                                <td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emeraldNeon border border-emeraldNeon/30">BUYER READY</span></td>
+                                <td class="p-4 text-xs text-amber-400 font-mono">Low-Medium (28/100)</td>
+                                <td class="p-4 pr-6 text-right font-mono font-bold text-emeraldNeon">$25,000+</td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-4 pl-6 font-mono text-white flex items-center space-x-2">
+                                    <span class="w-2 h-2 rounded-full bg-cyanNeon"></span>
+                                    <span>"IoT lithium battery diagnostic testing services Delhi"</span>
+                                </td>
+                                <td class="p-4 text-gray-300">Battery Swapping Operators</td>
+                                <td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyanNeon/30">TECHNICAL RFQ</span></td>
+                                <td class="p-4 text-xs text-emeraldNeon font-mono">Low (19/100)</td>
+                                <td class="p-4 pr-6 text-right font-mono font-bold text-cyanNeon">$12,000+</td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-4 pl-6 font-mono text-white flex items-center space-x-2">
+                                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                                    <span>"industrial li-ion battery recycling safe disposal partner"</span>
+                                </td>
+                                <td class="p-4 text-gray-300">EV OEMs & E-Waste Generators</td>
+                                <td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-950 text-purple-300 border border-purple-400/30">PARTNERSHIP</span></td>
+                                <td class="p-4 text-xs text-amber-400 font-mono">Medium (34/100)</td>
+                                <td class="p-4 pr-6 text-right font-mono font-bold text-white">$40,000+</td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-4 pl-6 font-mono text-white flex items-center space-x-2">
+                                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                                    <span>"second life battery packs for telecom solar towers"</span>
+                                </td>
+                                <td class="p-4 text-gray-300">Telecom & Solar Integrators</td>
+                                <td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-950 text-amber-300 border border-amber-400/30">BULK SUPPLY</span></td>
+                                <td class="p-4 text-xs text-emeraldNeon font-mono">Low (22/100)</td>
+                                <td class="p-4 pr-6 text-right font-mono font-bold text-amber-400">$18,000+</td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-800/50 transition">
+                                <td class="p-4 pl-6 font-mono text-white flex items-center space-x-2">
+                                    <span class="w-2 h-2 rounded-full bg-rose-400"></span>
+                                    <span>"electric scooter replacement battery pack supplier NCR"</span>
+                                </td>
+                                <td class="p-4 text-gray-300">Logistic Delivery Agencies</td>
+                                <td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-400/30">URGENT PURCHASE</span></td>
+                                <td class="p-4 text-xs text-amber-400 font-mono">Medium (38/100)</td>
+                                <td class="p-4 pr-6 text-right font-mono font-bold text-rose-400">$20,000+</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Why Micro-Niche Wins over Directory Listings -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-extrabold text-white text-base mb-2">High Conversion vs. Vanity Clicks</h4>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Ranking for 15 specialized micro-niche keywords may only generate 500 organic visitors per month. However, because each visitor is a verified procurement decision-maker searching for exact industrial solutions, your lead conversion rate jumps from <span class="text-rose-400 font-bold">0.2% to over 8.5%</span>.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border-cyanNeon/40">
+                    <h4 class="font-extrabold text-cyanNeon text-base mb-2">How I Will Implement This Easily</h4>
+                    <p class="text-xs text-gray-200 leading-relaxed">
+                        I will construct targeted thematic content silos on <span class="font-mono text-white">ziptrax.in</span> (e.g., dedicated landing pages for <em>Fleet Operators</em> and <em>Solar Integrators</em>). I inject technical schema markup and publish informative engineering breakdown notes to capture Google Top 3 rankings effortlessly.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: 90-DAY EXECUTION ROADMAP -->
+        <section id="tab-roadmap" class="space-y-8 hidden">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-wider text-purple-400 mb-1 flex items-center">
+                    <span class="mr-2">🗺️ STRATEGIC EXECUTION TIMELINE</span> • CLEAR ROADMAP
+                </div>
+                <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">The <span class="text-purple-400">90-Day Transformation</span> Plan</h2>
+                <p class="text-sm text-gray-400 mt-2 max-w-3xl">
+                    We do not propose a complex, multi-month website rebuild that halts your ongoing operations. Our deployment plan is segmented into three crisp 30-day sprints focused on rapid technical remediation, targeted keyword seeding, and high-ticket B2B outreach.
+                </p>
+            </div>
+
+            <!-- Timeline Steps -->
+            <div class="relative pl-6 md:pl-10 border-l-2 border-borderCol space-y-10 my-8">
+                
+                <!-- Month 1 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] md:-left-[47px] top-1 w-6 h-6 rounded-full bg-rose-500 border-4 border-slate-950 text-white font-bold text-[10px] flex items-center justify-center shadow-lg">1</div>
+                    <div class="glass-card p-6 rounded-2xl border border-borderCol hover:border-rose-500 transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono font-bold text-rose-400 uppercase">DAYS 01 - 30 • QUICK WINS & SANITIZATION</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-500/30">Phase 1: Technical Autopsy Fixes</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Frontend Detox & Metadata Overhaul</h3>
+                        <ul class="space-y-2 text-xs text-gray-300 list-disc list-inside">
+                            <li>Replace blank `<title>Home</title>` tags with high-intent semantic keyword structured titles.</li>
+                            <li>Inject complete OpenGraph social sharing meta tags and verify executive link appearance on LinkedIn/WhatsApp.</li>
+                            <li>Clean out obsolete 2014 template remnants (IE8 check code, redundant stylesheets) to double mobile page speed.</li>
+                            <li>Configure enterprise Google Search Console sitemap and semantic JSON-LD company organization schema.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Month 2 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] md:-left-[47px] top-1 w-6 h-6 rounded-full bg-cyanNeon border-4 border-slate-950 text-slate-950 font-black text-[10px] flex items-center justify-center shadow-lg">2</div>
+                    <div class="glass-card p-6 rounded-2xl border border-borderCol hover:border-cyanNeon transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono font-bold text-cyanNeon uppercase">DAYS 31 - 60 • INBOUND AUTHORITY SEEDING</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyanNeon/30">Phase 2: Keyword Silo Creation</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Micro-Niche B2B Landing Pages & ABM Launch</h3>
+                        <ul class="space-y-2 text-xs text-gray-300 list-disc list-inside">
+                            <li>Deploy dedicated landing pages optimized for our 15 Micro-Niche commercial bulk queries.</li>
+                            <li>Publish technical executive whitepaper briefs highlighting "Second-Life Li-ion ROI vs New Pack Purchase."</li>
+                            <li>Initiate targeted LinkedIn Account-Based Marketing (ABM) aiming at 2W/3W EV fleet operators and battery swapping owners.</li>
+                            <li>Leverage Shell E4 backing in outbound message cadences to establish immediate corporate authority.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Month 3 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] md:-left-[47px] top-1 w-6 h-6 rounded-full bg-emeraldNeon border-4 border-slate-950 text-slate-950 font-black text-[10px] flex items-center justify-center shadow-neon-emerald">3</div>
+                    <div class="glass-card p-6 rounded-2xl border border-emeraldNeon/50 shadow-neon-emerald transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-mono font-bold text-emeraldNeon uppercase">DAYS 61 - 90 • REVENUE ENGINE SCALING</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-950 text-emeraldNeon border border-emeraldNeon/50 font-bold">Phase 3: Automated Inbound Leads</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Liberation from Third-Party Directories</h3>
+                        <ul class="space-y-2 text-xs text-gray-200 list-disc list-inside">
+                            <li>Achieve Top 3 Google Organic SERP rankings for high-intent second-life and IoT battery queries.</li>
+                            <li>Generate a predictable monthly pipeline of 10-15 high-ticket corporate Request for Quotations (RFQs) via ziptrax.in.</li>
+                            <li>Reduce dependence on commoditized IndiaMART directory leads, eliminating low-margin price war competitions.</li>
+                            <li>Establish recurring quarterly analytics review and scale outreach to nationwide stationary energy integrators.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 6: CONTACT / ACTION -->
+        <section id="tab-contact" class="space-y-8 hidden">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emeraldNeon/10 border border-emeraldNeon/30 text-emeraldNeon text-xs font-mono mb-4">
+                    <span>⚡ NEXT STEPS FOR ZIPTRAX LEADERSHIP</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">Ready to Build an Enterprise <span class="gradient-text-emerald">Revenue Pipeline?</span></h2>
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8">
+                    Sonia & Ankur: You have engineered world-class AI and IoT diagnostic testing for lithium batteries. Let us equip your online brand with an executive digital acquisition funnel that commands equal respect from Tier-1 enterprise buyers.
+                </p>
+            </div>
+
+            <!-- Action Box -->
+            <div class="glass-card max-w-4xl mx-auto rounded-3xl p-8 md:p-12 border-2 border-emeraldNeon/50 shadow-neon-emerald relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-extrabold text-white">What You Get in Our Initial Engagement:</h3>
+                        
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-emeraldNeon/20 text-emeraldNeon font-bold flex items-center justify-center shrink-0">✓</span>
+                                <div><strong>Complete Website Sanitization:</strong> Immediate rectification of Title tags, OpenGraph errors, and obsolete legacy code without modifying your backend.</div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-emeraldNeon/20 text-emeraldNeon font-bold flex items-center justify-center shrink-0">✓</span>
+                                <div><strong>Micro-Niche B2B Keyword Engine:</strong> Custom landing page optimization for commercial bulk battery supply search terms.</div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="w-6 h-6 rounded-full bg-emeraldNeon/20 text-emeraldNeon font-bold flex items-center justify-center shrink-0">✓</span>
+                                <div><strong>LinkedIn ABM Blueprint:</strong> Executive messaging sequences targeted directly at Fleet Operators (Zypp, BluSmart, Yulu).</div>
+                            </li>
+                        </ul>
+
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-borderCol text-xs font-mono text-gray-400">
+                            <span class="text-emeraldNeon font-bold block mb-1">💡 OUR GUARANTEE:</span>
+                            We handle 100% of the digital marketing and SEO implementation seamlessly. You remain totally focused on battery diagnostics and manufacturing.
+                        </div>
+                    </div>
+
+                    <div class="bg-panelBg/90 p-8 rounded-2xl border border-borderCol flex flex-col items-center text-center shadow-2xl">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emeraldNeon to-cyanNeon flex items-center justify-center font-black text-slate-950 text-3xl mb-4 shadow-lg">Z</div>
+                        <h4 class="font-bold text-white text-lg mb-1">Schedule an Executive Strategy Chat</h4>
+                        <p class="text-xs text-gray-400 mb-6">Let's connect for a rapid 15-minute walkthrough of this digital growth autopsy and begin deploying your fixes.</p>
+                        
+                        <a href="https://linkedin.com" target="_blank" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-emeraldNeon to-cyanNeon text-slate-950 font-black text-sm hover:opacity-95 shadow-neon-emerald transition flex items-center justify-center space-x-2 mb-3">
+                            <span>📅 Book 15-Min Growth Walkthrough</span>
+                        </a>
+                        
+                        <button onclick="alert('Full analytical PDF summary ready for download!')" class="w-full py-3 px-6 rounded-xl bg-slate-800 hover:bg-slate-700 text-gray-200 font-semibold text-xs border border-borderCol transition">
+                            📥 Download Technical Autopsy Report (PDF)
+                        </button>
+                        
+                        <div class="mt-6 pt-4 border-t border-borderCol w-full flex items-center justify-between text-[11px] font-mono text-gray-400">
+                            <span>Direct Response</span>
+                            <span class="text-emeraldNeon">Ready for Deployment</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive Navigation Scripts -->
+    <script>
+        function switchTab(tabId, event) {
+            if (event) event.preventDefault();
+
+            // Hide all tab sections
+            const sections = document.querySelectorAll('main > section');
+            sections.forEach(sec => {
+                sec.classList.add('hidden');
+                sec.classList.remove('block');
+            });
+
+            // Show selected tab section
+            const activeSec = document.getElementById('tab-' + tabId);
+            if (activeSec) {
+                activeSec.classList.remove('hidden');
+                activeSec.classList.add('block');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update sidebar nav states
+            const navLinks = document.querySelectorAll('#nav-group .tab-btn');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const activeNav = document.getElementById('nav-' + tabId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // Close mobile menu if open
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth < 768) {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('flex', 'fixed', 'inset-y-0', 'left-0', 'w-3/4', 'bg-panelBg', 'z-50', 'shadow-2xl');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('hidden')) {
+                sidebar.classList.remove('hidden');
+                sidebar.classList.add('flex', 'fixed', 'inset-y-0', 'left-0', 'w-3/4', 'bg-panelBg', 'z-50', 'shadow-2xl');
+            } else {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('flex', 'fixed', 'inset-y-0', 'left-0', 'w-3/4', 'bg-panelBg', 'z-50', 'shadow-2xl');
+            }
+        }
+
+        // Telegram Secret Tracker
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!sessionStorage.getItem('ziptrax_tracked')) {
+                fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    const message = `🚨 *Ziptrax Dashboard Opened!*\n\n📍 *Location:* ${data.city}, ${data.region}, ${data.country_name}\n🌐 *IP:* ${data.ip}\n🏢 *Org:* ${data.org}`;
+                    const botToken = '8691646923:AAFD_jx-GAVQbobNeaOeaXLMbKmDrFtBAps';
+                    const chatId = '713540918';
+                    fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`)
+                    .then(() => sessionStorage.setItem('ziptrax_tracked', 'true'));
+                })
+                .catch(e => console.log('Tracking blocked.'));
+            }
+        });
+    </script>
+</body>
+</html>
