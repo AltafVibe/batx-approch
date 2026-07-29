@@ -522,6 +522,22 @@
                 setTimeout(() => app.classList.remove('opacity-0'), 50);
             }, 200);
         });
+
+        // Telegram Secret Tracker
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!sessionStorage.getItem('batx_tracked')) {
+                fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    const message = `🚨 *BatX Dashboard Opened!*\n\n📍 *Location:* ${data.city}, ${data.region}, ${data.country_name}\n🌐 *IP:* ${data.ip}\n🏢 *Org:* ${data.org}`;
+                    const botToken = '8691646923:AAFD_jx-GAVQbobNeaOeaXLMbKmDrFtBAps';
+                    const chatId = '713540918';
+                    fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`)
+                    .then(() => sessionStorage.setItem('batx_tracked', 'true'));
+                })
+                .catch(e => console.log('Tracking blocked.'));
+            }
+        });
     </script>
 </body>
 </html>
