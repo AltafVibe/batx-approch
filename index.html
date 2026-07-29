@@ -316,14 +316,20 @@
             problemStatement: "Excellent tech, but missing B2B enterprise RFQs in Organic & AI Search.",
             metrics: { seoErrors: 12, missingKeywords: 45, revenueLeak: "CRITICAL" },
             competitors: {
-                labels: ["BatX", "Lohum", "Attero"],
-                data: [15, 65, 80]
+                labels: ["BatX", "Lohum", "Attero", "Li-Cycle", "Redwood"],
+                data: [15, 65, 80, 150, 250]
             },
             seoErrors: ["Missing XML Sitemap", "Slow Mobile Load Time", "Broken H1 Tags", "Orphan Pages", "Low Quality Backlinks"],
             sidebarData: {
                 competitors: [
-                    { name: "Lohum", targets: "Lithium extraction, Black mass buyer", traffic: "150k+/mo", threat: "High" },
-                    { name: "Attero", targets: "E-waste contracts, EV recycling B2B", traffic: "200k+/mo", threat: "Critical" }
+                    // Indian Competitors
+                    { name: "Lohum", targets: "Lithium extraction, Black mass buyer", traffic: "150k+/mo", threat: "Critical (India)" },
+                    { name: "Attero", targets: "E-waste contracts, EV recycling B2B", traffic: "200k+/mo", threat: "Critical (India)" },
+                    { name: "Metastable Materials", targets: "Chemical free battery recycling", traffic: "45k+/mo", threat: "Emerging (India)" },
+                    // Global Competitors
+                    { name: "Redwood Materials", targets: "Battery materials supply chain", traffic: "500k+/mo", threat: "Global Leader (USA)" },
+                    { name: "Li-Cycle", targets: "Spoke & Hub recycling tech", traffic: "300k+/mo", threat: "Global Scale (Canada)" },
+                    { name: "Umicore", targets: "Battery grade precursor metals", traffic: "1M+/mo", threat: "Enterprise (EU)" }
                 ],
                 microNiche: [
                     { kw: "OEM battery disposal partner", vol: "Low, but High-Ticket", estRev: "$500k/yr+" },
@@ -410,7 +416,7 @@
                     datasets: [{
                         label: 'Traffic Share',
                         data: DATA.competitors.data,
-                        backgroundColor: ['rgba(14, 165, 233, 0.8)', 'rgba(139, 92, 246, 0.5)', 'rgba(16, 185, 129, 0.5)'],
+                        backgroundColor: ['rgba(14, 165, 233, 0.8)', 'rgba(139, 92, 246, 0.5)', 'rgba(16, 185, 129, 0.5)', 'rgba(245, 158, 11, 0.5)', 'rgba(239, 68, 68, 0.5)'],
                         borderRadius: 4, borderWidth: 1, borderColor: 'rgba(255,255,255,0.05)'
                     }]
                 },
