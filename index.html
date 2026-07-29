@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Autopsy Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { 
+                        brand: '#0ea5e9',
+                        brandAccent: '#8b5cf6',
+                        darkBg: '#020617',
+                        panelBg: '#0f172a',
+                        borderCol: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020617; color: #f8fafc; overflow: hidden; }
+        .glass-panel { 
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6)); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #0ea5e9, #8b5cf6);
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .nav-btn.active {
+            background: linear-gradient(to right, rgba(14, 165, 233, 0.2), rgba(139, 92, 246, 0.2));
+            border-color: rgba(14, 165, 233, 0.5);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+        }
+    </style>
+</head>
+<body class="h-screen flex text-sm">
+
+    <!-- Loading State -->
+    <div id="loading" class="absolute inset-0 z-50 flex items-center justify-center bg-darkBg text-brand text-2xl animate-pulse">
+        Initializing Audit Engine...
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="w-64 border-r border-borderCol bg-panelBg flex flex-col hidden md:flex shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-borderCol shrink-0">
+            <span class="font-bold text-lg tracking-wider text-white">GROWTH<span class="text-gradient">OPS</span></span>
+        </div>
+        <div class="p-6 flex-1 overflow-y-auto">
+            <div class="text-xs font-semibold text-gray-400 mb-4 uppercase tracking-wider">Target Profile</div>
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand to-purple-600 flex items-center justify-center font-bold text-white shadow-lg shrink-0">BX</div>
+                <div>
+                    <div id="company-name" class="font-semibold text-white"></div>
+                    <div id="funding-stage" class="text-xs text-brand"></div>
+                </div>
+            </div>
+            
+            <div class="space-y-3 mt-8">
+                <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Navigation</div>
+                
+                <a href="#" onclick="switchTab('overview')" id="nav-overview" class="nav-btn active flex items-center space-x-3 text-gray-400 hover:text-white px-3 py-2.5 rounded-lg border border-transparent transition">
+                    <span class="text-lg">📊</span> <span class="font-medium text-sm">Overview Dashboard</span>
+                </a>
+                
+                <a href="#" onclick="switchTab('competitor')" id="nav-competitor" class="nav-btn flex items-center space-x-3 text-gray-400 hover:text-white px-3 py-2.5 rounded-lg border border-transparent transition">
+                    <span class="text-lg">⚔️</span> <span class="font-medium text-sm">Competitor Intel</span>
+                </a>
+                
+                <a href="#" onclick="switchTab('goldmines')" id="nav-goldmines" class="nav-btn flex items-center space-x-3 text-gray-400 hover:text-white px-3 py-2.5 rounded-lg border border-transparent transition">
+                    <span class="text-lg">💰</span> <span class="font-medium text-sm">Revenue Goldmines</span>
+                </a>
+
+                <a href="#" onclick="switchTab('streams')" id="nav-streams" class="nav-btn flex items-center space-x-3 text-gray-400 hover:text-white px-3 py-2.5 rounded-lg border border-transparent transition">
+                    <span class="text-lg">⚙️</span> <span class="font-medium text-sm">Working Process</span>
+                </a>
+
+                <a href="#" onclick="switchTab('roadmap')" id="nav-roadmap" class="nav-btn flex items-center space-x-3 text-gray-400 hover:text-white px-3 py-2.5 rounded-lg border border-transparent transition">
+                    <span class="text-lg">🗺️</span> <span class="font-medium text-sm">Strategy Roadmap</span>
+                </a>
+            </div>
+        </div>
+        <div class="p-4 border-t border-borderCol shrink-0">
+            <a id="cta-button" href="#" class="block w-full py-2.5 bg-gradient-to-r from-brand to-brandAccent hover:opacity-90 text-white text-center rounded-lg font-medium transition shadow-[0_0_15px_rgba(14,165,233,0.4)]">
+                Book Execution Call
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="app-content" class="flex-1 flex flex-col h-screen overflow-hidden hidden opacity-0 transition-opacity duration-500">
+        
+        <!-- Topbar -->
+        <header class="h-16 border-b border-borderCol bg-darkBg flex items-center justify-between px-8 shrink-0">
+            <div>
+                <h1 id="page-title" class="text-xl font-bold text-white">B2B Autopsy Report</h1>
+                <p id="problem-statement" class="text-xs text-red-400 font-medium"></p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-green-900/30 text-green-400 border border-green-800">
+                    <span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.8)]"></span> Live Data
+                </span>
+            </div>
+        </header>
+
+        <!-- VIEW: OVERVIEW -->
+        <div id="view-overview" class="view-section flex-1 p-6 flex flex-col space-y-6 bg-darkBg overflow-hidden">
+            <div class="grid grid-cols-12 gap-6 shrink-0">
+                <div class="col-span-5 grid grid-rows-3 gap-3">
+                    <div class="glass-panel p-4 rounded-xl flex items-center justify-between">
+                        <div class="text-gray-400 text-xs font-semibold">Untapped Keywords</div>
+                        <div id="metric-keywords" class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand to-brandAccent"></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl flex items-center justify-between">
+                        <div class="text-gray-400 text-xs font-semibold">Critical SEO Errors</div>
+                        <div id="metric-seo-errors" class="text-xl font-bold text-red-400"></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl border-red-900/50 flex items-center justify-between">
+                        <div class="text-gray-400 text-xs font-semibold">Revenue Leak (RFQs)</div>
+                        <div id="metric-leak" class="text-xl font-bold text-red-400"></div>
+                    </div>
+                </div>
+
+                <div class="col-span-7 glass-panel p-4 rounded-xl flex flex-col h-40">
+                    <h3 class="text-sm font-semibold text-gray-300 mb-2">Competitor SEO Threat (Traffic)</h3>
+                    <div class="flex-1 relative w-full h-full">
+                        <canvas id="competitorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-xl flex flex-col flex-1 overflow-hidden">
+                <div class="p-4 border-b border-borderCol flex justify-between items-center bg-gray-900/80 shrink-0">
+                    <div class="flex items-center space-x-2">
+                        <h3 class="text-base font-bold text-white">The Keyword Goldmine</h3>
+                        <span class="bg-brand/20 text-brand px-2 py-0.5 rounded text-[10px] font-bold border border-brand/30">HIGH INTENT</span>
+                    </div>
+                </div>
+                <div class="overflow-y-auto flex-1 bg-darkBg/50">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="sticky top-0 bg-panelBg border-b border-borderCol shadow-md">
+                            <tr>
+                                <th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Search Query (Target)</th>
+                                <th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Buyer Intent</th>
+                                <th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider">Current Search Visibility</th>
+                                <th class="py-3 px-6 text-xs font-semibold text-gray-400 uppercase tracking-wider text-right">Business Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody id="keyword-table-body" class="divide-y divide-borderCol"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: COMPETITOR INTEL -->
+        <div id="view-competitor" class="view-section hidden flex-1 p-6 flex flex-col space-y-6 bg-darkBg overflow-y-auto">
+            <div class="glass-panel p-6 rounded-xl">
+                <h2 class="text-xl font-bold text-white mb-4">⚔️ Top SEO Competitors</h2>
+                <p class="text-sm text-gray-400 mb-6">Analyzing the direct threats and their organic capture strategies.</p>
+                <div class="grid grid-cols-2 gap-6" id="competitor-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: REVENUE GOLDMINES -->
+        <div id="view-goldmines" class="view-section hidden flex-1 p-6 flex flex-col space-y-6 bg-darkBg overflow-y-auto">
+            <div class="glass-panel p-6 rounded-xl">
+                <h2 class="text-xl font-bold text-green-400 mb-4">💰 Micro-Niche Revenue Opportunities</h2>
+                <p class="text-sm text-gray-400 mb-6">These highly specific keywords directly bring in high-ticket B2B clients.</p>
+                <div class="space-y-4" id="niche-list-full">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: WORKING PROCESS & REVENUE STREAMS -->
+        <div id="view-streams" class="view-section hidden flex-1 p-6 flex flex-col space-y-6 bg-darkBg overflow-hidden">
+            <div class="grid grid-cols-2 gap-6 h-full">
+                <!-- Working Process Text -->
+                <div class="glass-panel p-6 rounded-xl overflow-y-auto">
+                    <h2 class="text-xl font-bold text-brand mb-4">⚙️ The Working Process</h2>
+                    <ul class="space-y-6 relative border-l-2 border-borderCol ml-3 pl-6">
+                        <li class="relative">
+                            <span class="absolute -left-[33px] top-1 w-4 h-4 bg-darkBg border-2 border-brand rounded-full shadow-[0_0_10px_rgba(14,165,233,0.5)]"></span>
+                            <h4 class="text-white font-bold text-sm">Step 1: Raw Material Sourcing</h4>
+                            <p class="text-gray-400 text-xs mt-1 leading-relaxed">Partnering with EV OEMs, telecom companies, and e-waste vendors to collect end-of-life lithium-ion batteries. <br><span class="text-brandAccent font-medium">SEO Target: Battery scrap buyers B2B</span></p>
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[33px] top-1 w-4 h-4 bg-darkBg border-2 border-brand rounded-full shadow-[0_0_10px_rgba(14,165,233,0.5)]"></span>
+                            <h4 class="text-white font-bold text-sm">Step 2: Processing & Black Mass</h4>
+                            <p class="text-gray-400 text-xs mt-1 leading-relaxed">Extracting valuable metals like Lithium, Cobalt, Nickel to form 'Black Mass'. <br><span class="text-brandAccent font-medium">SEO Target: Black Mass suppliers in India</span></p>
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[33px] top-1 w-4 h-4 bg-darkBg border-2 border-brand rounded-full shadow-[0_0_10px_rgba(14,165,233,0.5)]"></span>
+                            <h4 class="text-white font-bold text-sm">Step 3: Refinement to Battery Grade</h4>
+                            <p class="text-gray-400 text-xs mt-1 leading-relaxed">Refining metals to battery-grade purity to sell back to cell manufacturers. <br><span class="text-brandAccent font-medium">SEO Target: Battery grade lithium carbonate</span></p>
+                        </li>
+                        <li class="relative">
+                            <span class="absolute -left-[33px] top-1 w-4 h-4 bg-darkBg border-2 border-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></span>
+                            <h4 class="text-green-400 font-bold text-sm">Step 4: Revenue & EPR Sales</h4>
+                            <p class="text-gray-400 text-xs mt-1 leading-relaxed">Selling refined metals and providing EPR (Extended Producer Responsibility) certificates to companies to meet Govt targets. <br><span class="text-green-400 font-medium">SEO Target: EPR certificate for battery recycling</span></p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Revenue Graph -->
+                <div class="glass-panel p-6 rounded-xl flex flex-col">
+                    <h2 class="text-xl font-bold text-white mb-2">Target Revenue Streams</h2>
+                    <p class="text-xs text-gray-400 mb-6">Where the money comes from, and where SEO should focus.</p>
+                    <div class="flex-1 relative w-full h-full flex justify-center items-center">
+                        <div class="w-full h-full pb-4">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: STRATEGY ROADMAP -->
+        <div id="view-roadmap" class="view-section hidden flex-1 p-6 flex flex-col space-y-6 bg-darkBg overflow-y-auto">
+            <div class="glass-panel p-6 rounded-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                <h2 class="text-2xl font-bold text-white mb-2 relative z-10">🗺️ The Execution Roadmap</h2>
+                <p class="text-sm text-gray-400 mb-8 relative z-10">Our step-by-step masterplan to dominate B2B Enterprise RFQs and capture high-intent leads.</p>
+                
+                <!-- Timeline container -->
+                <div class="relative border-l-2 border-borderCol ml-4 md:ml-6 space-y-8 pb-4">
+                    
+                    <!-- Phase 1 -->
+                    <div class="relative pl-8">
+                        <span class="absolute -left-[11px] top-1 w-5 h-5 bg-darkBg border-4 border-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.6)]"></span>
+                        <div class="bg-gray-800/50 p-5 rounded-lg border border-gray-700/50 hover:border-blue-500/50 transition">
+                            <span class="text-blue-400 font-bold text-xs tracking-wider uppercase mb-1 block">Month 1 - Foundation</span>
+                            <h3 class="text-lg font-bold text-white mb-2">Technical Fixes & Infrastructure</h3>
+                            <ul class="text-sm text-gray-400 space-y-2 list-disc list-inside">
+                                <li>Fix critical SEO errors (XML Sitemaps, Broken H1s, Canonical tags).</li>
+                                <li>Optimize page speed for mobile and enterprise networks.</li>
+                                <li>Setup advanced analytics and B2B lead tracking pipelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="relative pl-8">
+                        <span class="absolute -left-[11px] top-1 w-5 h-5 bg-darkBg border-4 border-brandAccent rounded-full shadow-[0_0_15px_rgba(139,92,246,0.6)]"></span>
+                        <div class="bg-gray-800/50 p-5 rounded-lg border border-gray-700/50 hover:border-brandAccent/50 transition">
+                            <span class="text-brandAccent font-bold text-xs tracking-wider uppercase mb-1 block">Month 2 & 3 - Authority</span>
+                            <h3 class="text-lg font-bold text-white mb-2">Content & Micro-Niche Targeting</h3>
+                            <ul class="text-sm text-gray-400 space-y-2 list-disc list-inside">
+                                <li>Deploy high-intent landing pages for 'Revenue Goldmine' keywords.</li>
+                                <li>Publish authority content around EPR compliance and Black Mass extraction.</li>
+                                <li>Begin targeted digital PR and high-authority B2B link building.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="relative pl-8">
+                        <span class="absolute -left-[11px] top-1 w-5 h-5 bg-darkBg border-4 border-green-500 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.6)]"></span>
+                        <div class="bg-gray-800/50 p-5 rounded-lg border border-gray-700/50 hover:border-green-500/50 transition">
+                            <span class="text-green-500 font-bold text-xs tracking-wider uppercase mb-1 block">Month 4+ - Domination</span>
+                            <h3 class="text-lg font-bold text-white mb-2">ABM & Enterprise Lead Capture</h3>
+                            <ul class="text-sm text-gray-400 space-y-2 list-disc list-inside">
+                                <li>Launch personalized ABM (Account-Based Marketing) campaigns for Tata, Ola, Exide.</li>
+                                <li>Automate B2B lead nurturing and CRM integration.</li>
+                                <li>Scale OEM partnerships and massive RFQ acquisitions.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const DATA = {
+            companyName: "BatX Energies",
+            problemStatement: "Excellent tech, but missing B2B enterprise RFQs in Organic & AI Search.",
+            metrics: { seoErrors: 12, missingKeywords: 45, revenueLeak: "CRITICAL" },
+            competitors: {
+                labels: ["BatX", "Lohum", "Attero"],
+                data: [15, 65, 80]
+            },
+            seoErrors: ["Missing XML Sitemap", "Slow Mobile Load Time", "Broken H1 Tags", "Orphan Pages", "Low Quality Backlinks"],
+            sidebarData: {
+                competitors: [
+                    { name: "Lohum", targets: "Lithium extraction, Black mass buyer", traffic: "150k+/mo", threat: "High" },
+                    { name: "Attero", targets: "E-waste contracts, EV recycling B2B", traffic: "200k+/mo", threat: "Critical" }
+                ],
+                microNiche: [
+                    { kw: "OEM battery disposal partner", vol: "Low, but High-Ticket", estRev: "$500k/yr+" },
+                    { kw: "Enterprise EPR certificate provider", vol: "Medium", estRev: "High Recurring" },
+                    { kw: "B2B lithium carbonate suppliers", vol: "High Demand", estRev: "Global Export" }
+                ],
+                revenueStreams: {
+                    labels: ["EPR Certificates", "Refined Metals (Li, Co, Ni)", "Black Mass Sales", "Consulting / R&D"],
+                    data: [35, 40, 15, 10]
+                }
+            },
+            keywords: [
+                { keyword: "EPR battery compliance India", intent: "HIGH (BUYER)", ranking: "Not in Top 10", opportunity: "Govt/Enterprise Deals" },
+                { keyword: "Buy Black Mass online", intent: "HIGH (BUYER)", ranking: "Not in Top 10", opportunity: "Direct Raw Material Sales" },
+                { keyword: "Battery recycling partner for Tata Motors", intent: "HIGH (TRANSACTIONAL)", ranking: "No dedicated funnel", opportunity: "Giant OEM Contract" },
+                { keyword: "How to recycle EV batteries", intent: "INFO (RESEARCH)", ranking: "Weak Visibility", opportunity: "Topical Authority Build" },
+                { keyword: "Lithium carbonate supplier India", intent: "HIGH (BUYER)", ranking: "Not in Top 10", opportunity: "Direct B2B Inbound" },
+                { keyword: "BatX vs Attero battery recycling", intent: "MEDIUM (EVAL)", ranking: "No comparison page", opportunity: "Brand Trust & Conversion" }
+            ],
+            contactEmail: "hello@youragency.com"
+        };
+
+        let revenueChartInstance = null;
+
+        function switchTab(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            // Remove active classes
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            
+            // Show target section
+            document.getElementById('view-' + tabId).classList.remove('hidden');
+            // Set active class
+            document.getElementById('nav-' + tabId).classList.add('active');
+
+            // Set Title
+            const titles = {
+                'overview': 'B2B Autopsy Report',
+                'competitor': 'Competitor Intelligence',
+                'goldmines': 'Revenue Goldmines (Micro-Niche)',
+                'streams': 'Working Process & Revenue Streams',
+                'roadmap': 'Execution Strategy Roadmap'
+            };
+            document.getElementById('page-title').textContent = titles[tabId];
+            
+            // Re-render chart if switching to streams to ensure animation plays
+            if(tabId === 'streams' && revenueChartInstance) {
+                revenueChartInstance.update();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.title = `${DATA.companyName} | Autopsy`;
+            document.getElementById('company-name').textContent = DATA.companyName;
+            document.getElementById('problem-statement').textContent = "Threat: " + DATA.problemStatement;
+            document.getElementById('cta-button').href = `mailto:${DATA.contactEmail}?subject=Regarding the B2B Growth Autopsy`;
+
+            // Overview Tab
+            document.getElementById('metric-keywords').textContent = DATA.metrics.missingKeywords + "+";
+            document.getElementById('metric-seo-errors').textContent = DATA.metrics.seoErrors;
+            document.getElementById('metric-leak').textContent = DATA.metrics.revenueLeak;
+
+            const tableBody = document.getElementById('keyword-table-body');
+            DATA.keywords.forEach(kw => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-800/60 transition-colors group cursor-default';
+                let intentBadge = 'bg-gray-500/20 text-gray-400 border-gray-500/30';
+                if(kw.intent.includes('HIGH')) intentBadge = 'bg-red-500/10 text-red-400 border-red-500/30 shadow-[0_0_8px_rgba(239,68,68,0.2)]';
+                if(kw.intent.includes('TRANSACTIONAL')) intentBadge = 'bg-purple-500/10 text-purple-400 border-purple-500/30 shadow-[0_0_8px_rgba(168,85,247,0.2)]';
+                if(kw.intent.includes('MEDIUM')) intentBadge = 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30';
+                row.innerHTML = `
+                    <td class="py-4 px-6 font-medium text-gray-200 group-hover:text-brand transition-colors">${kw.keyword}</td>
+                    <td class="py-4 px-6"><span class="border ${intentBadge} py-1 px-2.5 rounded text-[10px] font-extrabold tracking-wider">${kw.intent}</span></td>
+                    <td class="py-4 px-6 text-gray-400 text-xs font-medium"><span class="bg-gray-800/80 px-2 py-1 rounded text-red-300 border border-red-900/30">${kw.ranking}</span></td>
+                    <td class="py-4 px-6 text-brand text-xs font-semibold text-right">${kw.opportunity}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            const ctx = document.getElementById('competitorChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: DATA.competitors.labels,
+                    datasets: [{
+                        label: 'Traffic Share',
+                        data: DATA.competitors.data,
+                        backgroundColor: ['rgba(14, 165, 233, 0.8)', 'rgba(139, 92, 246, 0.5)', 'rgba(16, 185, 129, 0.5)'],
+                        borderRadius: 4, borderWidth: 1, borderColor: 'rgba(255,255,255,0.05)'
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { size: 10 } } },
+                        x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 } } }
+                    },
+                    plugins: { legend: { display: false } },
+                    layout: { padding: 0 }
+                }
+            });
+
+            // Competitor Tab
+            const compGrid = document.getElementById('competitor-grid');
+            DATA.sidebarData.competitors.forEach(comp => {
+                compGrid.innerHTML += `
+                    <div class="bg-gray-800/40 p-5 rounded-lg border border-gray-700/50 shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-white flex items-center"><span class="w-3 h-3 rounded-full bg-red-500 mr-3 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></span>${comp.name}</h3>
+                            <span class="bg-red-900/40 text-red-400 border border-red-800 px-2 py-1 rounded text-xs font-bold">${comp.threat} Threat</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div><span class="text-gray-400 text-xs">Estimated Traffic:</span> <div class="text-lg font-semibold text-gray-200">${comp.traffic}</div></div>
+                            <div><span class="text-gray-400 text-xs">Primary Targets:</span> <div class="text-sm font-medium text-brandAccent">${comp.targets}</div></div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Goldmines Tab
+            const nicheList = document.getElementById('niche-list-full');
+            DATA.sidebarData.microNiche.forEach(niche => {
+                nicheList.innerHTML += `
+                    <div class="flex items-center justify-between bg-gray-800/40 p-5 rounded-lg border border-gray-700/50 hover:border-green-500/50 transition">
+                        <div class="flex items-center space-x-5">
+                            <div class="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(34,197,94,0.2)]">💰</div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">${niche.kw}</h4>
+                                <div class="text-sm text-gray-400 mt-1">Search Volume Intent: <span class="text-gray-300 font-medium">${niche.vol}</span></div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs text-gray-400">Estimated Revenue Value</div>
+                            <div class="text-green-400 font-bold text-xl mt-1">${niche.estRev}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Revenue Streams Chart
+            const ctxRev = document.getElementById('revenueChart').getContext('2d');
+            revenueChartInstance = new Chart(ctxRev, {
+                type: 'doughnut',
+                data: {
+                    labels: DATA.sidebarData.revenueStreams.labels,
+                    datasets: [{
+                        data: DATA.sidebarData.revenueStreams.data,
+                        backgroundColor: ['rgba(34, 197, 94, 0.8)', 'rgba(14, 165, 233, 0.8)', 'rgba(139, 92, 246, 0.8)', 'rgba(239, 68, 68, 0.8)'],
+                        borderColor: '#020617',
+                        borderWidth: 2,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right', labels: { color: '#e2e8f0', font: { size: 12, family: 'Inter' }, padding: 20 } }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+                const app = document.getElementById('app-content');
+                app.classList.remove('hidden');
+                setTimeout(() => app.classList.remove('opacity-0'), 50);
+            }, 200);
+        });
+    </script>
+</body>
+</html>
