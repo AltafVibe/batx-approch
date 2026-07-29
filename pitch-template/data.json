@@ -1,0 +1,54 @@
+{
+  "companyName": "BatX Energies",
+  "fundingAmount": "Rs 105Cr",
+  "fundingStage": "Series A",
+  "problemStatement": "Missing B2B enterprise RFQs in Organic and AI Search.",
+  "metrics": {
+    "seoErrors": 12,
+    "missingKeywords": 45,
+    "revenueLeak": "High"
+  },
+  "competitors": {
+    "labels": ["BatX", "Lohum", "Attero"],
+    "data": [15, 65, 80]
+  },
+  "sidebarData": {
+    "competitors": [
+      { "name": "Lohum", "targets": "Lithium extraction, Black mass buyer" },
+      { "name": "Attero", "targets": "E-waste contracts, EV recycling B2B" }
+    ],
+    "microNiche": [
+      "OEM battery disposal partner",
+      "Enterprise EPR certificate provider",
+      "B2B lithium carbonate suppliers"
+    ]
+  },
+  "seoErrors": ["Missing XML Sitemap", "Slow Mobile Load Time", "Broken H1 Tags", "Orphan Pages", "Low Quality Backlinks", "Canonical Errors"],
+  "keywords": [
+    {
+      "keyword": "EPR battery compliance India",
+      "intent": "HIGH (BUYER)",
+      "ranking": "Not in Top 10",
+      "opportunity": "Govt/Enterprise"
+    },
+    {
+      "keyword": "Buy Black Mass online",
+      "intent": "HIGH (BUYER)",
+      "ranking": "Not in Top 10",
+      "opportunity": "Direct Sales"
+    },
+    {
+      "keyword": "Battery recycling for Tata Motors",
+      "intent": "HIGH (TRANSACTIONAL)",
+      "ranking": "No page found",
+      "opportunity": "OEM Contract"
+    },
+    {
+      "keyword": "How to recycle EV batteries",
+      "intent": "INFO (RESEARCH)",
+      "ranking": "Weak",
+      "opportunity": "Topical Authority"
+    }
+  ],
+  "contactEmail": "hello@youragency.com"
+}

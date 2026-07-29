@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Autopsy Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { 
+                        brand: '#0ea5e9', // Electric Sky Blue
+                        brandAccent: '#8b5cf6', // Neon Purple
+                        darkBg: '#020617', // Deep Navy/Midnight
+                        panelBg: '#0f172a', // Slate 900
+                        borderCol: '#1e293b' // Slate 800
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020617; color: #f8fafc; overflow: hidden; }
+        .glass-panel { 
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6)); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #0ea5e9, #8b5cf6);
+        }
+        /* Custom Scrollbar for compact views */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    </style>
+</head>
+<body class="h-screen flex text-sm">
+
+    <!-- Loading State -->
+    <div id="loading" class="absolute inset-0 z-50 flex items-center justify-center bg-darkBg text-brand text-2xl animate-pulse">
+        Initializing Audit Engine...
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="w-64 border-r border-borderCol bg-panelBg flex flex-col hidden md:flex">
+        <div class="h-16 flex items-center px-6 border-b border-borderCol">
+            <span class="font-bold text-lg tracking-wider text-white">GROWTH<span class="text-gradient">OPS</span></span>
+        </div>
+        <div class="p-6 flex-1">
+            <div class="text-xs font-semibold text-gray-400 mb-4 uppercase tracking-wider">Target Profile</div>
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand to-purple-600 flex items-center justify-center font-bold text-white shadow-lg">BX</div>
+                <div>
+                    <div id="company-name" class="font-semibold text-white"></div>
+                    <div id="funding-stage" class="text-xs text-brand"></div>
+                </div>
+            </div>
+            
+            <div class="space-y-2 mt-8">
+                <a href="#" class="flex items-center space-x-3 text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg border border-gray-700">
+                    <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    <span>Overview Dashboard</span>
+                </a>
+            </div>
+
+            <!-- Competitor Intel -->
+            <div class="mt-8">
+                <div class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Competitor Intel</div>
+                <ul id="sidebar-competitors" class="space-y-3">
+                    <!-- JS injected -->
+                </ul>
+            </div>
+
+            <!-- Micro Niche Revenue -->
+            <div class="mt-8 mb-4">
+                <div class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider text-green-400">Revenue Goldmines</div>
+                <ul id="sidebar-micro-niche" class="space-y-3">
+                    <!-- JS injected -->
+                </ul>
+            </div>
+        </div>
+        <div class="p-4 border-t border-borderCol">
+            <a id="cta-button" href="#" class="block w-full py-2 bg-gradient-to-r from-brand to-brandAccent hover:opacity-90 text-white text-center rounded-lg font-medium transition shadow-[0_0_15px_rgba(14,165,233,0.4)]">
+                Book Execution Call
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="app-content" class="flex-1 flex flex-col h-screen overflow-hidden hidden opacity-0 transition-opacity duration-500">
+        
+        <!-- Topbar -->
+        <header class="h-16 border-b border-borderCol bg-darkBg flex items-center justify-between px-8 shrink-0">
+            <div>
+                <h1 class="text-xl font-bold text-white">B2B Autopsy Report</h1>
+                <p id="problem-statement" class="text-xs text-red-400 font-medium"></p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900/30 text-green-400 border border-green-800">
+                    <span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse"></span> Live Data
+                </span>
+            </div>
+        </header>
+
+        <!-- Dashboard Grid -->
+        <div class="flex-1 p-6 overflow-y-auto bg-darkBg">
+            <div class="max-w-7xl mx-auto space-y-6">
+                
+                <!-- KPI Cards Row -->
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="glass-panel p-4 rounded-xl">
+                        <div class="text-gray-400 text-xs font-semibold mb-1">Total Funding</div>
+                        <div id="metric-funding" class="text-2xl font-bold text-white"></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl">
+                        <div class="text-gray-400 text-xs font-semibold mb-1">Untapped Keywords</div>
+                        <div id="metric-keywords" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand to-brandAccent"></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl">
+                        <div class="text-gray-400 text-xs font-semibold mb-1">Critical SEO Errors</div>
+                        <div id="metric-seo-errors" class="text-2xl font-bold text-red-400"></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl border-red-900/50">
+                        <div class="text-gray-400 text-xs font-semibold mb-1">Revenue Leak (RFQs)</div>
+                        <div id="metric-leak" class="text-2xl font-bold text-red-400"></div>
+                    </div>
+                </div>
+
+                <!-- Charts & Lists Row -->
+                <div class="grid grid-cols-3 gap-6 h-64">
+                    <!-- Chart -->
+                    <div class="col-span-2 glass-panel p-5 rounded-xl flex flex-col">
+                        <h3 class="text-sm font-semibold text-gray-300 mb-2">Competitor SEO Threat Level (Traffic Share)</h3>
+                        <div class="flex-1 relative w-full h-full">
+                            <canvas id="competitorChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- SEO Errors -->
+                    <div class="col-span-1 glass-panel p-5 rounded-xl flex flex-col">
+                        <h3 class="text-sm font-semibold text-gray-300 mb-3 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            Critical SEO Errors
+                        </h3>
+                        <ul id="seo-error-list" class="space-y-2 overflow-y-auto flex-1 pr-2">
+                            <!-- Injected by JS -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Keyword Data Table -->
+                <div class="glass-panel rounded-xl overflow-hidden flex flex-col h-64">
+                    <div class="p-4 border-b border-borderCol flex justify-between items-center bg-gray-900/50 shrink-0">
+                        <h3 class="text-sm font-semibold text-gray-300">The Keyword Goldmine</h3>
+                        <span class="text-xs text-gray-500">Showing High-Intent RFQ queries</span>
+                    </div>
+                    <div class="overflow-y-auto flex-1">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="sticky top-0 bg-panelBg border-b border-borderCol">
+                                <tr>
+                                    <th class="p-3 text-xs font-semibold text-gray-400 uppercase">Search Query</th>
+                                    <th class="p-3 text-xs font-semibold text-gray-400 uppercase">Buyer Intent</th>
+                                    <th class="p-3 text-xs font-semibold text-gray-400 uppercase">Current Status</th>
+                                    <th class="p-3 text-xs font-semibold text-gray-400 uppercase">Opportunity</th>
+                                </tr>
+                            </thead>
+                            <tbody id="keyword-table-body" class="divide-y divide-borderCol">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
