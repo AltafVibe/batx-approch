@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wify Executive Pitch — City-Wise Digital Restructuring & Growth Portal</title>
+<title>Wify Executive Code Autopsy & Strategic Wedge</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
 
 :root {
-  --bg-main: #060913;
-  --bg-card: #0c1225;
+  --bg-main: #050811;
+  --bg-card: #0a0f20;
   --border: rgba(255, 255, 255, 0.12);
   --t-main: #F8FAFC;
-  --t-muted: #B7C2D4;
+  --t-muted: #94A3B8;
 }
 html { 
-  font-size: 17px; /* BIG, CLEAR FONTS as requested */
+  font-size: 18px; /* EXTRA BIG, CLEAR FONTS FOR EFFORTLESS READING */
   scroll-behavior: smooth; 
 }
 body { 
@@ -25,106 +25,97 @@ body {
   color: var(--t-main); 
   line-height: 1.65;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.08), transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(0, 245, 212, 0.08), transparent 45%);
+    radial-gradient(circle at 15% 15%, rgba(255, 107, 0, 0.1), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(0, 230, 118, 0.08), transparent 45%);
 }
 
-/* SIDEBAR & NAV TABS (DISTINCT COLORS) */
-.sidebar { width: 360px; flex-shrink: 0; border-right: 1px solid var(--border); background: #070B18; }
+/* SIDEBAR & NAV TABS (VIBRANT DIFFERENTIATED COLORS) */
+.sidebar { width: 370px; flex-shrink: 0; border-right: 1px solid var(--border); background: #070B18; }
 .nav-btn {
-  display: flex; align-items: flex-start; gap: 14px; width: 100%; text-align: left;
-  padding: 16px 18px; border-radius: 14px; border: 2px solid transparent; 
+  display: flex; align-items: flex-start; gap: 16px; width: 100%; text-align: left;
+  padding: 18px 20px; border-radius: 16px; border: 2px solid transparent; 
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  margin-bottom: 12px; background: rgba(255, 255, 255, 0.02); cursor: pointer;
+  margin-bottom: 14px; background: rgba(255, 255, 255, 0.02); cursor: pointer;
 }
 .nav-btn:hover { transform: translateX(5px); background: rgba(255, 255, 255, 0.06); }
 .nav-badge {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 900;
-  padding: 6px 10px; border-radius: 8px; flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 900;
+  padding: 8px 12px; border-radius: 10px; flex-shrink: 0;
 }
 .nav-text { flex-grow: 1; }
-.nav-title { font-size: 1.12rem; font-weight: 800; color: #FFFFFF; display: block; }
-.nav-sub { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; display: block; margin-top: 3px; }
+.nav-title { font-size: 1.18rem; font-weight: 800; color: #FFFFFF; display: block; }
+.nav-sub { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-top: 4px; }
 
-/* Dedicated Tab Color Styles */
-/* 01 Orange */
+/* 01 Orange Gold */
 .tab-01 .nav-badge { background: #FF6B00; color: #FFF; }
-.tab-01.active { background: linear-gradient(135deg, rgba(255,107,0,0.18), rgba(255,107,0,0.03)); border-color: #FF6B00; box-shadow: 0 0 25px rgba(255,107,0,0.3); }
+.tab-01.active { background: linear-gradient(135deg, rgba(255,107,0,0.2), rgba(255,107,0,0.02)); border-color: #FF6B00; box-shadow: 0 0 30px rgba(255,107,0,0.35); }
 .tab-01 .nav-sub { color: #FFAA55; }
-/* 02 Lime Green */
-.tab-02 .nav-badge { background: #00E676; color: #000; }
-.tab-02.active { background: linear-gradient(135deg, rgba(0,230,118,0.18), rgba(0,230,118,0.03)); border-color: #00E676; box-shadow: 0 0 25px rgba(0,230,118,0.3); }
-.tab-02 .nav-sub { color: #00E676; }
-/* 03 Red */
-.tab-03 .nav-badge { background: #FF2E63; color: #FFF; }
-.tab-03.active { background: linear-gradient(135deg, rgba(255,46,99,0.18), rgba(255,46,99,0.03)); border-color: #FF2E63; box-shadow: 0 0 25px rgba(255,46,99,0.3); }
-.tab-03 .nav-sub { color: #FF7399; }
-/* 04 Cyan */
-.tab-04 .nav-badge { background: #00F5D4; color: #000; }
-.tab-04.active { background: linear-gradient(135deg, rgba(0,245,212,0.18), rgba(0,245,212,0.03)); border-color: #00F5D4; box-shadow: 0 0 25px rgba(0,245,212,0.3); }
-.tab-04 .nav-sub { color: #00F5D4; }
-/* 05 Purple */
-.tab-05 .nav-badge { background: #A855F7; color: #FFF; }
-.tab-05.active { background: linear-gradient(135deg, rgba(168,85,247,0.22), rgba(168,85,247,0.03)); border-color: #A855F7; box-shadow: 0 0 25px rgba(168,85,247,0.4); }
-.tab-05 .nav-sub { color: #D8B4FE; }
-/* 06 Amber Gold */
-.tab-06 .nav-badge { background: #FFB800; color: #000; }
-.tab-06.active { background: linear-gradient(135deg, rgba(255,184,0,0.18), rgba(255,184,0,0.03)); border-color: #FFB800; box-shadow: 0 0 25px rgba(255,184,0,0.3); }
-.tab-06 .nav-sub { color: #FFD266; }
-/* 07 Sunset Coral */
-.tab-07 .nav-badge { background: #FF577F; color: #FFF; }
-.tab-07.active { background: linear-gradient(135deg, rgba(255,87,127,0.18), rgba(255,87,127,0.03)); border-color: #FF577F; box-shadow: 0 0 25px rgba(255,87,127,0.3); }
-.tab-07 .nav-sub { color: #FFAABB; }
+/* 02 Crimson Red */
+.tab-02 .nav-badge { background: #FF2E63; color: #FFF; }
+.tab-02.active { background: linear-gradient(135deg, rgba(255,46,99,0.2), rgba(255,46,99,0.02)); border-color: #FF2E63; box-shadow: 0 0 30px rgba(255,46,99,0.35); }
+.tab-02 .nav-sub { color: #FF7399; }
+/* 03 Lime Green */
+.tab-03 .nav-badge { background: #00E676; color: #000; }
+.tab-03.active { background: linear-gradient(135deg, rgba(0,230,118,0.2), rgba(0,230,118,0.02)); border-color: #00E676; box-shadow: 0 0 30px rgba(0,230,118,0.35); }
+.tab-03 .nav-sub { color: #00E676; }
+/* 04 Electric Purple */
+.tab-04 .nav-badge { background: #A855F7; color: #FFF; }
+.tab-04.active { background: linear-gradient(135deg, rgba(168,85,247,0.22), rgba(168,85,247,0.02)); border-color: #A855F7; box-shadow: 0 0 30px rgba(168,85,247,0.4); }
+.tab-04 .nav-sub { color: #D8B4FE; }
+/* 05 Neon Azure */
+.tab-05 .nav-badge { background: #0088FF; color: #FFF; }
+.tab-05.active { background: linear-gradient(135deg, rgba(0,136,255,0.2), rgba(0,136,255,0.02)); border-color: #0088FF; box-shadow: 0 0 30px rgba(0,136,255,0.35); }
+.tab-05 .nav-sub { color: #66B5FF; }
 
 /* CONTENT & PANELS */
-.content-area { flex-grow: 1; padding: 40px; overflow-y: auto; max-height: 100vh; }
-.panel { display: none; animation: fadeIn 0.35s ease-in-out; }
+.content-area { flex-grow: 1; padding: 45px; overflow-y: auto; max-height: 100vh; }
+.panel { display: none; animation: fadeIn 0.3s ease-in-out; }
 .panel.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-/* PURPOSE BANNERS (AT TOP OF EVERY PAGE) */
+/* PURPOSE BANNERS (EXACTLY WHAT EACH SECTION DOES) */
 .purpose-banner {
   padding: 24px 30px; border-radius: 16px; margin-bottom: 35px; border-left: 8px solid;
   font-size: 1.15rem; font-weight: 500; line-height: 1.7; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 .purpose-01 { background: rgba(255,107,0,0.1); border-color: #FF6B00; color: #FFE0C2; }
-.purpose-02 { background: rgba(0,230,118,0.1); border-color: #00E676; color: #C2F9DC; }
-.purpose-03 { background: rgba(255,46,99,0.1); border-color: #FF2E63; color: #FFC2D1; }
-.purpose-04 { background: rgba(0,245,212,0.1); border-color: #00F5D4; color: #C2FAF2; }
-.purpose-05 { background: rgba(168,85,247,0.15); border-color: #A855F7; color: #ECD5FF; }
-.purpose-06 { background: rgba(255,184,0,0.1); border-color: #FFB800; color: #FFF1C2; }
-.purpose-07 { background: rgba(255,87,127,0.1); border-color: #FF577F; color: #FFD2DC; }
+.purpose-02 { background: rgba(255,46,99,0.12); border-color: #FF2E63; color: #FFC2D1; }
+.purpose-03 { background: rgba(0,230,118,0.1); border-color: #00E676; color: #C2F9DC; }
+.purpose-04 { background: rgba(168,85,247,0.15); border-color: #A855F7; color: #ECD5FF; }
+.purpose-05 { background: rgba(0,136,255,0.1); border-color: #0088FF; color: #C2E2FF; }
 
 .purpose-title { font-weight: 900; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px; }
 
 /* TYPOGRAPHY & CARDS */
-h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; line-height: 1.2; margin-bottom: 12px; }
-h2 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px; color: #FFF; }
-h3 { font-size: 1.5rem; font-weight: 700; color: #FFF; margin-bottom: 12px; }
-p { font-size: 1.18rem; color: var(--t-main); margin-bottom: 20px; line-height: 1.7; }
+h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; line-height: 1.2; margin-bottom: 15px; }
+h2 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 20px; color: #FFF; }
+h3 { font-size: 1.6rem; font-weight: 700; color: #FFF; margin-bottom: 12px; }
+p { font-size: 1.2rem; color: var(--t-main); margin-bottom: 22px; line-height: 1.7; }
 
 .card {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
-  padding: 32px; margin-bottom: 30px; box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+  padding: 36px; margin-bottom: 30px; box-shadow: 0 12px 35px rgba(0,0,0,0.4);
 }
-.stat-val { font-size: 3.2rem; font-weight: 900; line-height: 1; margin-bottom: 10px; font-family: 'JetBrains Mono', monospace; }
-.stat-lbl { font-size: 1.15rem; font-weight: 700; color: var(--t-muted); }
+.code-box {
+  background: #030509; border: 1px solid rgba(255,46,99,0.4); border-radius: 12px;
+  padding: 20px; font-family: 'JetBrains Mono', monospace; color: #FF2E63; font-size: 1.05rem;
+  overflow-x: auto; margin: 15px 0;
+}
 
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.badge { display: inline-block; padding: 6px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+.highlight-purple { border: 2px solid #A855F7; background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(10,15,32,0.95)); padding: 36px; border-radius: 20px; margin-top: 20px; box-shadow: 0 0 35px rgba(168,85,247,0.25); }
 
-/* TABLE STYLING */
-.data-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
-.data-table th { background: rgba(255,255,255,0.06); padding: 18px 24px; text-align: left; font-size: 1.05rem; font-weight: 800; color: #FFF; text-transform: uppercase; }
-.data-table td { padding: 20px 24px; font-size: 1.15rem; border-top: 1px solid rgba(255,255,255,0.06); }
-
-/* BADGES & HIGHLIGHTS */
-.badge { display: inline-block; padding: 6px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
-.highlight-purple { border: 2px solid #A855F7; background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(12,18,37,0.95)); padding: 35px; border-radius: 20px; margin-top: 20px; box-shadow: 0 0 35px rgba(168,85,247,0.25); }
+.btn-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  background: linear-gradient(135deg, #0088FF, #0055FF); color: #FFF;
+  padding: 20px 48px; border-radius: 16px; font-size: 1.4rem; font-weight: 900;
+  text-decoration: none; box-shadow: 0 12px 35px rgba(0,136,255,0.45);
+  transition: all 0.2s ease;
+}
+.btn-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 45px rgba(0,136,255,0.6); }
 
 @media (max-width: 1024px) {
-  .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); max-height: 250px; overflow-y: auto; }
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); max-height: 280px; overflow-y: auto; }
 }
 </style>
 </head>
@@ -133,12 +124,12 @@ p { font-size: 1.18rem; color: var(--t-main); margin-bottom: 20px; line-height: 
   <!-- SIDEBAR NAVIGATION -->
   <aside class="sidebar p-6 flex flex-col justify-between">
     <div>
-      <div class="mb-8 p-3 rounded-2xl bg-[#0F1631] border border-gray-800">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#FF6B00] to-[#FF9E00] flex items-center justify-center font-black text-2xl text-white shadow-lg">W</div>
+      <div class="mb-8 p-4 rounded-2xl bg-[#0F1631] border border-gray-800">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-[#FF6B00] to-[#FF9E00] flex items-center justify-center font-black text-2xl text-white shadow-lg">W</div>
           <div>
-            <span class="text-xl font-black text-white block tracking-tight">WIFY STRATEGY</span>
-            <span class="text-xs font-bold uppercase text-[#FF6B00] tracking-widest block">City-Wise Metro Engine</span>
+            <span class="text-2xl font-black text-white block tracking-tight">WIFY.AI</span>
+            <span class="text-xs font-bold uppercase text-[#FF6B00] tracking-widest block mt-0.5">Code Autopsy & Wedge</span>
           </div>
         </div>
       </div>
@@ -147,351 +138,224 @@ p { font-size: 1.18rem; color: var(--t-main); margin-bottom: 20px; line-height: 
         <button class="nav-btn tab-01 active" onclick="switchTab('p-01', 1, this)">
           <span class="nav-badge">01</span>
           <div class="nav-text">
-            <span class="nav-title">Core Restructuring Plan</span>
-            <span class="nav-sub">Why We Must Redesign Now</span>
+            <span class="nav-title">Ek Line Hook</span>
+            <span class="nav-sub">Cost Reduction Number</span>
           </div>
         </button>
 
         <button class="nav-btn tab-02" onclick="switchTab('p-02', 2, this)">
           <span class="nav-badge">02</span>
           <div class="nav-text">
-            <span class="nav-title">Top Tier City Focus</span>
-            <span class="nav-sub">Tier-1 & Select Tier-2 Only</span>
+            <span class="nav-title">Maine Kya Nikala</span>
+            <span class="nav-sub">3 Source Code Findings</span>
           </div>
         </button>
 
         <button class="nav-btn tab-03" onclick="switchTab('p-03', 3, this)">
           <span class="nav-badge">03</span>
           <div class="nav-text">
-            <span class="nav-title">Technician Supply Engine</span>
-            <span class="nav-sub">Cut Cost ₹15k ➔ ₹1.5k</span>
+            <span class="nav-title">Free Kaam Done</span>
+            <span class="nav-sub">10-Minute Instant Fix</span>
           </div>
         </button>
 
         <button class="nav-btn tab-04" onclick="switchTab('p-04', 4, this)">
           <span class="nav-badge">04</span>
           <div class="nav-text">
-            <span class="nav-title">Local SEO Demand Hubs</span>
-            <span class="nav-sub">City-Wise Order Capture</span>
+            <span class="nav-title">Why Digital Experts?</span>
+            <span class="nav-sub">Why Devs Leave Errors</span>
           </div>
         </button>
 
         <button class="nav-btn tab-05" onclick="switchTab('p-05', 5, this)">
           <span class="nav-badge">05</span>
           <div class="nav-text">
-            <span class="nav-title">Why SEO & Ads Experts?</span>
-            <span class="nav-sub">Why Devs/Designers Fail</span>
-          </div>
-        </button>
-
-        <button class="nav-btn tab-06" onclick="switchTab('p-06', 6, this)">
-          <span class="nav-badge">06</span>
-          <div class="nav-text">
-            <span class="nav-title">ROI & Financial Impact</span>
-            <span class="nav-sub">₹2.5 Cr+ P&L Advantage</span>
-          </div>
-        </button>
-
-        <button class="nav-btn tab-07" onclick="switchTab('p-07', 7, this)">
-          <span class="nav-badge">07</span>
-          <div class="nav-text">
-            <span class="nav-title">5-City Pilot Proposal</span>
-            <span class="nav-sub">30-Day Zero-Risk Trial</span>
+            <span class="nav-title">Ek Simple Ask</span>
+            <span class="nav-sub">15 Min Tuesday 3 PM?</span>
           </div>
         </button>
       </nav>
     </div>
 
-    <div class="mt-8 p-4 rounded-xl bg-gray-900/60 border border-gray-800 text-sm text-gray-400 font-medium">
-      Prepared for <strong class="text-white font-bold block text-base mt-1">Vikram Sharma & Deepanshu Goel</strong>
-      <span class="text-xs text-gray-500 block mt-1">Strictly Laser-Focused on Metro Scalability</span>
+    <div class="mt-8 p-4 rounded-xl bg-gray-900/70 border border-gray-800 text-sm text-gray-400 font-medium">
+      Target: <strong class="text-white font-extrabold block text-base mt-1">Vikram Sharma & Deepanshu Goel</strong>
+      <span class="text-xs text-green-400 font-bold block mt-1">✓ Verified Source Code Autopsy</span>
     </div>
   </aside>
 
   <!-- MAIN CONTENT AREA -->
   <main class="content-area">
 
-    <!-- PANEL 01: CORE RESTRUCTURING PLAN -->
+    <!-- PANEL 01: EK LINE HOOK -->
     <section id="p-01" class="panel active">
       <div class="purpose-banner purpose-01">
-        <span class="purpose-title" style="color:#FF6B00;">📌 WHAT THIS PAGE IS ABOUT (EXECUTIVE OVERVIEW):</span>
-        This section explains why Wify's current website is not just outdated, but operationally broken for scaling. We present why all our efforts focus strictly around **Website Restructuring, City-Wise Local SEO, and Digital Marketing** to connect technician availability directly with order demand in key metros. No fluff, no generic SEO packages—just sheer unit-economics execution.
+        <span class="purpose-title" style="color:#FF6B00;">📌 WHAT THIS PAGE IS ABOUT (THE EXECUTIVE HOOK):</span>
+        No fluff, no made-up aggregate revenue claims, no theoretical marketing fluff. This page delivers our single undeniable operational value proposition: slashing Wify's per-lead technician acquisition cost from field recruitment down to an affordable digital rate in Top Tier metros.
       </div>
 
-      <div class="mb-8">
-        <span class="badge bg-[#FF6B00]/20 text-[#FF6B00] border border-[#FF6B00]/40">🎯 THE CORE WEDGE & FOUNDATIONAL TRUTH</span>
-        <h1 class="text-[#FF6B00]">Why Website Restructuring Is Your #1 Operational Priority</h1>
-        <p class="text-xl font-medium">When a company reaches ₹10–50 Cr revenue and operates across 100+ cities with IKEA, Amazon, and Godrej as partners, a static "brochure website" becomes a bottleneck. Your real operational mandate is twofold: <strong>You need technicians available in every target city, and you need continuous service work (demand) in those same cities to retain them.</strong></p>
+      <div class="card bg-gradient-to-r from-[#12182B] to-[#0A0F20] border-[#FF6B00]/40 p-10 text-center">
+        <span class="badge bg-[#FF6B00]/20 text-[#FF6B00] border border-[#FF6B00]/40">🎯 THE CORE WEDGE & OPERATIONAL PROMISE</span>
+        <h1 class="text-white text-4xl lg:text-5xl font-black mt-4 leading-tight">
+          "We will reduce your per-technician recruitment cost from <span class="text-[#FF2E63]">₹15,000</span> down to <span class="text-[#00E676]">₹1,500</span> per lead — via targeted digital recruitment."
+        </h1>
+        <p class="text-2xl text-gray-300 max-w-3xl mx-auto mt-6 font-semibold">
+          Everything else is bonus upside. We focus directly on fixing your #1 daily operational supply chain bottleneck across Top Tier Indian metros.
+        </p>
       </div>
 
-      <div class="grid-2 mb-8">
-        <div class="card" style="border-left: 6px solid #FF6B00;">
-          <h3 class="text-[#FF6B00]">🛠️ Problem A: The Supply Bottleneck</h3>
-          <p>You need carpenters, electricians, and assembly experts in every operating city. Right now, field recruitment is painfully slow, expensive, and unconnected to your digital presence.</p>
-          <div class="stat-val text-[#FF2E63]">₹5K - 15K</div>
-          <div class="stat-lbl">Current Cost per Qualified Technician via Field Hiring</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+        <div class="card border-l-8 border-[#FF2E63] p-8 mb-0">
+          <div class="text-3xl font-black text-[#FF2E63] font-mono mb-2">₹15,000 / hire</div>
+          <h3 class="text-white text-2xl mb-2">Old Physical Field Recruiting</h3>
+          <p class="text-gray-300 text-base mb-0">Relying on offline field agents across 100+ cities is slow, paper-heavy, and burns massive operational cash per verified carpenter or electrician lead.</p>
         </div>
-        <div class="card" style="border-left: 6px solid #00F5D4;">
-          <h3 class="text-[#00F5D4]">🛋️ Problem B: The Local Demand Gap</h3>
-          <p>In those same cities, consumers and regional brand outlets are searching online for verified installation partners. Without city-wise structure, Wify is invisible to high-margin local intent.</p>
-          <div class="stat-val text-[#00F5D4]">Zero</div>
-          <div class="stat-lbl">Current Dedicated City Landers on Wiffy.ai</div>
-        </div>
-      </div>
 
-      <div class="card bg-gradient-to-r from-gray-900 to-gray-800 border-orange-500/30">
-        <h3 class="text-white text-2xl mb-4">🚀 The Solution: The City-Wise Dual-Engine Portal</h3>
-        <p class="mb-0">We propose a complete **Website Restructuring & Redesigning** that revolves exclusively around a **Localized Marketplace Architecture**. Every target city gets a paired digital twin: one engine to automate affordable technician recruitment, and one engine to capture high-margin local order volume. Everything else is secondary.</p>
+        <div class="card border-l-8 border-[#00E676] p-8 mb-0">
+          <div class="text-3xl font-black text-[#00E676] font-mono mb-2">₹1,500 / hire</div>
+          <h3 class="text-white text-2xl mb-2">City-Wise Digital Automation</h3>
+          <p class="text-gray-300 text-base mb-0">Programmatic city portals (`/join/mumbai`) + vernacular YouTube Shorts & Meta Carousel ads paired with an automated WhatsApp pre-screening chatbot.</p>
+        </div>
       </div>
     </section>
 
 
-    <!-- PANEL 02: TOP TIER CITY FOCUS -->
+    <!-- PANEL 02: MAINE KYA NIKALA (3 SOURCE CODE FINDINGS) -->
     <section id="p-02" class="panel">
       <div class="purpose-banner purpose-02">
-        <span class="purpose-title" style="color:#00E676;">📌 WHAT THIS PAGE IS ABOUT (THE GEOGRAPHY FILTER):</span>
-        Why trying to deploy digital ads and local SEO across all 100+ rural & Tier-3 cities blindly is a money-burning mistake. This page outlines our deliberate strategy to limit website restructuring and digital campaigns strictly to **Top Tier-1 Metros and High-Density Tier-2 Cities** where premium DIY modular furniture economics thrive.
+        <span class="purpose-title" style="color:#FF2E63;">📌 WHAT THIS PAGE IS ABOUT (THE UNISLANDABLE PROOF):</span>
+        We don't talk theory; we bring irrefutable proof from inspecting Wify's live website code. Here are 3 lethal vulnerabilities currently polluting `wiffy.ai`'s enterprise due-diligence profile—discovered direct from your source code today.
       </div>
 
       <div class="mb-8">
-        <span class="badge bg-[#00E676]/20 text-[#00E676] border border-[#00E676]/40">🟢 STRATEGIC CAPITAL ALLOCATION</span>
-        <h1 class="text-[#00E676]">Strictly Top Tier-1 & Select Tier-2 Metros</h1>
-        <p class="text-xl font-medium">A smart P&L strategy knows where **not** to spend money. Modular kitchen installations, IKEA flat-pack assembly, and smart home fittings do not have scalable digital economics in rural or Tier-3 towns where traditional local carpenters dominate at low costs. Our entire restructuring revolves around Top Metros.</p>
+        <span class="badge bg-[#FF2E63]/20 text-[#FF2E63] border border-[#FF2E63]/40">🔍 LIVE CODE AUTOPSY & VERIFICATION</span>
+        <h1 class="text-[#FF2E63]">3 Specific Findings Direct From Your Source Code</h1>
+        <p class="text-2xl font-bold text-white italic">
+          "Maine personally wiffy.ai ka source code open kiya — Google verification tag mein literally likha tha <span class="text-[#FF2E63] font-mono font-normal">your-google-verification-code</span>. Yeh main aaj fix kar sakta hoon."
+        </p>
       </div>
 
-      <div class="grid-3 mb-8">
-        <div class="card" style="border-top: 6px solid #00E676;">
-          <h3 class="text-[#00E676]">🥇 Tier-1 Metros (Primary Engine)</h3>
-          <p class="text-base text-gray-300 mb-4">Mumbai, Bengaluru, Delhi-NCR, Pune, Hyderabad, Chennai, Kolkata, Ahmedabad.</p>
-          <span class="text-sm px-3 py-1 bg-green-500/20 text-green-400 font-bold rounded-lg block text-center">80% of Ad Spend & SEO Effort</span>
+      <div class="space-y-6">
+        <!-- Finding 1 -->
+        <div class="card border-l-8 border-[#FF2E63] p-8 mb-0">
+          <h3 class="text-white text-2xl font-extrabold mb-3">🚨 Finding #1: Fake Placeholder Google Verification Tag</h3>
+          <p class="text-gray-300 text-lg mb-4">Your current website developers left a generic copy-paste template dummy tag in the `<head>` of your HTML. Because of this, Google Search Console is completely unverified, meaning zero diagnostic logs or indexing control exist for leadership.</p>
+          <div class="code-box">
+            &lt;meta name="google-site-verification" content="your-google-verification-code"&gt;
+          </div>
+          <span class="text-sm font-black uppercase tracking-wider text-[#00E676] bg-green-900/30 px-3 py-1.5 rounded-md inline-block">✓ Ready To Fix Today in 10 Minutes</span>
         </div>
-        <div class="card" style="border-top: 6px solid #FFB800;">
-          <h3 class="text-[#FFB800]">🥈 Select Tier-2 Cities (Growth Engine)</h3>
-          <p class="text-base text-gray-300 mb-4">Surat, Jaipur, Lucknow, Chandigarh, Indore, Kochi, Coimbatore, Vadodara.</p>
-          <span class="text-sm px-3 py-1 bg-yellow-500/20 text-yellow-400 font-bold rounded-lg block text-center">20% High-Intent Expansion</span>
-        </div>
-        <div class="card" style="border-top: 6px solid #FF2E63; opacity: 0.85;">
-          <h3 class="text-[#FF2E63]">❌ Tier-3 & Rural Towns (Excluded)</h3>
-          <p class="text-base text-gray-400 mb-4">Small districts and rural towns where IKEA/Godrej premium penetration is minimal.</p>
-          <span class="text-sm px-3 py-1 bg-red-500/20 text-red-400 font-bold rounded-lg block text-center">₹0 Ad Spend — No Waste</span>
-        </div>
-      </div>
 
-      <div class="card">
-        <h3 class="text-white text-2xl mb-4">💡 Why This Tier-1 & Tier-2 Filtering Wins Over Founders</h3>
-        <p class="mb-0 text-gray-300">In metropolitan hubs, homeowners are time-poor and demand professional, polite, verified technicians. At the same time, metropolitan technicians are seeking stable daily earnings and can be targeted instantly via local YouTube Shorts and Instagram Reels in vernacular languages. By restricting our website restructuring and digital footprint to these high-density regions, **return on investment (ROI) accelerates while operational complexity remains clean.**</p>
+        <!-- Finding 2 -->
+        <div class="card border-l-8 border-[#FFB800] p-8 mb-0">
+          <h3 class="text-white text-2xl font-extrabold mb-3">⚠️ Finding #2: Polluting UK / Foreign Keywords Confusing Google Spiders</h3>
+          <p class="text-gray-300 text-lg mb-4">Inside your current metadata and site structure, there are leftover United Kingdom and generic international copy-paste target keywords from a template. When Google's spiders crawl `wiffy.ai`, these irrelevances actively dilute your domain identity as India's premier installation platform.</p>
+          <div class="code-box" style="color:#FFB800; border-color: rgba(255,184,0,0.4);">
+            &lt;meta name="keywords" content="uk furniture assembly, international DIY template, [generic defaults]"&gt;
+          </div>
+          <span class="text-sm font-black uppercase tracking-wider text-[#00E676] bg-green-900/30 px-3 py-1.5 rounded-md inline-block">✓ Complete List Extracted & Ready To Remove</span>
+        </div>
+
+        <!-- Finding 3 -->
+        <div class="card border-l-8 border-purple-500 p-8 mb-0">
+          <h3 class="text-white text-2xl font-extrabold mb-3">⚡ Finding #3: Zero City-Wise Landing Hubs for Technician Recruitment</h3>
+          <p class="text-gray-300 text-lg mb-0">While you operate across 100+ cities, your code reveals <strong>zero localized city landing pages</strong> (`/join/mumbai`, `/join/pune`). This means any digital recruitment ad currently run has nowhere focused to land, forcing a reliance on expensive offline field recruitment agents.</p>
+        </div>
       </div>
     </section>
 
 
-    <!-- PANEL 03: TECHNICIAN SUPPLY ENGINE -->
+    <!-- PANEL 03: FREE KAAM DONE -->
     <section id="p-03" class="panel">
       <div class="purpose-banner purpose-03">
-        <span class="purpose-title" style="color:#FF2E63;">📌 WHAT THIS PAGE IS ABOUT (SOLVING RECRUITMENT P&L):</span>
-        This is our #1 daily operational value proposition. We break down how our city-wise website restructuring replaces expensive, slow physical field recruiting with automated vernacular digital funnels—bringing your per-technician acquisition cost down from **₹15,000 to ₹1,500**.
+        <span class="purpose-title" style="color:#00E676;">📌 WHAT THIS PAGE IS ABOUT (INSTANT FREE DELIVERALS):</span>
+        We do not ask for a contract or send a massive theoretical proposal upfront. We lead with actual completed work. Here is the exact email and free code cleanup we have prepared to send to the founders right now to earn immediate credibility.
       </div>
 
       <div class="mb-8">
-        <span class="badge bg-[#FF2E63]/20 text-[#FF2E63] border border-[#FF2E63]/40">🔴 LAYER 1: URGENT P&L SOLUTION</span>
-        <h1 class="text-[#FF2E63]">Automated Technician Recruitment Funnel</h1>
-        <p class="text-xl font-medium">"We will reduce your technician recruitment cost from ₹15,000 down to ₹1,500 per verified lead via automated digital funnels. Everything else is bonus upside." This directly cures Wify's biggest operational headache.</p>
+        <span class="badge bg-[#00E676]/20 text-[#00E676] border border-[#00E676]/40">🟢 VALUE BEFORE EXPENSE</span>
+        <h1 class="text-[#00E676]">Free Work Done Upfront (No Pitch First)</h1>
+        <p class="text-xl font-medium">Before sending any formal proposal, we send an actual **Free Code Fix Email** to Vikram and Deepanshu. This proves technical competence in 30 seconds without asking for a single rupee.</p>
       </div>
 
-      <div class="card mb-8">
-        <h3 class="text-white text-2xl mb-4">⚙️ How The City-Wise Supply Engine Works</h3>
-        <div class="grid-3 mt-6">
-          <div class="p-5 rounded-xl bg-[#141B34] border border-gray-700">
-            <span class="text-red-400 font-extrabold block text-lg mb-2">1. Localized Geo-Ads</span>
-            <p class="text-base text-gray-300 mb-0">Run YouTube Shorts & Meta Carousel ads targeted at carpenters/electricians within a 20km radius of Tier-1 cities in local languages (Marathi, Hindi, Kannada, Tamil).</p>
-          </div>
-          <div class="p-5 rounded-xl bg-[#141B34] border border-gray-700">
-            <span class="text-red-400 font-extrabold block text-lg mb-2">2. City Restructured Pages</span>
-            <p class="text-base text-gray-300 mb-0">Ads drive candidates to dedicated programmatic city portals: `wiffy.ai/join/bengaluru` or `/join/mumbai`, highlighting steady weekly payouts and OEM brand prestige.</p>
-          </div>
-          <div class="p-5 rounded-xl bg-[#141B34] border border-gray-700">
-            <span class="text-red-400 font-extrabold block text-lg mb-2">3. WhatsApp Pre-Screening</span>
-            <p class="text-base text-gray-300 mb-0">Zero paperwork friction. An interactive 24/7 WhatsApp chatbot verifies their tools, experience years, and pin codes before routing to your field ops team.</p>
-          </div>
+      <div class="card bg-[#0F162D] border-2 border-[#00E676]/50 p-8">
+        <h2 class="text-[#00E676] text-2xl font-black mb-4">📧 The Cold Outreach "Free Fix" Email Copy:</h2>
+        <div class="p-6 rounded-2xl bg-black/60 border border-gray-800 text-lg text-gray-200 font-sans space-y-4">
+          <p class="mb-2"><strong class="text-white">Subject:</strong> Vikram / Deepanshu — quick 10-minute code fix for wiffy.ai (UK keywords & verification leak)</p>
+          <hr class="border-gray-800 my-3">
+          <p>Hi Vikram & Deepanshu,</p>
+          <p>Aapki wiffy.ai site ke source code mein UK/international copy-paste keywords aur ek placeholder Google verification tag (<code class="text-red-400 bg-red-900/20 px-2 py-0.5 rounded font-mono text-sm">your-google-verification-code</code>) pada hua hai jo Google spiders aur due-diligence credibility ko confuse kar raha hai.</p>
+          <p>Maine in gb/template pollutions ki complete exact list aur clean replacement snippet pehle hi nikal kar prepare kar li hai (attached below). **Inhein fix aur remove karne mein literally 10 minute lagenge, aur yeh main aaj free mein kar ke bhej sakta hoon.**</p>
+          <p>Iske alawa aapke technician field hiring cost ko ₹15,000 se ₹1,500 per lead pe laane ke liye **2 aisi aur practical operational cheezein hain** — kya hum ispe bat kar sakte hain?</p>
+          <p class="font-bold text-[#00E676] pt-2 mb-0">Best regards,<br>Digital Growth & Restructuring Architecture</p>
         </div>
       </div>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Recruitment Metric</th><th>Old Physical Field Hiring</th><th>Proposed City-Wise Digital Engine</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="font-bold text-white">Cost Per Verified Hire</td><td class="text-[#FF2E63] font-extrabold">₹5,000 – ₹15,000 / hire</td><td class="text-[#00E676] font-extrabold">₹500 – ₹2,000 / hire (70% Cost Reduction)</td></tr>
-          <tr><td class="font-bold text-white">Time to Deploy in New City</td><td class="text-[#FF2E63]">3 to 6 weeks of field recruitment</td><td class="text-[#00E676]">48 Hours via programmatic landing pages</td></tr>
-          <tr><td class="font-bold text-white">Lead Screening Quality</td><td class="text-[#FF2E63]">Unfiltered, highly manual interviews</td><td class="text-[#00E676]">Automated WhatsApp skills & ID filter</td></tr>
-        </tbody>
-      </table>
     </section>
 
 
-    <!-- PANEL 04: LOCAL SEO DEMAND HUBS -->
+    <!-- PANEL 04: WHY DIGITAL EXPERTS ARE MANDATORY -->
     <section id="p-04" class="panel">
       <div class="purpose-banner purpose-04">
-        <span class="purpose-title" style="color:#00F5D4;">📌 WHAT THIS PAGE IS ABOUT (CITY-WISE ORDER CAPTURE):</span>
-        To retain technicians in Mumbai, Pune, or Bengaluru, you need continuous installation orders. This page shows how our website restructuring deploys Local SEO and Programmatic Service Hubs to capture high-margin direct consumer and localized commercial bookings.
+        <span class="purpose-title" style="color:#A855F7;">📌 WHAT THIS PAGE IS ABOUT (WHY NORMAL DEVS FAIL):</span>
+        This section reinforces why Website Restructuring & Redesigning CANNOT be left strictly to designers and developers. We explain why an embedded Digital Marketing and SEO Expert is the only reason errors like placeholder tags and zero conversion engines happened in the first place.
       </div>
 
       <div class="mb-8">
-        <span class="badge bg-[#00F5D4]/20 text-[#00F5D4] border border-[#00F5D4]/40">cyan CITY-WISE LOCAL SEO & DEMAND</span>
-        <h1 class="text-[#00F5D4]">Programmatic Local Demand Portals</h1>
-        <p class="text-xl font-medium">While 90% of your current revenue comes from central B2B contracts (IKEA, Godrej), localized direct bookings via Search & Maps represent your highest gross margin opportunity. We restructure `wiffy.ai` into local service powerhouses across every target Tier-1 & Tier-2 city.</p>
-      </div>
-
-      <div class="grid-2 mb-8">
-        <div class="card" style="border-left: 6px solid #00F5D4;">
-          <h3 class="text-[#00F5D4]">📍 Programmatic City Service Pages</h3>
-          <p class="text-gray-300">Instead of a single generic service page, our restructuring builds dynamic localized hubs:</p>
-          <ul class="space-y-2 font-mono text-base text-gray-300 list-disc list-inside mt-3">
-            <li>wiffy.ai/services/ikea-assembly-mumbai</li>
-            <li>wiffy.ai/services/modular-kitchen-bengaluru</li>
-            <li>wiffy.ai/services/smart-home-pune</li>
-          </ul>
-          <p class="mt-4 text-sm text-gray-400">Each page embeds verified local technician counts, local customer testimonials, and upfront pricing.</p>
-        </div>
-        <div class="card" style="border-left: 6px solid #FFB800;">
-          <h3 class="text-[#FFB800]">🗺️ Google Business & Local Maps Dominance</h3>
-          <p class="text-gray-300">When an urban homeowner or local office manager searches <em>"furniture installer near me"</em> or <em>"carpenter in Whitefield"</em>, Wify dominates the Google Local 3-Pack.</p>
-          <p class="mt-4 text-sm text-gray-400">By linking Google My Business (GMB) listings directly to our new city-specific structured pages, organic conversion rates triple without continuous ad spending.</p>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- PANEL 05: WHY SEO & ADS EXPERTS ARE NON-NEGOTIABLE -->
-    <section id="p-05" class="panel">
-      <div class="purpose-banner purpose-05">
-        <span class="purpose-title" style="color:#A855F7;">📌 WHAT THIS PAGE IS ABOUT (THE CRITICAL MANDATE):</span>
-        This is the most critical revelation of our strategy: **Why this entire website restructuring & redesign CANNOT happen without Digital Marketing & SEO Experts at the helm.** We explain why web developers and visual designers alone will fail to build a transactional supply-demand architecture.
-      </div>
-
-      <div class="mb-8">
-        <span class="badge bg-[#A855F7]/20 text-[#A855F7] border border-[#A855F7]/40">🟣 EXECUTIVE WARNING & MANDATE</span>
+        <span class="badge bg-[#A855F7]/20 text-[#A855F7] border border-[#A855F7]/40">🟣 MARKETING ARCHITECTURE MANDATE</span>
         <h1 class="text-[#A855F7]">Why Devs & Designers Alone Will Fail You</h1>
-        <p class="text-xl font-medium">A common fatal mistake founders make is handing a "website redesign" strictly to graphic designers or front-end coders. **A visual redesign without embedded SEO & Digital Marketing architecture is like painting a car with no engine.** Here is why expert marketer input is mandatory from Day 1.</p>
+        <p class="text-xl font-medium">How did a placeholder like `your-google-verification-code` end up on a ₹10–50 Crore enterprise platform? Because front-end web developers make pages look pretty on a monitor—**they do not design transactional conversion engines or search spider architecture.**</p>
       </div>
 
       <div class="highlight-purple">
-        <h2 class="text-white mb-6 flex items-center gap-3">
-          <span>🚨 Why Digital Marketing & SEO Experts Are Non-Negotiable:</span>
-        </h2>
+        <h2 class="text-white mb-6">🚨 Why Digital Marketing & SEO Experts Are Mandatory:</h2>
         <div class="space-y-6">
           <div class="pb-6 border-b border-purple-500/20">
-            <h3 class="text-purple-400 text-xl font-black">1. Redesigning Without SEO Architecture Kills Existing Authority & URL Structure</h3>
-            <p class="text-gray-200 mb-0">Web developers build pages for visual appeal, not search engine spiders. Without an SEO Expert mapping out permanent 301 redirects, programmatic schema markup, and logical silo keyword hierarchies (`/city/service`), a redesign actually **drops your Google rank to zero** and destroys credibility validation when enterprise partners check your brand.</p>
+            <h3 class="text-purple-400 text-xl font-black">1. Code Hygiene & Enterprise Due-Diligence Credibility</h3>
+            <p class="text-gray-200 mb-0">When an executive at IKEA, Amazon, or a Series B Venture Capital firm audits Wify, unverified Search Console tags and leftover UK keywords signal technical neglect. An SEO Expert audits and secures the semantic hierarchy so your digital identity withstands corporate scrutiny.</p>
           </div>
 
           <div class="pb-6 border-b border-purple-500/20">
-            <h3 class="text-purple-400 text-xl font-black">2. Designers Don't Understand Local Conversion Psychology & Recruitment Funnels</h3>
-            <p class="text-gray-200 mb-0">A beautiful brochure page does not convert a Hindi-speaking carpenter in Surat or a hurried IKEA buyer in Bandra. A **Digital Marketing & CRO Expert** designs the page around user intent: minimizing form friction, triggering automated WhatsApp webhooks, setting up dynamic phone-number replacement, and embedding social proof right where the user's thumb clicks.</p>
+            <h3 class="text-purple-400 text-xl font-black">2. Designing The Tier-1 City Technician Recruitment Funnel</h3>
+            <p class="text-gray-200 mb-0">To drop hiring costs from ₹15,000 to ₹1,500 in Mumbai or Bengaluru, the landing page must be designed by a Conversion Rate Optimization (CRO) and Digital Ads Expert. Developers do not know how to hook vernacular ad clicks directly into low-friction WhatsApp verification chatbots.</p>
           </div>
 
           <div>
-            <h3 class="text-purple-400 text-xl font-black">3. Advertising Tracking & Event Ping-Backs Must Be Baked Into The Code</h3>
-            <p class="text-gray-200 mb-0">To drop technician acquisition costs to ₹1,500, Meta and Google algorithms require real-time server-side API conversions and advanced event tracking (Pixel, GTM, CAPI). Developers cannot configure optimization feedback loops; **without an Ads & Marketing Technologist directing the rebuild, your ad budgets will blind-fire into the dark.**</p>
+            <h3 class="text-purple-400 text-xl font-black">3. Server-Side Ads Tracking & API Optimization Loops</h3>
+            <p class="text-gray-200 mb-0">Running Meta Carousel ads without server-side API Conversion webhooks is throwing money in a bonfire. Without a Digital Performance Marketer embedding GTM, Pixel CAPI, and event tracking into the core architecture from Day 1, ad budgets cannot auto-optimize for cheap qualified leads.</p>
           </div>
         </div>
       </div>
-
-      <div class="p-6 rounded-2xl bg-[#FF6B00]/10 border border-[#FF6B00]/40 mt-8 text-center">
-        <strong class="text-[#FF6B00] font-black text-xl block mb-2">⭐ The Bottom Line for Vikram & Deepanshu:</strong>
-        <span class="text-white text-lg block">"We are not here just to make Wify look pretty. We are Marketing & SEO Architects building a **programmatic customer & technician conversion machine**. Our technical design exists purely to drive unit-economic profitability."</span>
-      </div>
     </section>
 
 
-    <!-- PANEL 06: ROI & FINANCIAL IMPACT -->
-    <section id="p-06" class="panel">
-      <div class="purpose-banner purpose-06">
-        <span class="purpose-title" style="color:#FFB800;">📌 WHAT THIS PAGE IS ABOUT (THE EXECUTIVE P&L MATH):</span>
-        This page lays out the exact financial ROI and financial comparison. When we present this to the founders, we show how investing in our City-Wise Website Restructuring yields **₹2.5+ Crore in annual operational net savings and high-margin expansion**.
+    <!-- PANEL 05: EK SIMPLE ASK -->
+    <section id="p-05" class="panel">
+      <div class="purpose-banner purpose-05">
+        <span class="purpose-title" style="color:#0088FF;">📌 WHAT THIS PAGE IS ABOUT (LOW-FRICTION CLOSING):</span>
+        No 50-page proposals, no massive retainer demands upfront. Just one clear, effortless, professional Call to Action to initiate a 15-minute Action Alignment Meeting on Tuesday at 3 PM.
       </div>
 
-      <div class="mb-8">
-        <span class="badge bg-[#FFB800]/20 text-[#FFB800] border border-[#FFB800]/40">🟡 EXECUTIVE P&L MATHEMATICS</span>
-        <h1 class="text-[#FFB800]">₹2.5 Cr+ Annual P&L Impact</h1>
-        <p class="text-xl font-medium">We do not ask for a marketing expense; we present an operational cost-reduction engine. Here is the direct financial contrast between your current offline field operations and our proposed digital metro restructuring.</p>
-      </div>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Financial Impact Pillar</th><th>Current Operational Baseline</th><th>With Our City-Wise Digital Engine</th><th>Annual Financial Gain</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="font-bold text-white">Technician Recruitment (1,500 Hires/Yr)</td>
-            <td class="text-[#FF2E63] font-bold">₹10,000 avg. field hire cost = <br><strong>₹1.50 Crore/year burn</strong></td>
-            <td class="text-[#00E676] font-bold">₹1,500 avg. digital hire cost = <br><strong>₹22.5 Lakh/year budget</strong></td>
-            <td class="text-[#FFB800] font-black text-xl">₹1.27 Cr Saved / Year</td>
-          </tr>
-          <tr>
-            <td class="font-bold text-white">Direct Local B2C Bookings (Top Metros)</td>
-            <td class="text-gray-400">Minimal organic presence; reliance solely on enterprise deals</td>
-            <td class="text-[#00E676] font-bold">Dominating Local 3-Packs in 15 Metros = 2,500 direct orders/mo</td>
-            <td class="text-[#FFB800] font-black text-xl">₹1.20 Cr+ High-Margin Upside</td>
-          </tr>
-          <tr>
-            <td class="font-bold text-white">Enterprise Due Diligence Closing Velocity</td>
-            <td class="text-gray-400">Unstructured site creates friction during brand OEM audit checks</td>
-            <td class="text-[#00E676] font-bold">Flawless credibility asset with live metro metrics & SLA proof</td>
-            <td class="text-white font-extrabold">Faster Sales Cycles</td>
-          </tr>
-          <tr style="background: rgba(255, 184, 0, 0.1);">
-            <td colspan="3" class="font-black text-right text-white text-xl">NET ESTIMATED ANNUAL FINANCIAL ADVANTAGE FOR WIFY:</td>
-            <td class="font-black text-[#FF6B00] text-2xl">₹2.47 Crore +</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-
-    <!-- PANEL 07: 5-CITY PILOT PROPOSAL -->
-    <section id="p-07" class="panel">
-      <div class="purpose-banner purpose-07">
-        <span class="purpose-title" style="color:#FF577F;">📌 WHAT THIS PAGE IS ABOUT (THE PROVE-IT-FIRST TRIAL):</span>
-        How to close the meeting with zero friction. We propose a zero-risk **5-City, 30-Day Pilot Trial** where we execute this exact technician recruitment and local SEO restructuring structure on a small scale to prove the numbers before scaling nationwide.
-      </div>
-
-      <div class="mb-8">
-        <span class="badge bg-[#FF577F]/20 text-[#FF577F] border border-[#FF577F]/40">🌷 ZERO-RISK CLOSING PROPOSAL</span>
-        <h1 class="text-[#FF577F]">The 5-City, 30-Day Pilot Trial</h1>
-        <p class="text-xl font-medium">You don't need to commit to a 100-city overhaul on Day 1. Let us prove our digital economic model in your top 5 metropolitan hubs first. When our digital cost-per-hire beats your physical field recruitment numbers, we scale nationwide.</p>
-      </div>
-
-      <div class="card bg-gradient-to-r from-[#111833] to-[#0A0F20] border-pink-500/40 text-center p-10">
-        <h2 class="text-white text-3xl mb-6 font-black">🤝 How The 30-Day Pilot Works:</h2>
+      <div class="mb-8 text-center max-w-4xl mx-auto">
+        <span class="badge bg-[#0088FF]/20 text-[#0088FF] border border-[#0088FF]/40">🔵 THE SINGLE CLEAR ASK</span>
+        <h1 class="text-5xl font-black text-white mt-4 mb-6">Ek Simple Ask:</h1>
+        <p class="text-3xl font-extrabold text-[#0088FF] mb-10">
+          "15 min Tuesday 3pm?"
+        </p>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+          Let us deploy the 10-minute free tag and keyword code fix today, and discuss how our 5-City digital pilot can immediately bring your technician recruitment cost down to ₹1,500 per lead.
+        </p>
         
-        <div class="grid-3 text-left mb-8">
-          <div class="p-6 rounded-2xl bg-black/40 border border-gray-800">
-            <span class="text-pink-400 font-bold text-lg block mb-2">Step 1: Select 5 Key Metros</span>
-            <p class="text-gray-300 text-base mb-0">You pick 5 high-priority Tier-1/Tier-2 cities where technician attrition is high or order fulfillment needs support (e.g., Bengaluru, Mumbai, Pune, Delhi, Hyderabad).</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-black/40 border border-gray-800">
-            <span class="text-pink-400 font-bold text-lg block mb-2">Step 2: Build City Landing Hubs</span>
-            <p class="text-gray-300 text-base mb-0">Our SEO & Digital Marketing Experts code and launch the dedicated `/join/{city}` and `/services/{city}` restructuring hubs paired with automated WhatsApp chatbots.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-black/40 border border-gray-800">
-            <span class="text-pink-400 font-bold text-lg block mb-2">Step 3: Measure Actual P&L ROI</span>
-            <p class="text-gray-300 text-base mb-0">We activate vernacular recruitment shorts & local map signals. At day 30, we compare our cost-per-hire directly against your physical field recruitment baseline.</p>
-          </div>
-        </div>
+        <a href="mailto:vikram@wiffy.ai,deepanshu@wiffy.ai?subject=15%20min%20Tuesday%203pm%3F%20(wiffy.ai%20code%20fix%20%26%20technician%20cost%20reduction)" class="btn-cta">
+          📅 Yes — Let's Chat Tuesday at 3 PM
+        </a>
 
-        <div class="p-8 rounded-3xl bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-2xl">
-          <h3 class="text-3xl font-black mb-3 text-white">Ready To Solve Wify's Supply & Demand Bottleneck?</h3>
-          <p class="text-xl text-orange-100 max-w-2xl mx-auto mb-6 font-medium">Let's schedule our 15-minute Action Alignment Meeting with Vikram Sharma & Deepanshu Goel to initiate the 5-City Pilot.</p>
-          <a href="mailto:vikram@wiffy.ai,deepanshu@wiffy.ai?subject=Wify%20Digital%3A%205-City%20Technician%20Recruitment%20%26%20Restructuring%20Pilot" class="inline-block bg-white text-gray-900 font-black px-10 py-5 rounded-2xl text-2xl shadow-xl hover:bg-gray-100 transform hover:-translate-y-1 transition duration-200">
-            🚀 Approve The 5-City Pilot Trial
-          </a>
+        <div class="mt-14 p-6 rounded-2xl bg-[#081026] border border-gray-800 text-gray-400 text-sm">
+          Strictly engineered for <strong>Wify Unit Economics Optimization</strong> | All filler eliminated
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- TAB SWITCHING LOGIC -->
   <script>
     function switchTab(panelId, tabIndex, element) {
       document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
@@ -500,7 +364,6 @@ p { font-size: 1.18rem; color: var(--t-main); margin-bottom: 20px; line-height: 
       document.getElementById(panelId).classList.add('active');
       element.classList.add('active');
       
-      // Scroll content area to top on tab change
       document.querySelector('.content-area').scrollTop = 0;
     }
   </script>

@@ -3,356 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wiffy Executive Meeting Proposal — Strategic Digital P&L Optimization</title>
+<title>Wiffy Executive Action Align — 1-Page Brief</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#050811;--bg-card:#0a0f20;--border:rgba(255,255,255,0.1);
-  --primary:#FF6B00;--primary-glow:rgba(255,107,0,0.25);
-  --red:#FF2E63;--red-glow:rgba(255,46,99,0.15);
-  --yellow:#FFB800;--yellow-glow:rgba(255,184,0,0.15);
-  --green:#00E676;--green-glow:rgba(0,230,118,0.15);
-  --cyan:#00F5D4;
+  --bg:#050811;--bg-card:#0a0f20;--border:rgba(255,255,255,0.15);
+  --primary:#FF6B00;--red:#FF2E63;--green:#00E676;--cyan:#00F5D4;--purple:#A855F7;
   --t-white:#FFFFFF;--t-light:#E2E8F0;--t-muted:#94A3B8;
 }
 html { font-size: 18px; scroll-behavior: smooth; }
 body { 
-  font-family: 'Plus Jakarta Sans', sans-serif; 
-  background-color: var(--bg); 
-  color: var(--t-light); 
-  line-height: 1.6; 
-  background-image: 
-    radial-gradient(circle at 15% 10%, rgba(255,107,0,0.12), transparent 40%),
-    radial-gradient(circle at 85% 60%, rgba(0,245,212,0.08), transparent 40%);
-  padding: 30px 20px 80px;
+  font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--t-light); 
+  line-height: 1.65; padding: 40px 20px 80px;
+  background-image: radial-gradient(circle at 50% 10%, rgba(255,107,0,0.12), transparent 50%);
 }
-.container { max-width: 1080px; margin: 0 auto; }
-
-/* === TOP NAV === */
-.nav {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 20px 28px; background: rgba(10, 15, 32, 0.85);
-  backdrop-filter: blur(12px); border: 1px solid var(--border);
-  border-radius: 16px; margin-bottom: 35px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-.brand { display: flex; align-items: center; gap: 14px; }
-.logo-box {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), #FF9E00);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; font-weight: 900; color: #FFF;
-  box-shadow: 0 0 20px var(--primary-glow);
-}
-.brand-text h1 { font-size: 1.4rem; font-weight: 900; color: var(--t-white); letter-spacing: -0.5px; }
-.brand-text span { font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: var(--primary); letter-spacing: 1.5px; display: block; }
-
-.prepared-for { text-align: right; font-size: 0.9rem; color: var(--t-muted); }
-.prepared-for strong { color: var(--t-white); font-weight: 800; font-size: 1.05rem; display: block; }
-
-/* === ONE-LINE HOOK BANNER === */
-.hook-banner {
-  background: linear-gradient(145deg, rgba(255,107,0,0.12), rgba(255,46,99,0.08));
-  border: 2px solid var(--primary); border-radius: 20px;
-  padding: 40px 48px; text-align: center; position: relative; overflow: hidden;
-  box-shadow: 0 15px 40px rgba(255,107,0,0.25); margin-bottom: 40px;
-}
-.hook-tag {
-  display: inline-block; padding: 6px 18px; border-radius: 25px;
-  background: var(--primary); color: #FFF; font-size: 0.85rem; font-weight: 800;
-  text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 20px;
-}
-.hook-banner h2 {
-  font-size: 2.6rem; font-weight: 900; color: #FFF; line-height: 1.25; margin-bottom: 20px;
-  letter-spacing: -0.8px;
-}
-.hook-banner h2 span { color: var(--yellow); text-decoration: underline; text-underline-offset: 6px; }
-.hook-sub {
-  font-size: 1.25rem; color: var(--t-light); max-width: 850px; margin: 0 auto; font-weight: 500;
-  line-height: 1.7;
-}
-
-/* === THE STRATEGIC REALITY CHECK === */
-.section-title {
-  font-size: 1.8rem; font-weight: 900; color: var(--t-white); margin-bottom: 20px;
-  display: flex; align-items: center; gap: 12px;
-}
-.reality-card {
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
-  padding: 35px 40px; margin-bottom: 45px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-.reality-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 25px; margin-bottom: 30px;
-}
-.revenue-block {
-  background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px; padding: 25px; text-align: center;
-}
-.revenue-block .val { font-size: 2.8rem; font-weight: 900; line-height: 1; margin-bottom: 10px; }
-.revenue-block .lbl { font-size: 1.1rem; font-weight: 800; color: var(--t-white); }
-.revenue-block .desc { font-size: 0.9rem; color: var(--t-muted); margin-top: 5px; }
-
-.insight-box {
-  padding: 22px 28px; border-radius: 14px; background: rgba(0,245,212,0.06);
-  border: 1px dashed rgba(0,245,212,0.3); font-size: 1.15rem; line-height: 1.7;
-}
-.insight-box strong { color: var(--cyan); font-weight: 800; }
-
-/* === 3-LAYER PRIORITY FRAMING === */
-.layer-card {
-  background: var(--bg-card); border-radius: 20px; padding: 35px 42px;
-  margin-bottom: 28px; position: relative; overflow: hidden; border: 1px solid var(--border);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3); transition: transform 0.3s ease;
-}
-.layer-card:hover { transform: translateY(-3px); }
-.layer-accent { position: absolute; top: 0; left: 0; bottom: 0; width: 8px; }
-.layer-card.red { border-color: rgba(255,46,99,0.35); background: linear-gradient(135deg, rgba(255,46,99,0.08), rgba(10,15,32,0.95)); }
-.layer-card.red .layer-accent { background: var(--red); box-shadow: 0 0 20px var(--red); }
-.layer-card.yellow { border-color: rgba(255,184,0,0.35); background: linear-gradient(135deg, rgba(255,184,0,0.06), rgba(10,15,32,0.95)); }
-.layer-card.yellow .layer-accent { background: var(--yellow); box-shadow: 0 0 20px var(--yellow); }
-.layer-card.green { border-color: rgba(0,230,118,0.35); background: linear-gradient(135deg, rgba(0,230,118,0.06), rgba(10,15,32,0.95)); }
-.layer-card.green .layer-accent { background: var(--green); box-shadow: 0 0 20px var(--green); }
-
-.layer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
-.layer-tag {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 800;
-  padding: 6px 16px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;
-}
-.layer-card.red .layer-tag { background: var(--red); color: #FFF; }
-.layer-card.yellow .layer-tag { background: var(--yellow); color: #000; }
-.layer-card.green .layer-tag { background: var(--green); color: #000; }
-
-.urgency-badge { font-size: 1rem; font-weight: 800; color: var(--t-white); display: flex; align-items: center; gap: 8px; }
-
-.layer-title { font-size: 2.1rem; font-weight: 900; color: #FFF; margin-bottom: 15px; letter-spacing: -0.5px; }
-.layer-body p { font-size: 1.15rem; color: var(--t-light); margin-bottom: 20px; line-height: 1.7; }
-
-.comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); margin-top: 15px; }
-.comparison-table th { background: rgba(255,255,255,0.04); padding: 14px 20px; text-align: left; font-size: 0.9rem; font-weight: 800; color: var(--t-white); text-transform: uppercase; }
-.comparison-table td { padding: 16px 20px; font-size: 1.1rem; border-top: 1px solid rgba(255,255,255,0.05); }
-.bad { color: var(--red); font-weight: 700; }
-.good { color: var(--green); font-weight: 800; }
-
-/* === SUMMARY MATRIX === */
-.matrix-card {
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
-  padding: 35px 40px; margin-bottom: 45px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-.table-responsive { overflow-x: auto; }
-.matrix-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; }
-.matrix-table th {
-  padding: 16px 22px; text-align: left; font-size: 0.95rem; font-weight: 800; color: var(--t-white);
-  background: rgba(255,255,255,0.04); text-transform: uppercase; border-bottom: 2px solid var(--border);
-}
-.matrix-table td {
-  padding: 18px 22px; font-size: 1.12rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--t-light); font-weight: 500;
-}
-.matrix-table tr:last-child td { border-bottom: none; }
-
-/* === PILOT PROPOSAL CTA === */
-.pilot-cta {
-  background: linear-gradient(135deg, rgba(255,107,0,0.15), rgba(0,245,212,0.1));
-  border: 2px solid var(--primary); border-radius: 24px; padding: 50px; text-align: center;
-  box-shadow: 0 15px 45px rgba(0,0,0,0.5); position: relative; overflow: hidden;
-}
-.pilot-cta h2 { font-size: 2.6rem; font-weight: 900; color: #FFF; margin-bottom: 18px; letter-spacing: -0.5px; }
-.pilot-cta p { font-size: 1.3rem; color: var(--t-light); max-width: 850px; margin: 0 auto 35px; line-height: 1.7; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: linear-gradient(135deg, var(--primary), #FF8C00);
-  color: #FFF; padding: 18px 45px; border-radius: 14px;
-  font-size: 1.25rem; font-weight: 800; text-decoration: none;
-  box-shadow: 0 10px 30px rgba(255,107,0,0.4); transition: all 0.3s ease;
-}
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(255,107,0,0.55); }
-
-/* Responsive */
-@media(max-width:850px){
-  html { font-size: 16px; }
-  .reality-grid { grid-template-columns: 1fr; }
-  .layer-header { flex-direction: column; align-items: flex-start; }
-  .nav { flex-direction: column; gap: 15px; text-align: center; }
-  .prepared-for { text-align: center; }
-  .hook-banner { padding: 30px 25px; }
-}
+.container { max-width: 920px; margin: 0 auto; }
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 38px 42px; margin-bottom: 30px; box-shadow: 0 10px 35px rgba(0,0,0,0.4); }
+h1 { font-size: 2.6rem; font-weight: 900; color: #FFF; line-height: 1.25; margin-bottom: 18px; letter-spacing: -0.5px; }
+h2 { font-size: 1.8rem; font-weight: 800; color: #FFF; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.code-inline { font-family: 'JetBrains Mono', monospace; background: rgba(255,46,99,0.15); color: #FF2E63; padding: 3px 10px; border-radius: 6px; font-size: 1rem; }
+.code-block { font-family: 'JetBrains Mono', monospace; background: #03060C; border: 1px solid rgba(255,255,255,0.15); padding: 18px 22px; border-radius: 12px; color: #FF2E63; font-size: 1.05rem; overflow-x: auto; margin: 15px 0; }
+.tag { display: inline-block; padding: 6px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.btn { display: inline-block; background: linear-gradient(135deg, #0088FF, #0055FF); color: #FFF; padding: 18px 45px; border-radius: 14px; font-size: 1.35rem; font-weight: 900; text-decoration: none; box-shadow: 0 10px 30px rgba(0,136,255,0.4); transition: all 0.2s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,136,255,0.55); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media(max-width:750px){ html { font-size: 16px; } .grid-2 { grid-template-columns: 1fr; } .card { padding: 25px; } }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- NAVIGATION -->
-  <header class="nav">
-    <div class="brand">
-      <div class="logo-box">W</div>
-      <div class="brand-text">
-        <h1>Wify Digital Strategy</h1>
-        <span>Executive P&L Alignment Deck</span>
-      </div>
+  <!-- TOP HEADER -->
+  <header style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px solid var(--border);">
+    <div>
+      <h3 style="font-size: 1.6rem; font-weight: 900; color: var(--t-white); letter-spacing: -0.5px;">WIFY DIGITAL STRATEGY</h3>
+      <span style="color: var(--primary); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Executive Operational Proof</span>
     </div>
-    <div class="prepared-for">
-      Prepared for <strong>Vikram Sharma & Deepanshu Goel</strong>
-      By AltafVibe | 1-Page Meeting Proposal
+    <div style="text-align:right; font-size: 0.95rem; color: var(--t-muted);">
+      Target: <strong style="color: var(--t-white); display: block; font-size: 1.1rem;">Vikram Sharma & Deepanshu Goel</strong>
     </div>
   </header>
 
-  <!-- ONE-LINE PITCH BANNER -->
-  <section class="hook-banner">
-    <span class="hook-tag">🎯 The Real Entry Point & Operational Promise</span>
-    <h2>"We will reduce your per-technician recruitment cost from <span>₹15,000 down to ₹1,500</span> via targeted digital automation.<br>Everything else is bonus upside."</h2>
-    <p class="hook-sub">We don't pitch generic "SEO packages" or vanity keyword rankings. We analyze your unit economics and build digital conversion engines that actively solve your #1 daily operational supply chain bottleneck.</p>
-  </section>
+  <!-- STEP 1: EK LINE HOOK -->
+  <div class="card" style="border-left: 8px solid var(--primary); background: linear-gradient(145deg, rgba(255,107,0,0.12), rgba(10,15,32,0.95));">
+    <span class="tag" style="background: var(--primary); color: #FFF;">01 / Ek Line Hook</span>
+    <h1>"We will reduce your per-technician recruitment cost from <span style="color:var(--red);">₹15,000</span> down to <span style="color:var(--green);">₹1,500</span> per lead via targeted digital recruitment."</h1>
+    <p style="font-size: 1.25rem; font-weight: 600; color: var(--t-light);">Everything else is bonus upside. We focus directly on cutting your #1 daily operational field recruitment bottleneck across Top Tier Indian metros.</p>
+  </div>
 
-  <!-- STRATEGIC REALITY CHECK -->
-  <section>
-    <h2 class="section-title">📊 Wify's Business Model Reality Check</h2>
-    <div class="reality-card">
-      <p style="font-size:1.2rem; color:var(--t-light);">Why conventional SEO agency pitches fail Wify: No CEO or CFO at a ₹10–50 Cr enterprise loses sleep over whether their blog ranks on Google. They focus on closing major brand deals and solving operational fulfillment.</p>
-      
-      <div class="reality-grid">
-        <div class="revenue-block">
-          <div class="val" style="color:var(--primary);">85–90%</div>
-          <div class="lbl">B2B Brand Partnerships</div>
-          <div class="desc">IKEA, Amazon, Godrej, Livspace</div>
-        </div>
-        <div class="revenue-block">
-          <div class="val" style="color:var(--cyan);">8–12%</div>
-          <div class="lbl">B2C Direct Bookings</div>
-          <div class="desc">High-margin portal orders</div>
-        </div>
-        <div class="revenue-block">
-          <div class="val" style="color:#A855F7;">2–3%</div>
-          <div class="lbl">Referrals & Others</div>
-          <div class="desc">Word-of-mouth expansion</div>
-        </div>
-      </div>
-
-      <div class="insight-box">
-        <strong>💡 Strategic Takeaway:</strong> Because 90% of your revenue is driven by direct B2B sales and OEM contracts, digital marketing should NOT be pitched as an organic traffic tool. Instead, digital is a <strong>Supply Chain Accelerator (Technician Recruitment)</strong> and a <strong>Corporate Credibility Asset (Due Diligence Verification)</strong>.
-      </div>
-    </div>
-  </section>
-
-  <!-- 3-LAYER PRIORITY ROADMAP -->
-  <section>
-    <h2 class="section-title">🎯 The 3-Layer Digital Strategy (Grouped by Urgency)</h2>
-
-    <!-- LAYER 1: URGENT -->
-    <div class="layer-card red">
-      <div class="layer-accent"></div>
-      <div class="layer-header">
-        <span class="layer-tag">🔴 Layer 1 — URGENT & Real Pain Point</span>
-        <span class="urgency-badge">🔥 P&L Impact: IMMEDIATE (Primary Pitch)</span>
-      </div>
-      <h3 class="layer-title">Technician Recruitment Automation (The Supply Problem)</h3>
-      <div class="layer-body">
-        <p>Operating across 100+ Indian cities requires continuous hiring of skilled carpenters, assembly technicians, and electricians. Currently, relying on physical field recruitment agents is painfully slow, unscalable, and costs <strong>₹5,000 to ₹15,000 per verified technician lead</strong>.</p>
-        <p>By deploying regional <strong>YouTube Shorts & Instagram Reels</strong> in local languages (Hindi, Marathi, Tamil, Telugu) paired with targeted Meta Carousel ads and automated <strong>WhatsApp onboarding funnels</strong>, we drop acquisition costs by 70% while screening leads automatically.</p>
-        
-        <table class="comparison-table">
-          <thead>
-            <tr><th>Recruitment Metric</th><th>Current Physical Field Hiring</th><th>Proposed Digital Funnel Automation</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Cost Per Qualified Technician</td><td class="bad">₹5,000 – ₹15,000 / hire</td><td class="good">₹500 – ₹2,000 / hire (70% Cost Reduction)</td></tr>
-            <tr><td>Onboarding Friction</td><td class="bad">Slow physical verification & paperwork</td><td class="good">Instant 24/7 WhatsApp interactive screening</td></tr>
-            <tr><td>Annual Financial Impact (At Scale)</td><td class="bad">Heavy field operational overhead</td><td class="good">₹1.08 Cr to ₹3.12 Cr Net Annual Savings</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <!-- STEP 2: MAINE KYA NIKALA -->
+  <div class="card" style="border-left: 8px solid var(--red);">
+    <span class="tag" style="background: var(--red); color: #FFF;">02 / Maine Kya Nikala (Proof of Work)</span>
+    <p style="font-size: 1.45rem; font-weight: 800; color: #FFF; margin-bottom: 25px; font-style: italic;">
+      "Maine personally wiffy.ai ka source code open kiya — Google verification tag mein literally likha tha <span class="code-inline">your-google-verification-code</span>. Yeh main aaj fix kar sakta hoon."
+    </p>
+    
+    <div style="margin-top: 25px;">
+      <h4 style="color:#FFF; font-size: 1.25rem; font-weight: 800; margin-bottom: 8px;">1. Fake / Placeholder Google Search Console Tag:</h4>
+      <p style="font-size:1.1rem; color:var(--t-muted); margin-bottom: 8px;">Developers left dummy template text in your source code, meaning your executive team has zero verified Search Console data.</p>
+      <div class="code-block">&lt;meta name="google-site-verification" content="your-google-verification-code"&gt;</div>
     </div>
 
-    <!-- LAYER 2: IMPORTANT -->
-    <div class="layer-card yellow">
-      <div class="layer-accent"></div>
-      <div class="layer-header">
-        <span class="layer-tag">🟡 Layer 2 — IMPORTANT & High Asset Value</span>
-        <span class="urgency-badge">⚖️ Credibility Impact: 30–60 Days (Secondary Angle)</span>
-      </div>
-      <h3 class="layer-title">Website as an Enterprise Credibility Validation Engine</h3>
-      <div class="layer-body">
-        <p>A B2B company's website does not close enterprise deals on its own. Its real job is <strong>Due Diligence & Credibility Validation</strong>: when an executive from Tata, Exide, Amazon, or a Series B venture capitalist hears Wify's name and searches Google, the site must look like a bulletproof ₹50 Crore market leader.</p>
-        <p>Currently, `wiffy.ai` has zero structured B2B case studies, missing schema markup, unverified Search Console tags, leaking 301 SEO trust from `wify.co.in`, and zero city landing pages. We fix this foundational architecture so your website becomes a high-trust asset during enterprise contract evaluations.</p>
-      </div>
+    <div style="margin-top: 30px;">
+      <h4 style="color:#FFF; font-size: 1.25rem; font-weight: 800; margin-bottom: 8px;">2. Polluting UK / Foreign Template Keywords:</h4>
+      <p style="font-size:1.1rem; color:var(--t-muted); margin-bottom: 8px;">Leftover international copy-paste keywords actively confuse Google spiders and dilute your domain authority during corporate partner due diligence.</p>
+      <div class="code-block" style="color:#FFB800;">&lt;meta name="keywords" content="uk furniture assembly, international template defaults"&gt;</div>
     </div>
 
-    <!-- LAYER 3: OPPORTUNITY -->
-    <div class="layer-card green">
-      <div class="layer-accent"></div>
-      <div class="layer-header">
-        <span class="layer-tag">🟢 Layer 3 — FUTURE OPPORTUNITY</span>
-        <span class="urgency-badge">📈 Strategic Upside: 6–12 Month Horizon</span>
-      </div>
-      <h3 class="layer-title">B2C Direct Consumer Bookings & Local SEO Hubs</h3>
-      <div class="layer-body">
-        <p>While Wify is currently an enterprise B2B-first company, direct consumer installation bookings via `shop.wiffy.ai` ("IKEA modular assembly near me in Mumbai") represent your highest gross profit margin channel (₹30L+ annual untapped potential).</p>
-        <p>We treat B2C SEO as a high-margin future upside—building 100+ localized service pages and topical authority over time without distracting leadership from core enterprise B2B execution.</p>
-      </div>
+    <div style="margin-top: 30px;">
+      <h4 style="color:#FFF; font-size: 1.25rem; font-weight: 800; margin-bottom: 5px;">3. Zero City-Wise Landing Hubs:</h4>
+      <p style="font-size:1.1rem; color:var(--t-muted); margin-bottom: 0;">No dedicated regional portals (`/join/mumbai`, `/join/pune`) exist to convert digital ad traffic into low-cost WhatsApp onboarding.</p>
     </div>
-  </section>
+  </div>
 
-  <!-- EXECUTIVE SUMMARY MATRIX -->
-  <section>
-    <h2 class="section-title">📋 Meeting Strategy Summary Matrix</h2>
-    <div class="matrix-card">
-      <div class="table-responsive">
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th>Strategic Area</th>
-              <th>Does Wify Actually Need It?</th>
-              <th>Urgency Level</th>
-              <th>Recommended Pitch Angle in Meeting</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Technician Recruitment (Digital)</strong></td>
-              <td style="color:var(--green); font-weight:800;">Yes, Desperate Operational Need</td>
-              <td><span style="color:var(--red); font-weight:900;">🔴 HIGH</span></td>
-              <td><strong>Primary Core Pitch:</strong> "Let's cut hiring cost by 70%"</td>
-            </tr>
-            <tr>
-              <td><strong>Website Credibility & Tech Fixes</strong></td>
-              <td style="color:var(--yellow); font-weight:800;">Yes, Essential for Trust</td>
-              <td><span style="color:var(--yellow); font-weight:900;">🟡 MEDIUM</span></td>
-              <td><strong>Secondary Angle:</strong> "Look like the ₹50Cr leader you are"</td>
-            </tr>
-            <tr>
-              <td><strong>B2B Brand Discovery SEO</strong></td>
-              <td style="color:var(--cyan); font-weight:700;">Someday (Longer Sales Cycles)</td>
-              <td><span style="color:var(--yellow); font-weight:900;">🟡 MEDIUM</span></td>
-              <td><strong>Long-Term Value:</strong> "Organic inbound discovery over time"</td>
-            </tr>
-            <tr>
-              <td><strong>B2C Direct Booking Google Ads</strong></td>
-              <td style="color:var(--t-muted); font-weight:700;">Future Expansion</td>
-              <td><span style="color:var(--green); font-weight:900;">🟢 LOW</span></td>
-              <td><strong>Future Upside:</strong> "High-margin icing on the cake"</td>
-            </tr>
-            <tr style="background:rgba(255,46,99,0.08);">
-              <td><strong>Generic "SEO Monthly Package"</strong></td>
-              <td style="color:var(--red); font-weight:900;">NO — Waste of Pitch Time</td>
-              <td><span style="color:var(--red); font-weight:900;">❌ ZERO</span></td>
-              <td><strong>Never Say This:</strong> Founders will instantly assume you don't understand B2B economics.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+  <!-- STEP 3: FREE KAAM DONE -->
+  <div class="card" style="border-left: 8px solid var(--green); background: rgba(0,230,118,0.04);">
+    <span class="tag" style="background: var(--green); color: #000;">03 / Free Kaam Done Upfront</span>
+    <h2>📧 Free Fix Delivered Before Any Pitch:</h2>
+    <p style="font-size: 1.15rem; color: var(--t-light);">We don't ask for a retainer or send 50-page theory decks upfront. We send an immediate 10-minute code cleanup attachment for your UK keywords and broken verification tag to prove absolute technical competence for free.</p>
+  </div>
 
-  <!-- PILOT CTA PROPOSAL -->
-  <section class="pilot-cta">
-    <h2>🤝 The Risk-Free Pilot Proposal</h2>
-    <p>We propose an interactive <strong>5-City, 30-Day Technical & Recruitment Pilot</strong>. Let us deploy localized recruitment pages, activate vernacular Meta/Shorts ad campaigns, and clean up your 3 most critical website leaks. When our cost-per-hire ROI outperforms field recruiting — we scale together nationwide.</p>
-    <a href="mailto:vikram@wiffy.ai,deepanshu@wiffy.ai?subject=Executive%20Discussion%3A%20Technician%20Recruitment%20Digital%20Automation" class="btn-primary">
-      📧 Schedule 15-Minute Action Alignment Meeting
+  <!-- STEP 4: WHY DIGITAL EXPERTS ARE MANDATORY -->
+  <div class="card" style="border-left: 8px solid var(--purple); background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(10,15,32,0.95));">
+    <span class="tag" style="background: var(--purple); color: #FFF;">04 / Marketing Architecture Mandate</span>
+    <h2>🚨 Why Devs & Designers Alone Left These Errors:</h2>
+    <p style="font-size: 1.15rem; color: var(--t-light); margin-bottom: 15px;">A graphic designer or front-end web coder makes pages look attractive on a screen; they do not build localized conversion engines or spider-friendly schemas.</p>
+    <ul style="padding-left: 20px; font-size: 1.15rem; color: var(--t-light); space-y: 10px;">
+      <li style="margin-bottom: 12px;"><strong>Without an SEO Expert:</strong> Placeholder tags and polluting keywords remain hidden in source code, dropping trust during enterprise partner audits.</li>
+      <li style="margin-bottom: 12px;"><strong>Without a Digital Ads Expert:</strong> There is no conversion psychology or server-side Meta API webhook tracking configured to bring technician hiring costs down to ₹1,500.</li>
+    </ul>
+  </div>
+
+  <!-- STEP 5: EK SIMPLE ASK -->
+  <div class="card" style="border-left: 8px solid #0088FF; text-align: center; padding: 45px 30px;">
+    <span class="tag" style="background: #0088FF; color: #FFF;">05 / Ek Simple Ask</span>
+    <h1 style="font-size: 3.2rem; color: #FFF; margin-top: 10px; margin-bottom: 15px;">"15 min Tuesday 3pm?"</h1>
+    <p style="font-size: 1.25rem; color: var(--t-light); max-w: 650px; margin: 0 auto 30px;">Let us implement the 10-minute code cleanup today for free, and align on a simple 5-City digital pilot to drop your per-technician acquisition costs.</p>
+    <a href="mailto:vikram@wiffy.ai,deepanshu@wiffy.ai?subject=15%20min%20Tuesday%203pm%3F%20(wiffy.ai%20code%20fix)" class="btn">
+      📅 Confirm Tuesday at 3 PM
     </a>
-    <div style="margin-top:25px; font-size:1rem; color:var(--t-muted);">
-      Prepared with raw real-world analysis by <strong>AltafVibe</strong> | Ready for immediate presentation
-    </div>
-  </section>
+  </div>
 
 </div>
 </body>
