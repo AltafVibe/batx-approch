@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Sundays | B2C Revenue & Growth Autopsy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], mono: ['Fira Code', 'monospace'] },
+                    colors: {
+                        deepSlate: '#050c14', panelBg: '#091322', cardBg: '#0e1d33',
+                        emeraldNeon: '#10b981', cyanNeon: '#06b6d4', goldNeon: '#f59e0b',
+                        coralNeon: '#f43f5e', violetNeon: '#8b5cf6', borderCol: '#1e304b'
+                    },
+                    boxShadow: {
+                        'neon-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.3)',
+                        'neon-coral': '0 0 25px -5px rgba(244, 63, 94, 0.3)',
+                        'neon-violet': '0 0 25px -5px rgba(139, 92, 246, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050c14; color: #e2e8f0; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden;
+            background-image: radial-gradient(at 0% 0%, rgba(244,63,94,0.08) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(139,92,246,0.08) 0, transparent 50%);
+            background-attachment: fixed; }
+        .glass-header { background: rgba(9, 19, 34, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid #1e304b; }
+        .glass-card { background: linear-gradient(135deg, rgba(14, 29, 51, 0.85), rgba(9, 19, 34, 0.95)); backdrop-filter: blur(16px); border: 1px solid #1e304b; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .glass-card:hover { border-color: #f43f5e; transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(244,63,94,0.2); }
+        .gradient-text { background: linear-gradient(135deg, #f43f5e, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text-gold { background: linear-gradient(135deg, #f59e0b, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tab-btn { transition: all 0.25s ease; position: relative; border-left: 3px solid transparent; }
+        .tab-btn.active { background: linear-gradient(90deg, rgba(244,63,94,0.15), transparent); border-left-color: #f43f5e; color: #fff; font-weight: 600; }
+        .tab-btn.active::after { content: ''; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; border-radius: 50%; background-color: #f43f5e; box-shadow: 0 0 8px #f43f5e; }
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #050c14; } ::-webkit-scrollbar-thumb { background: #1e304b; border-radius: 4px; } ::-webkit-scrollbar-thumb:hover { background: #f43f5e; }
+        @keyframes pulse-slow { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+        .animate-glow { animation: pulse-slow 4s infinite ease-in-out; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row">
+
+    <header class="glass-header md:hidden p-4 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-coralNeon to-violetNeon flex items-center justify-center font-bold text-white text-lg shadow-lg">30</div>
+            <span class="font-extrabold text-lg tracking-tight text-white">30 SUNDAYS <span class="text-coralNeon font-normal">PITCH</span></span>
+        </div>
+        <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2 text-2xl focus:outline-none">☰</button>
+    </header>
+
+    <aside id="sidebar" class="w-full md:w-72 border-r border-borderCol bg-panelBg flex-col shrink-0 hidden md:flex z-40 sticky top-0 h-screen overflow-y-auto">
+        <div class="h-20 flex items-center px-6 border-b border-borderCol shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-coralNeon to-violetNeon flex items-center justify-center font-black text-white text-sm shadow-lg mr-3">30</div>
+            <div>
+                <span class="font-extrabold text-xl tracking-wider text-white">30SUNDAYS<span class="text-coralNeon">.club</span></span>
+                <span class="block text-[10px] uppercase font-mono tracking-widest text-violetNeon">Growth Autopsy Deck</span>
+            </div>
+        </div>
+        <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+                <div class="bg-cardBg rounded-xl p-4 mb-6 border border-borderCol shadow-sm">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-mono uppercase tracking-wider text-gray-400">Target Profile</span>
+                        <span class="px-2 py-0.5 text-[10px] font-mono rounded-full bg-coralNeon/20 text-coralNeon border border-coralNeon/40">High Growth</span>
+                    </div>
+                    <h3 class="font-bold text-white text-base">30 Sundays</h3>
+                    <p class="text-xs text-gray-400 mb-3">AI-Native Couple Travel Tech Platform</p>
+                    <div class="pt-2 border-t border-borderCol/60 flex items-center justify-between text-xs font-mono">
+                        <span class="text-amber-400 flex items-center">⭐ AI-Powered</span>
+                        <span class="text-gray-300">Scaling Fast</span>
+                    </div>
+                </div>
+                <div class="text-[11px] font-mono font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">Pitch Architecture</div>
+                <nav class="space-y-1.5" id="nav-group">
+                    <a href="#" onclick="switchTab('overview', event)" id="nav-overview" class="tab-btn active flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg"><span class="text-xl">🏆</span> <span class="text-sm">Executive Overview</span></a>
+                    <a href="#" onclick="switchTab('autopsy', event)" id="nav-autopsy" class="tab-btn flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg"><span class="text-xl">🚨</span> <span class="text-sm">Website SEO Autopsy</span></a>
+                    <a href="#" onclick="switchTab('revenue', event)" id="nav-revenue" class="tab-btn flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg"><span class="text-xl">💰</span> <span class="text-sm">Revenue & Competitors</span></a>
+                    <a href="#" onclick="switchTab('keywords', event)" id="nav-keywords" class="tab-btn flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg"><span class="text-xl">🎯</span> <span class="text-sm">Keyword Goldmine</span></a>
+                    <a href="#" onclick="switchTab('roadmap', event)" id="nav-roadmap" class="tab-btn flex items-center space-x-3.5 text-gray-400 hover:text-white px-4 py-3 rounded-r-lg"><span class="text-xl">🗺️</span> <span class="text-sm">90-Day Roadmap</span></a>
+                    <a href="#" onclick="switchTab('contact', event)" id="nav-contact" class="tab-btn flex items-center space-x-3.5 text-coralNeon hover:text-white px-4 py-3 rounded-lg border border-coralNeon/30 mt-4 bg-coralNeon/10 shadow-neon-coral"><span class="text-xl">🤝</span> <span class="text-sm font-bold">Let's Connect</span></a>
+                </nav>
+            </div>
+            <div class="pt-4 border-t border-borderCol mt-6 text-center">
+                <div class="text-xs text-gray-400">Prepared for <strong class="text-white">Kshitij Chaudhary (CEO)</strong></div>
+                <div class="text-[10px] text-gray-500 mt-1 font-mono">B2C Travel Growth Proposal</div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-5 md:p-10 max-w-7xl mx-auto overflow-y-auto w-full">
+
+        <!-- TAB 1: EXECUTIVE OVERVIEW -->
+        <section id="tab-overview" class="space-y-8 block">
+            <div class="relative bg-gradient-to-r from-cardBg to-panelBg rounded-2xl p-8 border border-borderCol shadow-xl overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-coralNeon/10 blur-3xl pointer-events-none animate-glow"></div>
+                <div class="absolute right-1/3 -bottom-20 w-64 h-64 rounded-full bg-violetNeon/10 blur-3xl pointer-events-none animate-glow" style="animation-delay: 2s;"></div>
+                <div class="max-w-3xl relative z-10">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-coralNeon/10 border border-coralNeon/30 text-coralNeon text-xs font-semibold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-coralNeon animate-ping"></span>
+                        <span>B2C TRAVEL GROWTH TRANSFORMATION PITCH</span>
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+                        Unlock <span class="gradient-text">15,000+ Free Organic Leads</span> Every Month for Couple Travel.
+                    </h1>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+                        30 Sundays is redefining couple travel with AI-native itinerary planning. But in a market dominated by <strong>MakeMyTrip</strong> and <strong>Pickyourtrail</strong>, your organic search presence is nearly invisible. This dashboard reveals how to build a <strong class="text-white">Programmatic SEO Engine</strong> that generates free, high-intent couple leads at scale.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('autopsy', event)" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-coralNeon to-violetNeon text-white font-extrabold text-sm hover:opacity-95 shadow-neon-coral transition flex items-center space-x-2"><span>🔍 Explore SEO Autopsy</span> <span>→</span></button>
+                        <button onclick="switchTab('revenue', event)" class="px-6 py-3.5 rounded-xl bg-cardBg text-white border border-borderCol font-semibold text-sm hover:bg-slate-800 transition">💰 Revenue & Competitors</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                <div class="glass-card p-6 rounded-2xl"><div class="text-xs font-mono text-gray-400 mb-1">FOUNDED</div><div class="text-2xl font-black text-white mb-2">🚀 2024</div><p class="text-xs text-gray-400">Gurugram, India. Just 2 years old but scaling aggressively post Series A.</p></div>
+                <div class="glass-card p-6 rounded-2xl"><div class="text-xs font-mono text-gray-400 mb-1">TARGET NICHE</div><div class="text-2xl font-black text-amber-400 mb-2">💑 Couples</div><p class="text-xs text-gray-400">Exclusive focus on honeymoons, anniversaries & romantic getaways — a high-ticket, underserved niche.</p></div>
+                <div class="glass-card p-6 rounded-2xl"><div class="text-xs font-mono text-gray-400 mb-1">CURRENT SEO STATUS</div><div class="text-2xl font-black text-rose-500 mb-2">⚠️ Weak</div><p class="text-xs text-gray-400">Generic title tags, zero programmatic SEO pages, limited organic search visibility.</p></div>
+                <div class="glass-card p-6 rounded-2xl border-coralNeon/40"><div class="text-xs font-mono text-coralNeon mb-1">OPPORTUNITY</div><div class="text-2xl font-black text-white mb-2">🎯 Massive</div><p class="text-xs text-gray-400">10,000+ monthly organic couple travel searches untapped. CAC reduction of 40%+ possible.</p></div>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="text-xl font-extrabold text-white mb-2">The Core Problem Statement</h3>
+                <p class="text-sm text-gray-400 mb-6">Why the couple travel market requires a strong organic acquisition moat alongside your brilliant AI platform.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 rounded-xl bg-slate-900/80 border border-rose-500/30">
+                        <div class="text-xs font-mono font-bold uppercase tracking-wider text-rose-400 mb-3 flex items-center justify-between"><span>CURRENT: PAID-HEAVY ACQUISITION</span><span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">Room to Optimize</span></div>
+                        <ul class="space-y-3.5 text-sm text-gray-300">
+                            <li class="flex items-start"><span class="text-rose-500 mr-2 font-bold">✕</span><div><strong>Google Ads War:</strong> MakeMyTrip & Pickyourtrail dominate paid search for "honeymoon packages." CPC costs in travel are among the highest — organic is the sustainable alternative.</div></li>
+                            <li class="flex items-start"><span class="text-rose-500 mr-2 font-bold">✕</span><div><strong>No Route-Level Pages:</strong> Zero programmatic pages like "Delhi to Bali Honeymoon 5 Nights" that capture long-tail organic traffic for free.</div></li>
+                            <li class="flex items-start"><span class="text-rose-500 mr-2 font-bold">✕</span><div><strong>Trust Gap:</strong> Couples spending ₹2-3 lakh on honeymoons won't trust a 2-year-old brand they can't find on Google organically.</div></li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-xl bg-emerald-950/20 border border-emeraldNeon/40 shadow-neon-emerald">
+                        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emeraldNeon mb-3 flex items-center justify-between"><span>PROPOSED: ORGANIC GROWTH ENGINE</span><span class="px-2 py-0.5 rounded bg-emeraldNeon/20 text-emeraldNeon font-bold">Sustainable</span></div>
+                        <ul class="space-y-3.5 text-sm text-gray-200">
+                            <li class="flex items-start"><span class="text-emeraldNeon mr-2 font-bold">✓</span><div><strong>Programmatic SEO:</strong> 500+ auto-generated route pages (city-to-destination combos) capturing every couple travel search query in India.</div></li>
+                            <li class="flex items-start"><span class="text-emeraldNeon mr-2 font-bold">✓</span><div><strong>Itinerary Analyser as Lead Magnet:</strong> Your AI tool can go viral on social media—free SEO traffic from "is my travel agent cheating me?"</div></li>
+                            <li class="flex items-start"><span class="text-emeraldNeon mr-2 font-bold">✓</span><div><strong>Content Authority:</strong> Blog SEO + comparison pages ("Bali vs Maldives for Honeymoon") build trust and rank on Google for free.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLACEHOLDER SECTIONS - Will be populated -->
+        <section id="tab-autopsy" class="space-y-8 hidden">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-wider text-rose-400 mb-1 flex items-center"><span class="mr-2">🚨 DEEP SEO AUDIT</span> • 30SUNDAYS.CLUB ANALYSIS</div>
+                <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">Live Production Autopsy of <span class="text-rose-500">30sundays.club</span></h2>
+                <p class="text-sm text-gray-400 mt-2 max-w-3xl">Our real-time diagnostic testing revealed critical SEO blind spots that are costing you thousands of free organic leads every month. Below is our problem-to-solution roadmap.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 bg-rose-950/20 border-rose-500/30">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 rounded-2xl bg-rose-500/20 border-2 border-rose-500 flex items-center justify-center font-black text-rose-400 text-3xl shrink-0">C-</div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg">SEO Health Score: Grade C- (Significant Gaps)</h4>
+                        <p class="text-xs text-gray-300">Generic title tags • Zero programmatic pages • Itinerary Analyser tool not SEO-optimized • No route-level landing pages.</p>
+                    </div>
+                </div>
+                <div class="bg-cardBg px-5 py-3 rounded-xl border border-borderCol shrink-0 text-right">
+                    <span class="text-xs font-mono text-gray-400 block">ESTIMATED FIX TIMELINE</span>
+                    <span class="text-emeraldNeon font-black text-base">15-20 Days (Phase 1)</span>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Fault 1 -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-borderCol">
+                    <div class="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-borderCol gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">CRITICAL FAULT #01</span>
+                        <span class="text-xs font-mono text-gray-400">Impact: Missing 10,000+ Monthly Organic Searches</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-rose-500">
+                            <div class="text-xs font-bold font-mono text-rose-400 flex items-center uppercase"><span class="mr-1.5">❌</span> The Problem</div>
+                            <h4 class="font-bold text-white text-base">Zero Programmatic Route Pages</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">Couples search for <code class="bg-rose-950 text-rose-300 px-1.5 py-0.5 rounded font-mono">"Delhi to Bali honeymoon package 5 nights"</code> or <code class="bg-rose-950 text-rose-300 px-1.5 py-0.5 rounded font-mono">"Mumbai to Maldives couple trip"</code>. Your site has ZERO route-specific pages. Pickyourtrail has 500+ such pages ranking on Google — that's free traffic you're losing entirely.</p>
+                        </div>
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-cyanNeon">
+                            <div class="text-xs font-bold font-mono text-cyanNeon flex items-center uppercase"><span class="mr-1.5">💡</span> The Solution</div>
+                            <h4 class="font-bold text-white text-base">Programmatic SEO at Scale</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">Create a template-driven system that auto-generates 500+ landing pages for every city-to-destination combo. Each page targets a unique long-tail keyword. This is exactly how Booking.com and Pickyourtrail dominate organic search.</p>
+                        </div>
+                        <div class="space-y-2 bg-emerald-950/20 p-5 rounded-xl border-l-4 border-emeraldNeon shadow-inner">
+                            <div class="text-xs font-bold font-mono text-emeraldNeon flex items-center uppercase"><span class="mr-1.5">⭐</span> What I Will Do For You</div>
+                            <h4 class="font-bold text-white text-base">Build 500+ Route Pages in 30 Days</h4>
+                            <p class="text-xs text-gray-200 leading-relaxed"><strong>I will design the programmatic SEO template and deploy 500+ route-level pages</strong> with unique content, schema markup, and internal linking — capturing thousands of free couple travel queries from Google every month.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fault 2 -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-borderCol">
+                    <div class="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-borderCol gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">HIGH RISK FAULT #02</span>
+                        <span class="text-xs font-mono text-gray-400">Impact: Viral Lead Magnet Completely Hidden from Google</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-rose-500">
+                            <div class="text-xs font-bold font-mono text-rose-400 flex items-center uppercase"><span class="mr-1.5">❌</span> The Problem</div>
+                            <h4 class="font-bold text-white text-base">Itinerary Analyser — Hidden Goldmine</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">Your <code class="bg-rose-950 text-rose-300 px-1.5 py-0.5 rounded font-mono">/itinerary-analyser</code> tool is BRILLIANT — it lets users check if their travel agent is overcharging. But it's buried in nav menus with zero SEO content. This tool alone could generate viral social shares and thousands of organic leads if properly marketed.</p>
+                        </div>
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-cyanNeon">
+                            <div class="text-xs font-bold font-mono text-cyanNeon flex items-center uppercase"><span class="mr-1.5">💡</span> The Solution</div>
+                            <h4 class="font-bold text-white text-base">SEO-Optimized Free Tool Landing Page</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">Create a dedicated, keyword-rich landing page targeting "check travel agent itinerary online free" and "is my travel agent overcharging me." Add social proof, testimonials, and WhatsApp share buttons. This becomes your #1 top-of-funnel acquisition channel.</p>
+                        </div>
+                        <div class="space-y-2 bg-emerald-950/20 p-5 rounded-xl border-l-4 border-emeraldNeon shadow-inner">
+                            <div class="text-xs font-bold font-mono text-emeraldNeon flex items-center uppercase"><span class="mr-1.5">⭐</span> What I Will Do For You</div>
+                            <h4 class="font-bold text-white text-base">Turn Analyser into a Viral Lead Engine</h4>
+                            <p class="text-xs text-gray-200 leading-relaxed"><strong>I will build a dedicated SEO landing page for your Itinerary Analyser,</strong> with structured data, social share CTAs, and retargeting pixel integration. Every user who checks an itinerary becomes a warm lead in your funnel.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fault 3 -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-borderCol">
+                    <div class="flex flex-wrap items-center justify-between mb-6 pb-4 border-b border-borderCol gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">SEO GAP #03</span>
+                        <span class="text-xs font-mono text-gray-400">Impact: Losing High-Intent Comparison Searches to Competitors</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-rose-500">
+                            <div class="text-xs font-bold font-mono text-rose-400 flex items-center uppercase"><span class="mr-1.5">❌</span> The Problem</div>
+                            <h4 class="font-bold text-white text-base">Generic Title & Meta Tags</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">Homepage title is <code class="bg-rose-950 text-rose-300 px-1.5 py-0.5 rounded font-mono">"Customized Tours and Packages for Couples | 30 Sundays"</code>. This is too generic. Blog posts like "Bali vs Thailand" exist but aren't optimized with comparison schema or FAQ sections that Google favors for featured snippets.</p>
+                        </div>
+                        <div class="space-y-2 bg-slate-900/90 p-5 rounded-xl border-l-4 border-cyanNeon">
+                            <div class="text-xs font-bold font-mono text-cyanNeon flex items-center uppercase"><span class="mr-1.5">💡</span> The Solution</div>
+                            <h4 class="font-bold text-white text-base">Comparison & FAQ Schema Strategy</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">Rewrite all title tags with high-intent keywords. Add FAQ structured data to comparison blogs. Create dedicated "vs" pages (Bali vs Maldives, Thailand vs Vietnam) that dominate Google's featured snippet position zero.</p>
+                        </div>
+                        <div class="space-y-2 bg-emerald-950/20 p-5 rounded-xl border-l-4 border-emeraldNeon shadow-inner">
+                            <div class="text-xs font-bold font-mono text-emeraldNeon flex items-center uppercase"><span class="mr-1.5">⭐</span> What I Will Do For You</div>
+                            <h4 class="font-bold text-white text-base">Complete On-Page SEO Overhaul</h4>
+                            <p class="text-xs text-gray-200 leading-relaxed"><strong>I will rewrite all meta tags, inject FAQ schema on every comparison blog,</strong> and create 20+ new "destination vs destination" articles optimized for Google featured snippets — capturing couples at the decision-making stage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+        <section id="tab-revenue" class="space-y-8 hidden">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-wider text-amber-400 mb-1 flex items-center"><span class="mr-2">💰 BUSINESS MODEL DEEP DIVE</span> • REVENUE & COMPETITIVE LANDSCAPE</div>
+                <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">Revenue Engine & <span class="gradient-text-gold">Competitor Analysis</span></h2>
+                <p class="text-sm text-gray-400 mt-2 max-w-3xl">Understanding where 30 Sundays makes money and who they're fighting against — critical context for building the right growth strategy.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-coralNeon">
+                    <div class="w-12 h-12 rounded-xl bg-coralNeon/20 flex items-center justify-center font-bold text-2xl mb-4 text-coralNeon">💑</div>
+                    <h3 class="font-extrabold text-white text-lg mb-2">1. Couple Holiday Packages</h3>
+                    <div class="text-xs font-mono text-coralNeon mb-3">AVG BOOKING VALUE: ₹1.5L - ₹4L</div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">Core revenue stream. Customized international honeymoon and anniversary trips to Bali, Maldives, Thailand, Vietnam, etc. Revenue comes from <strong>commission + markup</strong> on hotels, flights, and activities (typically 15-25% margin).</p>
+                    <div class="pt-3 border-t border-borderCol text-xs font-semibold text-gray-300 flex items-center justify-between"><span>Revenue Type:</span><span class="text-coralNeon font-mono">Commission + Markup</span></div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-violetNeon">
+                    <div class="w-12 h-12 rounded-xl bg-violetNeon/20 flex items-center justify-center font-bold text-2xl mb-4 text-violetNeon">🍽️</div>
+                    <h3 class="font-extrabold text-white text-lg mb-2">2. Premium Add-Ons & Upsells</h3>
+                    <div class="text-xs font-mono text-violetNeon mb-3">AVG ADD-ON VALUE: ₹15K - ₹80K</div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">Private yacht experiences, candlelight dinners, helicopter rides, photography sessions. These <strong>high-margin premium extras</strong> dramatically increase per-booking revenue. AI concierge recommends these during the trip.</p>
+                    <div class="pt-3 border-t border-borderCol text-xs font-semibold text-gray-300 flex items-center justify-between"><span>Revenue Type:</span><span class="text-violetNeon font-mono">High-Margin Upsell</span></div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-t-4 border-amber-400">
+                    <div class="w-12 h-12 rounded-xl bg-amber-400/20 flex items-center justify-center font-bold text-2xl mb-4 text-amber-400">🔄</div>
+                    <h3 class="font-extrabold text-white text-lg mb-2">3. Repeat & Referral Revenue</h3>
+                    <div class="text-xs font-mono text-amber-400 mb-3">LIFETIME VALUE: ₹8L - ₹15L+</div>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">Happy couples return for anniversaries, babymoons, and family trips. With the app and AI concierge, 30 Sundays builds a <strong>long-term relationship</strong> that generates referrals and repeat bookings over years.</p>
+                    <div class="pt-3 border-t border-borderCol text-xs font-semibold text-gray-300 flex items-center justify-between"><span>Revenue Type:</span><span class="text-amber-400 font-mono">Recurring LTV</span></div>
+                </div>
+            </div>
+
+            <!-- Competitor Matrix -->
+            <div class="glass-card rounded-2xl overflow-hidden border border-borderCol">
+                <div class="p-6 bg-slate-900/60 border-b border-borderCol"><h3 class="font-extrabold text-white text-lg">Competitive Landscape Matrix</h3><p class="text-xs text-gray-400">How 30 Sundays stacks up against key competitors in the Indian travel market.</p></div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead><tr class="border-b border-borderCol text-xs font-mono text-gray-400 uppercase bg-cardBg/50">
+                            <th class="p-4 pl-6">Competitor</th><th class="p-4">Type</th><th class="p-4">SEO Strength</th><th class="p-4">Couple Focus</th><th class="p-4 pr-6 text-right">Threat Level</th>
+                        </tr></thead>
+                        <tbody class="divide-y divide-borderCol/60 text-sm font-medium">
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-bold text-white">Pickyourtrail</td><td class="p-4 text-gray-300">Tech-First Customizable</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-400/30">VERY STRONG</span></td><td class="p-4 text-gray-300">Partial</td><td class="p-4 pr-6 text-right font-mono font-bold text-rose-400">🔴 High</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-bold text-white">Thrillophilia</td><td class="p-4 text-gray-300">Mass Market Experiences</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-400/30">DOMINANT</span></td><td class="p-4 text-gray-300">No</td><td class="p-4 pr-6 text-right font-mono font-bold text-amber-400">🟡 Medium</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-bold text-white">TravelTriangle</td><td class="p-4 text-gray-300">Agent Marketplace</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-950 text-amber-300 border border-amber-400/30">STRONG</span></td><td class="p-4 text-gray-300">Partial</td><td class="p-4 pr-6 text-right font-mono font-bold text-amber-400">🟡 Medium</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-bold text-white">MakeMyTrip / SOTC</td><td class="p-4 text-gray-300">Legacy Giants</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-400/30">MASSIVE</span></td><td class="p-4 text-gray-300">Honeymoon Desk</td><td class="p-4 pr-6 text-right font-mono font-bold text-rose-400">🔴 High</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-bold text-white">WanderOn / JustWravel</td><td class="p-4 text-gray-300">Group Travel Community</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emeraldNeon border border-emeraldNeon/30">MODERATE</span></td><td class="p-4 text-gray-300">No</td><td class="p-4 pr-6 text-right font-mono font-bold text-emeraldNeon">🟢 Low</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl border border-coralNeon/40">
+                <span class="text-xs font-mono text-coralNeon font-bold tracking-wider block mb-1">THE WINNING STRATEGY</span>
+                <h3 class="text-2xl font-extrabold text-white mb-4">How to Beat Pickyourtrail & MakeMyTrip Without Outspending Them</h3>
+                <p class="text-sm text-gray-300 mb-6">You can't outspend MakeMyTrip on Google Ads. But you CAN own the <strong>"couple + romantic + honeymoon"</strong> niche through hyper-targeted content, programmatic SEO, and your AI Itinerary Analyser viral tool.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-borderCol">
+                    <div class="flex space-x-4"><div class="w-8 h-8 rounded-full bg-slate-800 text-white font-bold flex items-center justify-center shrink-0 border border-borderCol">1</div><div><h4 class="text-sm font-bold text-white mb-1">Own the "Couple" Niche</h4><p class="text-xs text-gray-400">MakeMyTrip targets everyone. You only target couples. Build 500+ pages specifically for couple/honeymoon searches that giants ignore.</p></div></div>
+                    <div class="flex space-x-4"><div class="w-8 h-8 rounded-full bg-slate-800 text-white font-bold flex items-center justify-center shrink-0 border border-borderCol">2</div><div><h4 class="text-sm font-bold text-white mb-1">Weaponize the AI Analyser</h4><p class="text-xs text-gray-400">Turn your Itinerary Analyser into a viral SEO tool. Target "is my travel agent cheating me" — this gets shared on WhatsApp groups like wildfire.</p></div></div>
+                    <div class="flex space-x-4"><div class="w-8 h-8 rounded-full bg-slate-800 text-coralNeon font-bold flex items-center justify-center shrink-0 border border-coralNeon">3</div><div><h4 class="text-sm font-bold text-coralNeon mb-1">Instagram + SEO Flywheel</h4><p class="text-xs text-gray-300">Real couple stories on Instagram → drive to blog → blog ranks on Google → free organic leads forever. A self-sustaining growth flywheel.</p></div></div>
+                </div>
+            </div>
+</section>
+        <section id="tab-keywords" class="space-y-8 hidden">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-wider text-cyanNeon mb-1 flex items-center"><span class="mr-2">🎯 ORGANIC TRAFFIC VAULT</span> • COUPLE TRAVEL SEO</div>
+                <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">High-Intent <span class="text-cyanNeon">Keyword Goldmine</span> for Couples</h2>
+                <p class="text-sm text-gray-400 mt-2 max-w-3xl">These are the exact search queries Indian couples type into Google before spending ₹2-4 Lakh on an international honeymoon. Right now, Pickyourtrail and MakeMyTrip own ALL of these. With programmatic SEO, you can steal them.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl overflow-hidden border border-borderCol">
+                <div class="p-6 bg-slate-900/60 border-b border-borderCol flex flex-wrap justify-between items-center gap-4">
+                    <div><h3 class="font-extrabold text-white text-lg">Targeted Couple Travel Keyword Matrix</h3><p class="text-xs text-gray-400">Rankings targeted for Top 5 Google Organic SERP within 60-90 days.</p></div>
+                    <div class="flex items-center space-x-2 text-xs font-mono text-emeraldNeon bg-emerald-950/40 px-3 py-1.5 rounded-lg border border-emeraldNeon/30"><span>🔥 Avg. Booking Value: ₹2,50,000+</span></div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead><tr class="border-b border-borderCol text-xs font-mono text-gray-400 uppercase bg-cardBg/50">
+                            <th class="p-4 pl-6">Target Search Query</th><th class="p-4">Monthly Volume</th><th class="p-4">Intent</th><th class="p-4">Difficulty</th><th class="p-4 pr-6 text-right">Est. Booking Value</th>
+                        </tr></thead>
+                        <tbody class="divide-y divide-borderCol/60 text-sm font-medium">
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-mono text-white flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-coralNeon"></span><span>"Bali honeymoon package from India"</span></td><td class="p-4 text-gray-300">8,100/mo</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emeraldNeon border border-emeraldNeon/30">BUYER READY</span></td><td class="p-4 text-xs text-amber-400 font-mono">Medium (42/100)</td><td class="p-4 pr-6 text-right font-mono font-bold text-coralNeon">₹1.8L - ₹3.5L</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-mono text-white flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-violetNeon"></span><span>"Maldives couple package 4 nights"</span></td><td class="p-4 text-gray-300">5,400/mo</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emeraldNeon border border-emeraldNeon/30">BUYER READY</span></td><td class="p-4 text-xs text-amber-400 font-mono">Medium (38/100)</td><td class="p-4 pr-6 text-right font-mono font-bold text-violetNeon">₹2L - ₹5L</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-mono text-white flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-cyanNeon"></span><span>"Thailand honeymoon trip cost from Delhi"</span></td><td class="p-4 text-gray-300">3,600/mo</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyanNeon/30">RESEARCH</span></td><td class="p-4 text-xs text-emeraldNeon font-mono">Low (25/100)</td><td class="p-4 pr-6 text-right font-mono font-bold text-cyanNeon">₹1.2L - ₹2.5L</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-mono text-white flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-amber-400"></span><span>"Bali vs Maldives for honeymoon"</span></td><td class="p-4 text-gray-300">2,900/mo</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-950 text-amber-300 border border-amber-400/30">COMPARISON</span></td><td class="p-4 text-xs text-emeraldNeon font-mono">Low (22/100)</td><td class="p-4 pr-6 text-right font-mono font-bold text-amber-400">₹2L - ₹4L</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-mono text-white flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-emeraldNeon"></span><span>"is my travel agent overcharging me"</span></td><td class="p-4 text-gray-300">1,800/mo</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-400/30">VIRAL TOOL</span></td><td class="p-4 text-xs text-emeraldNeon font-mono">Very Low (12/100)</td><td class="p-4 pr-6 text-right font-mono font-bold text-emeraldNeon">Lead Magnet</td></tr>
+                            <tr class="hover:bg-slate-800/50 transition"><td class="p-4 pl-6 font-mono text-white flex items-center space-x-2"><span class="w-2 h-2 rounded-full bg-rose-400"></span><span>"Vietnam couple trip 7 days itinerary"</span></td><td class="p-4 text-gray-300">2,100/mo</td><td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emeraldNeon border border-emeraldNeon/30">BUYER READY</span></td><td class="p-4 text-xs text-emeraldNeon font-mono">Low (19/100)</td><td class="p-4 pr-6 text-right font-mono font-bold text-rose-400">₹1L - ₹2L</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-extrabold text-white text-base mb-2">Why "Couple" Keywords = Higher Conversion</h4>
+                    <p class="text-xs text-gray-300 leading-relaxed">A person searching "cheap Bali trip" is a budget backpacker. A person searching <strong>"Bali honeymoon package for couples 5 nights"</strong> is ready to spend ₹2-3 Lakh immediately. By targeting only couple/romantic/honeymoon modifiers, your conversion rate jumps from <span class="text-rose-400 font-bold">0.5% to over 6%</span>.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-cyanNeon/40">
+                    <h4 class="font-extrabold text-cyanNeon text-base mb-2">How I Will Implement This</h4>
+                    <p class="text-xs text-gray-200 leading-relaxed">I will build <strong>programmatic route pages</strong> (e.g., /packages/delhi-to-bali-honeymoon-5n) for every city-destination-duration combo, plus <strong>20+ comparison articles</strong> with FAQ schema targeting "vs" queries. Combined monthly organic traffic potential: <span class="text-white font-bold">15,000+ free visitors</span>.</p>
+                </div>
+            </div>
+</section>
+        <section id="tab-roadmap" class="space-y-8 hidden">
+            <div>
+                <div class="text-xs font-mono uppercase tracking-wider text-purple-400 mb-1 flex items-center"><span class="mr-2">🗺️ STRATEGIC EXECUTION</span> • CLEAR ROADMAP</div>
+                <h2 class="text-2xl md:text-4xl font-black text-white tracking-tight">The <span class="text-purple-400">90-Day Growth</span> Transformation</h2>
+                <p class="text-sm text-gray-400 mt-2 max-w-3xl">Three crisp 30-day sprints to transform 30sundays.club from a paid-ads-dependent platform into an organic lead generation powerhouse.</p>
+            </div>
+            <div class="relative pl-6 md:pl-10 border-l-2 border-borderCol space-y-10 my-8">
+                <div class="relative group">
+                    <div class="absolute -left-[31px] md:-left-[47px] top-1 w-6 h-6 rounded-full bg-rose-500 border-4 border-slate-950 text-white font-bold text-[10px] flex items-center justify-center shadow-lg">1</div>
+                    <div class="glass-card p-6 rounded-2xl border border-borderCol hover:border-rose-500 transition">
+                        <div class="flex items-center justify-between mb-2"><span class="text-xs font-mono font-bold text-rose-400 uppercase">DAYS 01 - 30 • FOUNDATION & QUICK WINS</span><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-rose-950 text-rose-300 border border-rose-500/30">Phase 1</span></div>
+                        <h3 class="text-lg font-bold text-white mb-2">On-Page SEO Overhaul & Content Strategy</h3>
+                        <ul class="space-y-2 text-xs text-gray-300 list-disc list-inside">
+                            <li>Rewrite all page title tags and meta descriptions with high-intent couple travel keywords.</li>
+                            <li>Add FAQ schema, comparison schema, and TravelAction structured data to all destination and blog pages.</li>
+                            <li>Launch SEO-optimized landing page for the Itinerary Analyser tool with viral share buttons.</li>
+                            <li>Publish 10 comparison articles: "Bali vs Maldives", "Thailand vs Vietnam", etc. with FAQ schema for featured snippets.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -left-[31px] md:-left-[47px] top-1 w-6 h-6 rounded-full bg-cyanNeon border-4 border-slate-950 text-slate-950 font-black text-[10px] flex items-center justify-center shadow-lg">2</div>
+                    <div class="glass-card p-6 rounded-2xl border border-borderCol hover:border-cyanNeon transition">
+                        <div class="flex items-center justify-between mb-2"><span class="text-xs font-mono font-bold text-cyanNeon uppercase">DAYS 31 - 60 • PROGRAMMATIC SEO DEPLOYMENT</span><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyanNeon/30">Phase 2</span></div>
+                        <h3 class="text-lg font-bold text-white mb-2">500+ Route Pages & Instagram-to-SEO Flywheel</h3>
+                        <ul class="space-y-2 text-xs text-gray-300 list-disc list-inside">
+                            <li>Deploy programmatic SEO template generating 500+ route-level pages (city → destination → duration combos).</li>
+                            <li>Build internal linking architecture connecting blog → destination → route pages for maximum crawl efficiency.</li>
+                            <li>Launch Instagram-to-Blog pipeline: real couple stories on Instagram → long-form blog → organic Google rankings.</li>
+                            <li>Set up Google Search Console monitoring, conversion tracking, and organic lead attribution dashboard.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -left-[31px] md:-left-[47px] top-1 w-6 h-6 rounded-full bg-emeraldNeon border-4 border-slate-950 text-slate-950 font-black text-[10px] flex items-center justify-center shadow-neon-emerald">3</div>
+                    <div class="glass-card p-6 rounded-2xl border border-emeraldNeon/50 shadow-neon-emerald transition">
+                        <div class="flex items-center justify-between mb-2"><span class="text-xs font-mono font-bold text-emeraldNeon uppercase">DAYS 61 - 90 • ORGANIC LEAD SCALING</span><span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-950 text-emeraldNeon border border-emeraldNeon/50 font-bold">Phase 3</span></div>
+                        <h3 class="text-lg font-bold text-white mb-2">CAC Reduction & Sustainable Growth Engine</h3>
+                        <ul class="space-y-2 text-xs text-gray-200 list-disc list-inside">
+                            <li>Achieve Top 5 Google rankings for 50+ couple honeymoon keywords, generating 15,000+ monthly organic visitors.</li>
+                            <li>Reduce paid ad dependency by 30-40% as organic leads begin converting at higher rates than paid traffic.</li>
+                            <li>Scale Itinerary Analyser into viral WhatsApp/Instagram campaign targeting wedding planning groups.</li>
+                            <li>Establish monthly analytics reviews and expand programmatic SEO to new destinations (Georgia, Azerbaijan, Philippines).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+</section>
+        <section id="tab-contact" class="space-y-8 hidden">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-coralNeon/10 border border-coralNeon/30 text-coralNeon text-xs font-mono mb-4"><span>⚡ NEXT STEPS FOR 30 SUNDAYS LEADERSHIP</span></div>
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">Ready to Build a <span class="gradient-text">Free Organic Lead Engine?</span></h2>
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8">Kshitij & Anuj: You've built an incredible AI-native travel platform that couples love. Now let's make sure every couple in India can FIND you on Google — without spending a single rupee on ads.</p>
+            </div>
+            <div class="glass-card max-w-4xl mx-auto rounded-3xl p-8 md:p-12 border-2 border-coralNeon/50 shadow-neon-coral relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-extrabold text-white">What You Get in Our Initial Engagement:</h3>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start space-x-3"><span class="w-6 h-6 rounded-full bg-coralNeon/20 text-coralNeon font-bold flex items-center justify-center shrink-0">✓</span><div><strong>Complete On-Page SEO Overhaul:</strong> Rewritten titles, meta descriptions, FAQ schema, and structured data across all pages.</div></li>
+                            <li class="flex items-start space-x-3"><span class="w-6 h-6 rounded-full bg-coralNeon/20 text-coralNeon font-bold flex items-center justify-center shrink-0">✓</span><div><strong>Programmatic SEO Engine:</strong> 500+ auto-generated route pages capturing every city-to-destination couple search query.</div></li>
+                            <li class="flex items-start space-x-3"><span class="w-6 h-6 rounded-full bg-coralNeon/20 text-coralNeon font-bold flex items-center justify-center shrink-0">✓</span><div><strong>Itinerary Analyser Viral Strategy:</strong> SEO landing page + WhatsApp/Instagram viral campaign to drive free top-of-funnel leads.</div></li>
+                            <li class="flex items-start space-x-3"><span class="w-6 h-6 rounded-full bg-coralNeon/20 text-coralNeon font-bold flex items-center justify-center shrink-0">✓</span><div><strong>20+ Comparison Articles:</strong> "Bali vs Maldives" style content optimized for Google featured snippets.</div></li>
+                        </ul>
+                        <div class="p-4 rounded-xl bg-slate-900/90 border border-borderCol text-xs font-mono text-gray-400">
+                            <span class="text-coralNeon font-bold block mb-1">💡 OUR GUARANTEE:</span>
+                            We handle 100% of the SEO and content implementation. Your engineering team stays fully focused on the AI travel platform.
+                        </div>
+                    </div>
+                    <div class="bg-panelBg/90 p-8 rounded-2xl border border-borderCol flex flex-col items-center text-center shadow-2xl">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-coralNeon to-violetNeon flex items-center justify-center font-black text-white text-xl mb-4 shadow-lg">30</div>
+                        <h4 class="font-bold text-white text-lg mb-1">Schedule an Executive Strategy Chat</h4>
+                        <p class="text-xs text-gray-400 mb-6">Let's connect for a rapid 15-minute walkthrough of this growth autopsy and start deploying organic growth fixes.</p>
+                        <a href="https://www.linkedin.com/in/altafkhan-seo/" target="_blank" class="flex items-center justify-center space-x-2 w-full py-4 px-6 rounded-xl bg-[#0A66C2] hover:bg-[#004182] text-white font-black text-sm shadow-lg transition mb-3"><span>🔗 Connect on LinkedIn</span></a>
+                        <a href="https://wa.me/919824663320?text=Hi%20Altaf,%20I%20saw%20the%2030%20Sundays%20Growth%20Autopsy%20dashboard%20and%20want%20to%20discuss%20strategy." target="_blank" class="flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold text-sm shadow-[0_0_15px_rgba(34,197,94,0.4)] transition"><span>💬 Chat on WhatsApp</span></a>
+                        <div class="mt-6 pt-4 border-t border-borderCol w-full flex items-center justify-between text-[11px] font-mono text-gray-400"><span>Direct Response</span><span class="text-coralNeon">Ready for Deployment</span></div>
+
+                    </div>
+                </div>
+            </div>
+</section>
+
+    </main>
+
+    <script>
+        function switchTab(tabId, event) {
+            if (event) event.preventDefault();
+            document.querySelectorAll('main > section').forEach(sec => { sec.classList.add('hidden'); sec.classList.remove('block'); });
+            const activeSec = document.getElementById('tab-' + tabId);
+            if (activeSec) { activeSec.classList.remove('hidden'); activeSec.classList.add('block'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            document.querySelectorAll('#nav-group .tab-btn').forEach(link => link.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + tabId);
+            if (activeNav) activeNav.classList.add('active');
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth < 768) { sidebar.classList.add('hidden'); sidebar.classList.remove('flex', 'fixed', 'inset-y-0', 'left-0', 'w-3/4', 'bg-panelBg', 'z-50', 'shadow-2xl'); }
+        }
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('hidden')) { sidebar.classList.remove('hidden'); sidebar.classList.add('flex', 'fixed', 'inset-y-0', 'left-0', 'w-3/4', 'bg-panelBg', 'z-50', 'shadow-2xl'); }
+            else { sidebar.classList.add('hidden'); sidebar.classList.remove('flex', 'fixed', 'inset-y-0', 'left-0', 'w-3/4', 'bg-panelBg', 'z-50', 'shadow-2xl'); }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!sessionStorage.getItem('30sundays_tracked')) {
+                fetch('https://ipapi.co/json/').then(r => r.json()).then(data => {
+                    const message = `🚨 *30 Sundays Dashboard Opened!*\n\n📍 *Location:* ${data.city}, ${data.region}, ${data.country_name}\n🌐 *IP:* ${data.ip}\n🏢 *Org:* ${data.org}`;
+                    const botToken = '8691646923:AAFD_jx-GAVQbobNeaOeaXLMbKmDrFtBAps';
+                    const chatId = '713540918';
+                    fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`)
+                    .then(() => sessionStorage.setItem('30sundays_tracked', 'true'));
+                }).catch(e => console.log('Tracking blocked.'));
+            }
+        });
+    </script>
+</body>
+</html>
