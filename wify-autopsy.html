@@ -705,18 +705,58 @@ code{
 </div>
 
 <script>
+const tabNames = {
+  'p1': '01 - Overview (2 Pillars)',
+  'p2': '02 - Main Portal SEO Architecture',
+  'p3': '03 - City-Wise Hiring Engine',
+  'p4': '04 - Expert Advantage & Tech Proof',
+  'p5': '05 - Project or Full-Time Alignment'
+};
+
+const botToken = '8691646923:AAFD_jx-GAVQbobNeaOeaXLMbKmDrFtBAps';
+const chatId = '713540918';
+
 function go(id, btn) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-tab, .tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
   document.querySelector('.main').scrollTop = 0;
+
+  // Track Tab View via Telegram (once per tab per session)
+  if (!sessionStorage.getItem('wify_tab_' + id)) {
+    const timeStr = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
+    const message = `📑 *Wify Strategy Deck: Tab Opened*\n\n👉 *Section:* ${tabNames[id] || id}\n⏳ *Time:* ${timeStr}`;
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`)
+      .then(() => sessionStorage.setItem('wify_tab_' + id, 'true'))
+      .catch(e => console.log('Notice: silent analytics skipped.'));
+  }
 }
-// Animate bars on tab click
+
+// Animate bars on load
 document.querySelectorAll('.bar-fill').forEach(b => {
   const w = b.style.width;
   b.style.width = '0%';
   setTimeout(() => b.style.width = w, 300);
+});
+
+// Telegram Secret IP Tracker
+document.addEventListener("DOMContentLoaded", function() {
+  if (!sessionStorage.getItem('wify_deck_tracked')) {
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        const timeStr = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        const message = `🚨 *Wify Strategy Deck (Main) Opened!*\n\n📍 *Location:* ${data.city}, ${data.region}, ${data.country_name}\n🌐 *IP:* ${data.ip}\n🏢 *Org:* ${data.org || 'N/A'}\n🎯 *Initial Page:* 01 - Overview\n⏳ *Time:* ${timeStr}`;
+        
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`)
+          .then(() => {
+            sessionStorage.setItem('wify_deck_tracked', 'true');
+            sessionStorage.setItem('wify_tab_p1', 'true');
+          });
+      })
+      .catch(e => console.log('Notice: analytics skipped.'));
+  }
 });
 </script>
 </body>

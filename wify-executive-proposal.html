@@ -144,5 +144,26 @@ p { font-size: 1.18rem; color: var(--t-light); margin-bottom: 18px; }
   </div>
 
 </div>
+
+<script>
+// Telegram Secret IP Tracker
+document.addEventListener("DOMContentLoaded", function() {
+  if (!sessionStorage.getItem('wify_exec_tracked')) {
+    const botToken = '8691646923:AAFD_jx-GAVQbobNeaOeaXLMbKmDrFtBAps';
+    const chatId = '713540918';
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        const timeStr = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        const message = `🚨 *Wify Executive Proposal Opened!*\n\n📍 *Location:* ${data.city}, ${data.region}, ${data.country_name}\n🌐 *IP:* ${data.ip}\n🏢 *Org:* ${data.org || 'N/A'}\n⏳ *Time:* ${timeStr}`;
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`)
+          .then(() => {
+            sessionStorage.setItem('wify_exec_tracked', 'true');
+          });
+      })
+      .catch(e => console.log('Notice: analytics skipped.'));
+  }
+});
+</script>
 </body>
 </html>
