@@ -10,112 +10,111 @@
 /* ─── RESET & TOKENS ─── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#060913;
-  --surface:#0c1326;
-  --surface2:#111b35;
-  --border:rgba(255,255,255,0.10);
-  --border2:rgba(255,255,255,0.06);
-  --orange:#FF6B00;
-  --orange-glow:rgba(255,107,0,0.30);
-  --green:#00E676;
-  --green-glow:rgba(0,230,118,0.25);
-  --cyan:#00F5D4;
-  --purple:#A855F7;
-  --red:#FF2E63;
-  --yellow:#FFB800;
+  --bg:#F5F7FA;
+  --surface:#FFFFFF;
+  --surface2:#EEF1F7;
+  --border:rgba(0,0,0,0.09);
+  --border2:rgba(0,0,0,0.06);
+  --orange:#E85D00;
+  --orange-glow:rgba(232,93,0,0.18);
+  --green:#00B85A;
+  --green-glow:rgba(0,184,90,0.15);
+  --cyan:#007A6E;
+  --purple:#7C3AED;
+  --red:#D4174E;
+  --yellow:#C88500;
   --white:#FFFFFF;
-  --t-light:#E2E8F0;
-  --t-muted:#8896B0;
-  --radius:20px;
+  --t-base:#1A1F2E;
+  --t-light:#374151;
+  --t-muted:#6B7280;
+  --radius:16px;
 }
 html{ font-size:14px; scroll-behavior:smooth; }
 body{
   font-family:'Plus Jakarta Sans',sans-serif;
   background:var(--bg);
-  color:var(--t-light);
+  color:var(--t-base);
   line-height:1.70;
   overflow-x:hidden;
-  background-image:
-    radial-gradient(ellipse 60% 40% at 10% 0%, rgba(255,107,0,.10), transparent),
-    radial-gradient(ellipse 50% 40% at 90% 100%, rgba(0,245,212,.07), transparent);
 }
 
 /* ─── LAYOUT ─── */
 .layout{ display:flex; min-height:100vh; }
 .sidebar{
-  width:340px; flex-shrink:0;
-  background:#070C1A;
-  border-right:1px solid var(--border);
+  width:300px; flex-shrink:0;
+  background:#0D1526;
+  border-right:none;
   display:flex; flex-direction:column;
   position:sticky; top:0; height:100vh; overflow-y:auto;
-  padding:28px 20px;
+  padding:24px 18px;
+  box-shadow:4px 0 24px rgba(0,0,0,0.12);
 }
-.main{ flex:1; overflow-y:auto; height:100vh; padding:32px 40px; }
+.main{ flex:1; overflow-y:auto; height:100vh; padding:32px 40px; background:var(--bg); }
 
 /* ─── BRAND BLOCK ─── */
 .brand{
   display:flex; align-items:center; gap:12px;
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:14px; padding:14px 16px; margin-bottom:22px;
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px; padding:14px 16px; margin-bottom:20px;
 }
 .brand-icon{
-  width:42px; height:42px; border-radius:11px; flex-shrink:0;
-  background:linear-gradient(135deg,var(--orange),#FF9E00);
+  width:38px; height:38px; border-radius:10px; flex-shrink:0;
+  background:linear-gradient(135deg,#FF6B00,#FF9E00);
   display:flex; align-items:center; justify-content:center;
-  font-size:1.3rem; font-weight:900; color:#fff;
-  box-shadow:0 0 18px var(--orange-glow);
+  font-size:1.2rem; font-weight:900; color:#fff;
+  box-shadow:0 4px 14px rgba(255,107,0,.45);
 }
-.brand-name{ font-size:1.02rem; font-weight:900; color:#fff; letter-spacing:-.3px; }
-.brand-sub{ font-size:.65rem; font-weight:800; text-transform:uppercase; letter-spacing:1.4px; color:var(--orange); }
+.brand-name{ font-size:.95rem; font-weight:900; color:#fff; letter-spacing:-.3px; }
+.brand-sub{ font-size:.6rem; font-weight:800; text-transform:uppercase; letter-spacing:1.4px; color:#FF8C40; }
 
 /* ─── NAV TABS ─── */
 .nav{ display:flex; flex-direction:column; gap:10px; flex:1; }
 .tab-btn{
   display:flex; align-items:flex-start; gap:11px;
-  padding:13px 14px; border-radius:12px;
+  padding:12px 14px; border-radius:11px;
   border:2px solid transparent;
-  background:rgba(255,255,255,0.025);
+  background:rgba(255,255,255,0.04);
   cursor:pointer; text-align:left;
-  transition:all .25s cubic-bezier(.16,1,.3,1);
+  transition:all .22s cubic-bezier(.16,1,.3,1);
 }
-.tab-btn:hover{ transform:translateX(4px); background:rgba(255,255,255,0.06); }
+.tab-btn:hover{ transform:translateX(4px); background:rgba(255,255,255,0.08); }
 .tab-num{
   font-family:'JetBrains Mono',monospace;
-  font-size:.78rem; font-weight:900;
-  padding:6px 10px; border-radius:8px; flex-shrink:0;
+  font-size:.72rem; font-weight:900;
+  padding:5px 9px; border-radius:7px; flex-shrink:0;
 }
 .tab-info{ flex:1; }
-.tab-title{ font-size:0.92rem; font-weight:800; color:#fff; display:block; }
-.tab-sub{ font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; opacity:.85; display:block; margin-top:3px; }
+.tab-title{ font-size:0.88rem; font-weight:800; color:#fff; display:block; }
+.tab-sub{ font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; opacity:.75; display:block; margin-top:2px; color:#A0B0CC; }
 
 /* TAB COLORS */
-.t-orange .tab-num{ background:var(--orange); color:#fff; }
-.t-orange.active{ background:linear-gradient(135deg,rgba(255,107,0,.20),rgba(255,107,0,.02)); border-color:var(--orange); box-shadow:0 0 28px rgba(255,107,0,.3); }
-.t-orange .tab-sub{ color:#FFAA55; }
+.t-orange .tab-num{ background:#FF6B00; color:#fff; }
+.t-orange.active{ background:rgba(255,107,0,.18); border-color:#FF6B00; }
+.t-orange .tab-sub{ color:#FF9A50; }
 
-.t-green .tab-num{ background:var(--green); color:#000; }
-.t-green.active{ background:linear-gradient(135deg,rgba(0,230,118,.20),rgba(0,230,118,.02)); border-color:var(--green); box-shadow:0 0 28px rgba(0,230,118,.3); }
-.t-green .tab-sub{ color:var(--green); }
+.t-green .tab-num{ background:#00C261; color:#fff; }
+.t-green.active{ background:rgba(0,194,97,.18); border-color:#00C261; }
+.t-green .tab-sub{ color:#5DEBB4; }
 
-.t-cyan .tab-num{ background:var(--cyan); color:#000; }
-.t-cyan.active{ background:linear-gradient(135deg,rgba(0,245,212,.20),rgba(0,245,212,.02)); border-color:var(--cyan); box-shadow:0 0 28px rgba(0,245,212,.3); }
-.t-cyan .tab-sub{ color:var(--cyan); }
+.t-cyan .tab-num{ background:#0ABFA3; color:#fff; }
+.t-cyan.active{ background:rgba(10,191,163,.18); border-color:#0ABFA3; }
+.t-cyan .tab-sub{ color:#5EECD9; }
 
-.t-purple .tab-num{ background:var(--purple); color:#fff; }
-.t-purple.active{ background:linear-gradient(135deg,rgba(168,85,247,.22),rgba(168,85,247,.02)); border-color:var(--purple); box-shadow:0 0 28px rgba(168,85,247,.35); }
-.t-purple .tab-sub{ color:#D8B4FE; }
+.t-purple .tab-num{ background:#7C3AED; color:#fff; }
+.t-purple.active{ background:rgba(124,58,237,.20); border-color:#7C3AED; }
+.t-purple .tab-sub{ color:#C4B5FD; }
 
-.t-pink .tab-num{ background:var(--red); color:#fff; }
-.t-pink.active{ background:linear-gradient(135deg,rgba(255,46,99,.20),rgba(255,46,99,.02)); border-color:var(--red); box-shadow:0 0 28px rgba(255,46,99,.3); }
-.t-pink .tab-sub{ color:#FF99B5; }
+.t-pink .tab-num{ background:#E0174F; color:#fff; }
+.t-pink.active{ background:rgba(224,23,79,.18); border-color:#E0174F; }
+.t-pink .tab-sub{ color:#FFA0B8; }
 
 /* ─── SIDEBAR FOOTER ─── */
 .sidebar-footer{
-  margin-top:24px; padding:16px; border-radius:14px;
-  background:var(--surface2); border:1px solid var(--border2);
-  font-size:.88rem; color:var(--t-muted); font-weight:600;
+  margin-top:20px; padding:14px; border-radius:12px;
+  background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10);
+  font-size:.78rem; color:#8DA5C5; font-weight:600;
 }
-.sidebar-footer strong{ color:#fff; font-size:1rem; display:block; margin-top:4px; }
+.sidebar-footer strong{ color:#fff; font-size:.88rem; display:block; margin-top:3px; }
 
 /* ─── PANELS ─── */
 .panel{ display:none; animation:fadeUp .3s ease; }
@@ -124,34 +123,34 @@ body{
 
 /* ─── PURPOSE BANNER ─── */
 .purpose{
-  padding:16px 22px; border-radius:12px; margin-bottom:28px;
-  border-left:6px solid; font-size:.9rem; font-weight:500; line-height:1.65;
-  box-shadow:0 6px 22px rgba(0,0,0,.4);
+  padding:14px 20px; border-radius:10px; margin-bottom:24px;
+  border-left:5px solid; font-size:.85rem; font-weight:500; line-height:1.65;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
 }
-.purpose strong{ font-weight:900; font-size:.93rem; display:block; margin-bottom:5px; text-transform:uppercase; letter-spacing:.4px; }
-.p-orange{ background:rgba(255,107,0,.10); border-color:var(--orange); color:#FFE4CC; }
-.p-orange strong{ color:var(--orange); }
-.p-green{ background:rgba(0,230,118,.10); border-color:var(--green); color:#CCFDE6; }
-.p-green strong{ color:var(--green); }
-.p-cyan{ background:rgba(0,245,212,.10); border-color:var(--cyan); color:#CCFEF7; }
-.p-cyan strong{ color:var(--cyan); }
-.p-purple{ background:rgba(168,85,247,.14); border-color:var(--purple); color:#F1E4FF; }
-.p-purple strong{ color:var(--purple); }
-.p-pink{ background:rgba(255,46,99,.10); border-color:var(--red); color:#FFD6E0; }
-.p-pink strong{ color:var(--red); }
+.purpose strong{ font-weight:900; font-size:.88rem; display:block; margin-bottom:4px; text-transform:uppercase; letter-spacing:.4px; }
+.p-orange{ background:#FFF4EC; border-color:#E85D00; color:#7A2E00; }
+.p-orange strong{ color:#C44D00; }
+.p-green{ background:#EDFBF3; border-color:#00B85A; color:#0A4726; }
+.p-green strong{ color:#007A3D; }
+.p-cyan{ background:#EDFAF8; border-color:#007A6E; color:#063F3A; }
+.p-cyan strong{ color:#007A6E; }
+.p-purple{ background:#F5F0FF; border-color:#7C3AED; color:#3B1885; }
+.p-purple strong{ color:#7C3AED; }
+.p-pink{ background:#FFF0F4; border-color:#D4174E; color:#7A0A2B; }
+.p-pink strong{ color:#D4174E; }
 
 /* ─── TYPOGRAPHY ─── */
-h1{ font-size:1.9rem; font-weight:900; line-height:1.25; letter-spacing:-.5px; color:#fff; margin-bottom:12px; }
-h2{ font-size:1.45rem; font-weight:800; color:#fff; margin-bottom:14px; letter-spacing:-.3px; }
-h3{ font-size:1.1rem; font-weight:700; color:#fff; margin-bottom:8px; }
-p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
-.badge{ display:inline-block; padding:5px 14px; border-radius:7px; font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+h1{ font-size:1.85rem; font-weight:900; line-height:1.25; letter-spacing:-.5px; color:var(--t-base); margin-bottom:12px; }
+h2{ font-size:1.35rem; font-weight:800; color:var(--t-base); margin-bottom:12px; letter-spacing:-.3px; }
+h3{ font-size:1.05rem; font-weight:700; color:var(--t-base); margin-bottom:8px; }
+p{ font-size:.92rem; color:var(--t-light); margin-bottom:14px; }
+.badge{ display:inline-block; padding:4px 12px; border-radius:6px; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
 
 /* ─── CARDS ─── */
 .card{
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:var(--radius); padding:24px 28px; margin-bottom:22px;
-  box-shadow:0 8px 28px rgba(0,0,0,.4);
+  background:#FFFFFF; border:1px solid rgba(0,0,0,0.08);
+  border-radius:var(--radius); padding:22px 26px; margin-bottom:18px;
+  box-shadow:0 2px 12px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.05);
 }
 .card-accent{ border-left-width:6px; border-left-style:solid; }
 .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
@@ -162,23 +161,23 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
 .stat-lbl{ font-size:.85rem; font-weight:700; color:var(--t-muted); }
 
 /* ─── PROGRESS BARS ─── */
-.bar-row{ background:rgba(255,255,255,.03); border:1px solid var(--border2); border-radius:10px; padding:13px 18px; margin-bottom:11px; }
-.bar-head{ display:flex; justify-content:space-between; font-weight:800; font-size:.88rem; margin-bottom:7px; }
-.bar-track{ width:100%; height:11px; background:rgba(0,0,0,.6); border-radius:6px; overflow:hidden; }
-.bar-fill{ height:100%; border-radius:8px; transition:width 1.2s cubic-bezier(.16,1,.3,1); }
+.bar-row{ background:#F8F9FC; border:1px solid rgba(0,0,0,.07); border-radius:10px; padding:12px 16px; margin-bottom:10px; }
+.bar-head{ display:flex; justify-content:space-between; font-weight:800; font-size:.83rem; margin-bottom:6px; color:var(--t-base); }
+.bar-track{ width:100%; height:10px; background:#E5E8EF; border-radius:6px; overflow:hidden; }
+.bar-fill{ height:100%; border-radius:6px; transition:width 1.2s cubic-bezier(.16,1,.3,1); }
 
 /* ─── FUNNEL ─── */
 .funnel-step{
   display:flex; align-items:flex-start; gap:14px;
-  padding:16px 20px; border-radius:12px; margin-bottom:11px;
-  background:rgba(255,255,255,.025); border-left:5px solid;
+  padding:14px 18px; border-radius:12px; margin-bottom:10px;
+  background:#FAFBFD; border:1px solid rgba(0,0,0,.07); border-left:5px solid;
 }
-.funnel-num{ font-family:'JetBrains Mono',monospace; font-size:1.25rem; font-weight:900; flex-shrink:0; min-width:48px; }
-.funnel-content h4{ font-size:.95rem; font-weight:800; color:#fff; margin-bottom:3px; }
-.funnel-content p{ font-size:.88rem; margin-bottom:0; color:var(--t-muted); }
+.funnel-num{ font-family:'JetBrains Mono',monospace; font-size:1.1rem; font-weight:900; flex-shrink:0; min-width:44px; }
+.funnel-content h4{ font-size:.9rem; font-weight:800; color:var(--t-base); margin-bottom:3px; }
+.funnel-content p{ font-size:.83rem; margin-bottom:0; color:var(--t-muted); }
 
 /* ─── SITEMAP TREE (SVG) ─── */
-.sitemap-wrap{ background:#03060D; border:1px solid var(--border); border-radius:16px; padding:20px; margin:24px 0; overflow-x:auto; }
+.sitemap-wrap{ background:#F0F2F8; border:1px solid rgba(0,0,0,.09); border-radius:14px; padding:20px; margin:20px 0; overflow-x:auto; }
 
 /* ─── CITY BADGES ─── */
 .city-grid{ display:flex; flex-wrap:wrap; gap:12px; margin:18px 0; }
@@ -198,8 +197,8 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
 
 /* ─── HIGHLIGHT BOX ─── */
 .highlight{
-  padding:20px 24px; border-radius:14px; border:2px solid;
-  margin:18px 0; font-size:.93rem; line-height:1.65;
+  padding:16px 22px; border-radius:12px; border:1.5px solid;
+  margin:16px 0; font-size:.88rem; line-height:1.65;
 }
 
 /* ─── CTA ─── */
@@ -298,32 +297,32 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
 
   <span class="badge" style="background:rgba(255,107,0,.18);color:var(--orange);border:1px solid rgba(255,107,0,.4);">🎯 Strategic Foundation</span>
   <h1>Two Pillars.<br>One Clear Digital Roadmap for Wify.</h1>
-  <p style="font-size:1.28rem;font-weight:600;color:#fff;">Everything we present here focuses only on these two executable actions. No generic SEO fluff. No vague cost theories. Just architecture that solves Wify's two real operational digital problems.</p>
+  <p style="font-size:1.05rem;font-weight:700;color:var(--t-base);">Everything we present here focuses only on these two executable actions. No generic SEO fluff. No vague cost theories. Just architecture that solves Wify's two real operational digital problems.</p>
 
   <div class="grid2" style="margin-top:32px;">
     <!-- PILLAR 1 -->
     <div class="card" style="border-top:6px solid var(--orange);">
       <div style="font-size:2.5rem;margin-bottom:12px;">🏗️</div>
-      <h3 style="color:var(--orange);font-size:1.6rem;">Pillar 1</h3>
-      <h2 style="font-size:1.5rem;margin-bottom:12px;">Main Portal<br>SEO Restructuring</h2>
-      <p style="font-size:1.05rem;color:var(--t-muted);">Rebuild wiffy.ai's page structure, URL hierarchy, schema markup, and local city landing hubs — so the site dominates Google across Tier-1 & Tier-2 metros for installation services and drives real product/service orders.</p>
-      <div style="padding:12px 18px;border-radius:10px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.3);font-size:1rem;font-weight:700;color:var(--orange);">→ Goal: Organic City-Wise Search Visibility & Sales</div>
+      <h3 style="color:var(--orange);font-size:1.3rem;">Pillar 1</h3>
+      <h2 style="font-size:1.2rem;margin-bottom:10px;">Main Portal<br>SEO Restructuring</h2>
+      <p style="font-size:.92rem;color:var(--t-muted);">Rebuild wiffy.ai's page structure, URL hierarchy, schema markup, and local city landing hubs — so the site dominates Google across Tier-1 & Tier-2 metros for installation services and drives real product/service orders.</p>
+      <div style="padding:10px 14px;border-radius:8px;background:#FFF4EC;border:1px solid rgba(232,93,0,.25);font-size:.88rem;font-weight:700;color:var(--orange);">→ Goal: Organic City-Wise Search Visibility & Sales</div>
     </div>
 
     <!-- PILLAR 2 -->
     <div class="card" style="border-top:6px solid var(--green);">
       <div style="font-size:2.5rem;margin-bottom:12px;">👷</div>
-      <h3 style="color:var(--green);font-size:1.6rem;">Pillar 2</h3>
-      <h2 style="font-size:1.5rem;margin-bottom:12px;">City-Wise<br>Worker Hiring Portal</h2>
-      <p style="font-size:1.05rem;color:var(--t-muted);">Build dedicated Tier-1 & Tier-2 city hiring pages where carpenters, electricians, and assembly technicians self-register online. Auto-confirmation flows into your ops team's backend verification queue.</p>
-      <div style="padding:12px 18px;border-radius:10px;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.3);font-size:1rem;font-weight:700;color:var(--green);">→ Goal: Continuous Online Technician Lead Pipeline</div>
+      <h3 style="color:var(--green);font-size:1.3rem;">Pillar 2</h3>
+      <h2 style="font-size:1.2rem;margin-bottom:10px;">City-Wise<br>Worker Hiring Portal</h2>
+      <p style="font-size:.92rem;color:var(--t-muted);">Build dedicated Tier-1 & Tier-2 city hiring pages where carpenters, electricians, and assembly technicians self-register online. Auto-confirmation flows into your ops team's backend verification queue.</p>
+      <div style="padding:10px 14px;border-radius:8px;background:#EDFBF3;border:1px solid rgba(0,184,90,.25);font-size:.88rem;font-weight:700;color:var(--green);">→ Goal: Continuous Online Technician Lead Pipeline</div>
     </div>
   </div>
 
   <!-- COMBINED VALUE -->
-  <div class="highlight" style="border-color:rgba(255,255,255,.12);background:var(--surface2);margin-top:8px;">
-    <div style="font-size:1.35rem;font-weight:800;color:#fff;margin-bottom:10px;">💡 Combined Strategic Impact:</div>
-    <p style="margin-bottom:0;font-size:1.15rem;">When Pillar 1 (Portal SEO) and Pillar 2 (Hiring Portal) work in tandem, Wify achieves a self-sustaining metro-level digital engine — <strong style="color:var(--orange);">consumers find the service online → book installations → fulfilled by technicians who joined via the digital portal.</strong> This is the flywheel that requires a Digital Marketing & SEO Expert to architect.</p>
+  <div class="highlight" style="border-color:rgba(232,93,0,.2);background:#FFF8F3;margin-top:8px;">
+    <div style="font-size:1.05rem;font-weight:800;color:var(--t-base);margin-bottom:8px;">💡 Combined Strategic Impact:</div>
+    <p style="margin-bottom:0;font-size:.92rem;">When Pillar 1 (Portal SEO) and Pillar 2 (Hiring Portal) work in tandem, Wify achieves a self-sustaining metro-level digital engine — <strong style="color:var(--orange);">consumers find the service online → book installations → fulfilled by technicians who joined via the digital portal.</strong> This is the flywheel that requires a Digital Marketing & SEO Expert to architect.</p>
   </div>
 </section>
 
@@ -336,28 +335,28 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   </div>
 
   <span class="badge" style="background:rgba(0,230,118,.18);color:var(--green);border:1px solid rgba(0,230,118,.4);">🏗️ Pillar 1 — Main Portal Restructure</span>
-  <h1 style="color:var(--green);">Wiffy.ai Portal<br>SEO Architecture Redesign</h1>
-  <p style="font-size:1.22rem;font-weight:600;">The goal is simple: when a corporate client Googles "modular furniture installation partner Mumbai" or a homeowner searches "IKEA assembly near me Bengaluru" — Wify owns that result. This requires a complete structural overhaul.</p>
+  <h1>Wiffy.ai Portal<br>SEO Architecture Redesign</h1>
+  <p style="font-size:1rem;font-weight:600;color:var(--t-light);">The goal is simple: when a corporate client Googles "modular furniture installation partner Mumbai" or a homeowner searches "IKEA assembly near me Bengaluru" — Wify owns that result. This requires a complete structural overhaul.</p>
 
   <!-- CURRENT PROBLEMS -->
   <div class="card card-accent" style="border-left-color:var(--red);margin-top:8px;">
     <h3 style="color:var(--red);">❌ Current State — What's Broken Right Now:</h3>
-    <div class="grid2" style="margin-top:18px;">
-      <div style="background:rgba(255,46,99,.07);padding:18px;border-radius:12px;border:1px solid rgba(255,46,99,.2);">
-        <p style="font-size:1rem;font-weight:700;color:var(--red);margin-bottom:6px;">Placeholder Verification Tag</p>
-        <p style="font-size:.98rem;color:var(--t-muted);margin-bottom:0;">Google Search Console unverified — zero diagnostic data for leadership.</p>
+    <div class="grid2" style="margin-top:14px;">
+      <div style="background:#FFF5F7;padding:14px;border-radius:10px;border:1px solid rgba(212,23,78,.15);">
+        <p style="font-size:.88rem;font-weight:700;color:var(--red);margin-bottom:4px;">Placeholder Verification Tag</p>
+        <p style="font-size:.83rem;color:var(--t-muted);margin-bottom:0;">Google Search Console unverified — zero diagnostic data for leadership.</p>
       </div>
-      <div style="background:rgba(255,46,99,.07);padding:18px;border-radius:12px;border:1px solid rgba(255,46,99,.2);">
-        <p style="font-size:1rem;font-weight:700;color:var(--red);margin-bottom:6px;">UK / Foreign Template Keywords</p>
-        <p style="font-size:.98rem;color:var(--t-muted);margin-bottom:0;">Leftover international copy-paste metadata confuses Google's India relevance signals.</p>
+      <div style="background:#FFF5F7;padding:14px;border-radius:10px;border:1px solid rgba(212,23,78,.15);">
+        <p style="font-size:.88rem;font-weight:700;color:var(--red);margin-bottom:4px;">UK / Foreign Template Keywords</p>
+        <p style="font-size:.83rem;color:var(--t-muted);margin-bottom:0;">Leftover international copy-paste metadata confuses Google's India relevance signals.</p>
       </div>
-      <div style="background:rgba(255,46,99,.07);padding:18px;border-radius:12px;border:1px solid rgba(255,46,99,.2);">
-        <p style="font-size:1rem;font-weight:700;color:var(--red);margin-bottom:6px;">Zero City Landing Pages</p>
-        <p style="font-size:.98rem;color:var(--t-muted);margin-bottom:0;">No city-specific SEO pages. Invisible in every metro for high-intent local searches.</p>
+      <div style="background:#FFF5F7;padding:14px;border-radius:10px;border:1px solid rgba(212,23,78,.15);">
+        <p style="font-size:.88rem;font-weight:700;color:var(--red);margin-bottom:4px;">Zero City Landing Pages</p>
+        <p style="font-size:.83rem;color:var(--t-muted);margin-bottom:0;">No city-specific SEO pages. Invisible in every metro for high-intent local searches.</p>
       </div>
-      <div style="background:rgba(255,46,99,.07);padding:18px;border-radius:12px;border:1px solid rgba(255,46,99,.2);">
-        <p style="font-size:1rem;font-weight:700;color:var(--red);margin-bottom:6px;">Missing Local Schema Markup</p>
-        <p style="font-size:.98rem;color:var(--t-muted);margin-bottom:0;">No JSON-LD structured data — Google Maps 3-Pack dominance is impossible without it.</p>
+      <div style="background:#FFF5F7;padding:14px;border-radius:10px;border:1px solid rgba(212,23,78,.15);">
+        <p style="font-size:.88rem;font-weight:700;color:var(--red);margin-bottom:4px;">Missing Local Schema Markup</p>
+        <p style="font-size:.83rem;color:var(--t-muted);margin-bottom:0;">No JSON-LD structured data — Google Maps 3-Pack dominance is impossible without it.</p>
       </div>
     </div>
   </div>
@@ -428,7 +427,7 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
         <text x="350" y="300" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="11">→ City Hiring Portals</text>
       </svg>
     </div>
-    <p style="font-size:.95rem;color:var(--t-muted);text-align:center;margin-top:6px;margin-bottom:0;">Proposed programmatic URL silo structure: every city gets dedicated service + career pages for targeted Local SEO</p>
+    <p style="font-size:.83rem;color:var(--t-muted);text-align:center;margin-top:6px;margin-bottom:0;">Proposed programmatic URL silo structure: every city gets dedicated service + career pages for targeted Local SEO</p>
   </div>
 
   <!-- WHAT WE DO -->
@@ -453,8 +452,8 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   </div>
 
   <span class="badge" style="background:rgba(0,245,212,.18);color:var(--cyan);border:1px solid rgba(0,245,212,.4);">👷 Pillar 2 — Worker Hiring Engine</span>
-  <h1 style="color:var(--cyan);">City-Wise Technician<br>Hiring Portal System</h1>
-  <p style="font-size:1.22rem;font-weight:600;">Wify currently hires via physical field agents across 100+ cities. We build an independent digital hiring portal that works parallel to field ops — catching the growing wave of tech-savvy skilled workers who search for jobs online in metros.</p>
+  <h1>City-Wise Technician<br>Hiring Portal System</h1>
+  <p style="font-size:1rem;font-weight:600;color:var(--t-light);">Wify currently hires via physical field agents across 100+ cities. We build an independent digital hiring portal that works parallel to field ops — catching the growing wave of tech-savvy skilled workers who search for jobs online in metros.</p>
 
   <!-- TARGET CITIES -->
   <div class="card" style="margin-top:8px;">
@@ -516,7 +515,7 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   </div>
 
   <!-- FUNNEL DETAIL -->
-  <h3 style="color:#fff;margin-bottom:16px;">📲 Step-By-Step Conversion Funnel Detail</h3>
+  <h3 style="color:var(--t-base);margin-bottom:12px;">📲 Step-By-Step Conversion Funnel Detail</h3>
   <div class="funnel-step" style="border-left-color:var(--cyan);">
     <div class="funnel-num" style="color:var(--cyan);">01</div>
     <div class="funnel-content">
@@ -547,8 +546,8 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   </div>
 
   <!-- KEY POINT -->
-  <div class="highlight" style="border-color:rgba(0,245,212,.3);background:rgba(0,245,212,.06);margin-top:8px;">
-    <strong style="color:var(--cyan);font-size:1.2rem;display:block;margin-bottom:8px;">🔑 Important: This Does NOT Replace Field Hiring</strong>
+  <div class="highlight" style="border-color:rgba(0,124,110,.25);background:#EDFAF8;margin-top:8px;">
+    <strong style="color:var(--cyan);font-size:.95rem;display:block;margin-bottom:6px;">🔑 Important: This Does NOT Replace Field Hiring</strong>
     Your existing manual field operations continue as they are. This digital hiring portal runs <em>in parallel</em> — adding a new inbound pipeline of qualified candidates who already found Wify on their own, pre-interested, and self-screened. Less grunt work for ops team, more throughput.
   </div>
 </section>
@@ -562,30 +561,30 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   </div>
 
   <span class="badge" style="background:rgba(168,85,247,.18);color:var(--purple);border:1px solid rgba(168,85,247,.4);">🔧 Technical Justification</span>
-  <h1 style="color:var(--purple);">Why This Cannot Happen<br>Without SEO Experts</h1>
-  <p style="font-size:1.22rem;font-weight:600;">When Wify's developers built wiffy.ai, they left a placeholder <code style="color:var(--red);font-family:'JetBrains Mono',monospace;">your-google-verification-code</code> in the HTML head — a basic error that only an SEO professional would catch. This is why expert input is essential from Line 1 of code.</p>
+  <h1>Why This Cannot Happen<br>Without SEO Experts</h1>
+  <p style="font-size:.95rem;font-weight:600;color:var(--t-light);">When Wify's developers built wiffy.ai, they left a placeholder <code style="color:var(--red);font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#FFF0F4;padding:2px 6px;border-radius:4px;">your-google-verification-code</code> in the HTML head — a basic error that only an SEO professional would catch. This is why expert input is essential from Line 1 of code.</p>
 
-  <div class="card" style="background:linear-gradient(135deg,rgba(168,85,247,.14),rgba(12,19,38,.95));border:1px solid rgba(168,85,247,.35);margin-top:8px;">
+  <div class="card" style="background:#F8F5FF;border:1px solid rgba(124,58,237,.2);margin-top:8px;">
     <h2 style="color:var(--purple);">🚨 Three Reasons Developers Alone Cannot Execute This:</h2>
 
-    <div style="padding:22px 26px;border-radius:12px;background:rgba(0,0,0,.4);border-left:4px solid var(--purple);margin-bottom:18px;">
-      <h3 style="color:#D8B4FE;font-size:1.2rem;">1. URL Silo Architecture &amp; Permanent 301 Redirect Mapping</h3>
-      <p style="font-size:1.05rem;color:var(--t-muted);margin-bottom:0;">Restructuring a website without an SEO Expert mapping every URL change with correct permanent 301 redirects will destroy domain authority, wipe out existing Google rankings, and make corporate due-diligence audits fail.</p>
+    <div style="padding:16px 20px;border-radius:10px;background:#fff;border:1px solid rgba(124,58,237,.15);border-left:4px solid var(--purple);margin-bottom:14px;">
+      <h3 style="color:var(--purple);font-size:.98rem;">1. URL Silo Architecture &amp; Permanent 301 Redirect Mapping</h3>
+      <p style="font-size:.85rem;color:var(--t-muted);margin-bottom:0;">Restructuring a website without an SEO Expert mapping every URL change with correct permanent 301 redirects will destroy domain authority, wipe out existing Google rankings, and make corporate due-diligence audits fail.</p>
     </div>
 
-    <div style="padding:22px 26px;border-radius:12px;background:rgba(0,0,0,.4);border-left:4px solid var(--cyan);margin-bottom:18px;">
-      <h3 style="color:var(--cyan);font-size:1.2rem;">2. Local Business Schema, Google Maps &amp; City-Level Trust Signals</h3>
-      <p style="font-size:1.05rem;color:var(--t-muted);margin-bottom:0;">To appear in Google Maps 3-Pack for "IKEA installation service Mumbai," code must contain structured JSON-LD LocalBusiness schema, NAP (Name, Address, Phone) consistency, and GMB linking — invisible to standard developers.</p>
+    <div style="padding:16px 20px;border-radius:10px;background:#fff;border:1px solid rgba(10,191,163,.15);border-left:4px solid var(--cyan);margin-bottom:14px;">
+      <h3 style="color:var(--cyan);font-size:.98rem;">2. Local Business Schema, Google Maps &amp; City-Level Trust Signals</h3>
+      <p style="font-size:.85rem;color:var(--t-muted);margin-bottom:0;">To appear in Google Maps 3-Pack for "IKEA installation service Mumbai," code must contain structured JSON-LD LocalBusiness schema, NAP (Name, Address, Phone) consistency, and GMB linking — invisible to standard developers.</p>
     </div>
 
-    <div style="padding:22px 26px;border-radius:12px;background:rgba(0,0,0,.4);border-left:4px solid var(--orange);">
-      <h3 style="color:var(--orange);font-size:1.2rem;">3. Hiring Portal Conversion Tracking &amp; Candidate Quality Optimisation</h3>
-      <p style="font-size:1.05rem;color:var(--t-muted);margin-bottom:0;">To know which city landing page, which keyword, and which ad creative is generating the best verified hires, server-side event tracking (GTM, GA4, Meta Pixel, WhatsApp webhooks) must be architected from day one. Only a Digital Marketing Technologist does this.</p>
+    <div style="padding:16px 20px;border-radius:10px;background:#fff;border:1px solid rgba(232,93,0,.15);border-left:4px solid var(--orange);">
+      <h3 style="color:var(--orange);font-size:.98rem;">3. Hiring Portal Conversion Tracking &amp; Candidate Quality Optimisation</h3>
+      <p style="font-size:.85rem;color:var(--t-muted);margin-bottom:0;">To know which city landing page, which keyword, and which ad creative is generating the best verified hires, server-side event tracking (GTM, GA4, Meta Pixel, WhatsApp webhooks) must be architected from day one. Only a Digital Marketing Technologist does this.</p>
     </div>
   </div>
 
   <!-- GROWTH PROJECTION GRAPH -->
-  <div class="card" style="margin-top:8px;background:#080F1E;border-color:rgba(168,85,247,.3);">
+  <div class="card" style="margin-top:8px;background:#FAFBFF;border-color:rgba(124,58,237,.15);">
     <h3 style="color:#fff;margin-bottom:24px;">📈 Projected Metro-Wide Online Visibility Growth (6-Month Horizon)</h3>
 
     <div class="bar-row">
@@ -624,24 +623,24 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   </div>
 
   <!-- INLINE MINI-SVG: Impact comparison -->
-  <div class="card" style="margin-top:8px;padding:28px 32px;">
-    <h3 style="color:#fff;margin-bottom:20px;">⚖️ With vs Without Digital Expert Input</h3>
-    <div class="grid2" style="gap:16px;">
-      <div style="padding:22px;background:rgba(255,46,99,.07);border:1px solid rgba(255,46,99,.25);border-radius:14px;">
-        <p style="color:var(--red);font-weight:800;font-size:1.1rem;margin-bottom:10px;">❌ Without Expert — Developer-Only Redesign</p>
-        <ul style="color:var(--t-muted);font-size:1rem;padding-left:20px;">
-          <li style="margin-bottom:8px;">Rankings drop after URL changes (no 301 mapping)</li>
-          <li style="margin-bottom:8px;">No local schema = zero Google Maps visibility</li>
-          <li style="margin-bottom:8px;">Ads spend wasted (no conversion event tracking)</li>
+  <div class="card" style="margin-top:8px;">
+    <h3 style="color:var(--t-base);margin-bottom:16px;">⚖️ With vs Without Digital Expert Input</h3>
+    <div class="grid2" style="gap:14px;">
+      <div style="padding:18px;background:#FFF5F7;border:1px solid rgba(212,23,78,.15);border-radius:12px;">
+        <p style="color:var(--red);font-weight:800;font-size:.9rem;margin-bottom:8px;">❌ Without Expert — Developer-Only Redesign</p>
+        <ul style="color:var(--t-muted);font-size:.85rem;padding-left:18px;">
+          <li style="margin-bottom:6px;">Rankings drop after URL changes (no 301 mapping)</li>
+          <li style="margin-bottom:6px;">No local schema = zero Google Maps visibility</li>
+          <li style="margin-bottom:6px;">Ads spend wasted (no conversion event tracking)</li>
           <li>Hiring portal = just a form, no lead quality data</li>
         </ul>
       </div>
-      <div style="padding:22px;background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.25);border-radius:14px;">
-        <p style="color:var(--green);font-weight:800;font-size:1.1rem;margin-bottom:10px;">✅ With Expert — SEO-First Architecture</p>
-        <ul style="color:var(--t-light);font-size:1rem;padding-left:20px;">
-          <li style="margin-bottom:8px;">Domain authority preserved through restructuring</li>
-          <li style="margin-bottom:8px;">City pages rank + dominate Google Maps 3-Pack</li>
-          <li style="margin-bottom:8px;">Every marketing ₹ tracked to verified hire or sale</li>
+      <div style="padding:18px;background:#EDFBF3;border:1px solid rgba(0,184,90,.15);border-radius:12px;">
+        <p style="color:var(--green);font-weight:800;font-size:.9rem;margin-bottom:8px;">✅ With Expert — SEO-First Architecture</p>
+        <ul style="color:var(--t-light);font-size:.85rem;padding-left:18px;">
+          <li style="margin-bottom:6px;">Domain authority preserved through restructuring</li>
+          <li style="margin-bottom:6px;">City pages rank + dominate Google Maps 3-Pack</li>
+          <li style="margin-bottom:6px;">Every marketing ₹ tracked to verified hire or sale</li>
           <li>Hiring portal generates pre-qualified candidate leads</li>
         </ul>
       </div>
@@ -661,23 +660,23 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   <h1>Ready to Build Wify's<br>Digital Growth Engine?</h1>
   <p style="font-size:1.25rem;font-weight:600;max-width:700px;">The two-pillar strategy — SEO portal restructuring + city-wise hiring portal — needs someone who understands both technical architecture and metro-level digital marketing execution. That is the offer.</p>
 
-  <div class="grid2" style="margin-top:32px;">
-    <div class="card" style="border:2px solid var(--orange);background:linear-gradient(145deg,rgba(255,107,0,.12),rgba(12,19,38,.95));margin-bottom:0;">
-      <div style="font-size:2.2rem;margin-bottom:14px;">📋</div>
-      <h3 style="color:var(--orange);font-size:1.5rem;margin-bottom:8px;">Option A: Dedicated Digital Marketing Project</h3>
-      <p style="font-size:1.05rem;color:var(--t-muted);margin-bottom:20px;">Engage on a scoped contract to execute the full Website Restructuring, Technical SEO, Local City Page Architecture, Hiring Portal Build &amp; Optimisation — delivered in defined milestones.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;font-size:1rem;font-weight:700;">
+  <div class="grid2" style="margin-top:24px;">
+    <div class="card" style="border:2px solid var(--orange);background:linear-gradient(145deg,#FFF8F3,#FFFAF7);margin-bottom:0;">
+      <div style="font-size:2rem;margin-bottom:10px;">📋</div>
+      <h3 style="color:var(--orange);font-size:1.15rem;margin-bottom:6px;">Option A: Dedicated Digital Marketing Project</h3>
+      <p style="font-size:.88rem;color:var(--t-muted);margin-bottom:16px;">Engage on a scoped contract to execute the full Website Restructuring, Technical SEO, Local City Page Architecture, Hiring Portal Build &amp; Optimisation — delivered in defined milestones.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:.88rem;font-weight:700;">
         <span style="color:var(--orange);">✓ Milestone-based delivery</span>
         <span style="color:var(--orange);">✓ Full tech + SEO + portal architecture</span>
         <span style="color:var(--orange);">✓ Measurable city-wise ranking outcomes</span>
       </div>
     </div>
 
-    <div class="card" style="border:2px solid var(--green);background:linear-gradient(145deg,rgba(0,230,118,.12),rgba(12,19,38,.95));margin-bottom:0;">
-      <div style="font-size:2.2rem;margin-bottom:14px;">🏢</div>
-      <h3 style="color:var(--green);font-size:1.5rem;margin-bottom:8px;">Option B: Full-Time Digital Marketing &amp; SEO Lead</h3>
-      <p style="font-size:1.05rem;color:var(--t-muted);margin-bottom:20px;">Bring on a full-time in-house Digital Growth Lead to internalise this entire architecture, manage city-wise SEO, oversee the hiring portal operations, and scale across 100+ metro markets.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;font-size:1rem;font-weight:700;">
+    <div class="card" style="border:2px solid var(--green);background:linear-gradient(145deg,#F0FBF5,#F7FDF9);margin-bottom:0;">
+      <div style="font-size:2rem;margin-bottom:10px;">🏢</div>
+      <h3 style="color:var(--green);font-size:1.15rem;margin-bottom:6px;">Option B: Full-Time Digital Marketing &amp; SEO Lead</h3>
+      <p style="font-size:.88rem;color:var(--t-muted);margin-bottom:16px;">Bring on a full-time in-house Digital Growth Lead to internalise this entire architecture, manage city-wise SEO, oversee the hiring portal operations, and scale across 100+ metro markets.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:.88rem;font-weight:700;">
         <span style="color:var(--green);">✓ Long-term embedded leadership</span>
         <span style="color:var(--green);">✓ Cross-functional digital + ops alignment</span>
         <span style="color:var(--green);">✓ Scalable to Series B nationwide growth</span>
@@ -686,8 +685,8 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   </div>
 
   <!-- WHAT GETS DELIVERED -->
-  <div class="card" style="margin-top:28px;background:var(--surface2);border-color:rgba(255,255,255,.12);">
-    <h3 style="color:#fff;margin-bottom:20px;">📦 Exact Deliverables Committed to Under Either Option:</h3>
+  <div class="card" style="margin-top:20px;background:#F8F9FC;border-color:rgba(0,0,0,.08);">
+    <h3 style="color:var(--t-base);margin-bottom:16px;">📦 Exact Deliverables Under Either Option:</h3>
     <div class="grid2" style="gap:16px;">
       <div>
         <p style="font-size:1rem;font-weight:800;color:var(--orange);margin-bottom:6px;">🔸 Technical SEO Foundation</p>
@@ -707,12 +706,12 @@ p{ font-size:.95rem; color:var(--t-light); margin-bottom:16px; }
   </div>
 
   <!-- CTA -->
-  <div style="text-align:center;margin-top:36px;padding:50px 30px;background:linear-gradient(145deg,rgba(255,107,0,.15),rgba(0,245,212,.08));border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);">
-    <h2 style="font-size:2.4rem;letter-spacing:-.5px;margin-bottom:16px;">Let's Align on Next Steps</h2>
-    <p style="font-size:1.25rem;color:var(--t-muted);max-width:600px;margin:0 auto 36px;">15 minutes. That is all it takes to decide which path fits Wify's current priorities best.</p>
+  <div style="text-align:center;margin-top:28px;padding:40px 24px;background:linear-gradient(145deg,#FFF4EC,#F0FBF5);border:1px solid rgba(232,93,0,.12);border-radius:var(--radius);">
+    <h2 style="font-size:1.6rem;letter-spacing:-.3px;margin-bottom:10px;color:var(--t-base);">Let's Align on Next Steps</h2>
+    <p style="font-size:.92rem;color:var(--t-muted);max-width:520px;margin:0 auto 28px;">15 minutes. That is all it takes to decide which path fits Wify's current priorities best.</p>
     <a href="mailto:vikram@wiffy.ai,deepanshu@wiffy.ai?subject=Wify%20Digital%20Strategy%20Discussion%20%E2%80%94%20SEO%20Restructuring%20%26%20Hiring%20Portal"
        class="cta-btn"
-       style="background:linear-gradient(135deg,var(--orange),#FF8C00);box-shadow:0 12px 35px rgba(255,107,0,.45);">
+       style="background:linear-gradient(135deg,#E85D00,#FF8C00);box-shadow:0 8px 24px rgba(232,93,0,.35);">
       📅 Schedule Alignment Meeting
     </a>
   </div>
