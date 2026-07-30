@@ -108,8 +108,8 @@ body{ padding-top: 72px; font-family:'Plus Jakarta Sans',sans-serif; background:
 
 /* ─── MAIN CONTENT ─── */
 .main{
-  max-width:1080px; margin:0 auto;
-  padding:36px 32px 60px;
+  width:100%;
+  padding:40px 56px 60px;
   min-height:calc(100vh - 72px);
 }
 
@@ -118,7 +118,7 @@ body{ padding-top: 72px; font-family:'Plus Jakarta Sans',sans-serif; background:
   .topnav{ padding:0 16px; gap:10px; }
   .nav-info{ display:none; }
   .nav-tab-sub{ display:none; }
-  .main{ padding:24px 16px 40px; }
+  .main{ padding:24px 20px 40px; }
   .grid2,.grid3{ grid-template-columns:1fr; }
 }
 
@@ -196,7 +196,7 @@ p{ font-size:.92rem; color:var(--t-light); margin-bottom:14px; }
 
 /* ─── STEP CHIPS ─── */
 .step-row{ display:flex; gap:0; margin:24px 0; position:relative; }
-.step-row::before{ content:''; position:absolute; top:24px; left:28px; right:28px; height:2px; background:rgba(255,255,255,.08); z-index:0; }
+.step-row::before{ content:''; position:absolute; top:24px; left:28px; right:28px; height:2px; background:rgba(0,0,0,.08); z-index:0; }
 .step-chip{ flex:1; display:flex; flex-direction:column; align-items:center; gap:10px; position:relative; z-index:1; }
 .step-circle{ width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:.9rem; }
 .step-label{ font-size:.72rem; font-weight:800; text-align:center; color:var(--t-muted); max-width:82px; }
