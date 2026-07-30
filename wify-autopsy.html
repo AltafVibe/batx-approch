@@ -114,15 +114,24 @@ body{
 .nt-pink.active .nav-tab-title{ color:#B91C4B; }
 .nt-pink.active .nav-tab-sub{ color:#E02454; }
 
-.nav-info{
-  flex-shrink:0; background:#23326d; color:#FFFFFF;
-  padding:10px 18px; border-radius:10px;
-  text-align:right; font-size:.72rem; font-weight:600;
-  box-shadow:0 4px 12px rgba(35,50,109,0.25);
-  transition:all .2s ease;
+.nav-author-box{
+  display:flex; align-items:center; gap:14px; flex-shrink:0;
+  background:#F3F6FA; border:1px solid rgba(35,50,109,0.12);
+  padding:8px 16px; border-radius:12px;
 }
-.nav-info:hover{ background:#1a2552; transform:translateY(-1px); }
-.nav-info strong{ color:#FF6D00; font-size:.82rem; display:block; font-weight:900; margin-bottom:1px; }
+.author-label-group{ display:flex; flex-direction:column; text-align:right; }
+.author-title{ font-size:.58rem; font-weight:800; text-transform:uppercase; letter-spacing:1.2px; color:#64748B; }
+.author-name{ font-size:.92rem; font-weight:900; color:#23326d; line-height:1.2; }
+.author-links{ display:flex; gap:8px; }
+.author-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:7px 12px; border-radius:8px; font-size:.78rem; font-weight:800;
+  text-decoration:none; transition:all .2s ease; white-space:nowrap;
+}
+.btn-wa{ background:#22C55E; color:#FFFFFF; box-shadow:0 2px 8px rgba(34,197,94,0.25); }
+.btn-wa:hover{ background:#16A34A; transform:translateY(-1px); }
+.btn-li{ background:#0A66C2; color:#FFFFFF; box-shadow:0 2px 8px rgba(10,102,194,0.25); }
+.btn-li:hover{ background:#004182; transform:translateY(-1px); }
 
 /* ─── MAIN CONTENT ─── */
 .main{
@@ -309,9 +318,19 @@ code{
     </button>
   </div>
 
-  <div class="nav-info">
-    <strong>Vikram & Deepanshu</strong>
-    Targeting SEO / Marketing Lead
+  <div class="nav-author-box">
+    <div class="author-label-group">
+      <span class="author-title">PREPARED BY</span>
+      <strong class="author-name">Altaf Khan</strong>
+    </div>
+    <div class="author-links">
+      <a href="https://wa.me/919824663320?text=Hi%20Altaf,%20we%20reviewed%20your%20Wify.ai%20Digital%20Strategy%20%26%20Hiring%20Portal%20deck%20and%20want%20to%20connect." target="_blank" class="author-btn btn-wa" title="Chat on WhatsApp">
+        <span>💬 WhatsApp</span>
+      </a>
+      <a href="https://www.linkedin.com/in/altafkhan-seo/" target="_blank" class="author-btn btn-li" title="Connect on LinkedIn">
+        <span>🔗 LinkedIn</span>
+      </a>
+    </div>
   </div>
 </nav>
 
@@ -698,6 +717,29 @@ code{
        style="background:linear-gradient(135deg,#E85D00,#FF8C00);box-shadow:0 8px 24px rgba(232,93,0,.35);">
       📅 Schedule Alignment Meeting
     </a>
+  </div>
+
+  <div style="margin-top:36px;padding:36px;border:2px solid rgba(35,50,109,0.15);border-radius:var(--radius);background:#FFFFFF;box-shadow:0 12px 35px -10px rgba(35,50,109,0.12);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div style="width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#23326d,#FF6D00);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#FFF;font-weight:900;box-shadow:0 6px 18px rgba(35,50,109,0.25);flex-shrink:0;">
+        AK
+      </div>
+      <div>
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#FF6D00;margin-bottom:4px;">STRATEGY DECK AUTHOR</div>
+        <h3 style="font-size:1.35rem;font-weight:900;color:var(--navy);margin:0 0 4px 0;">Altaf Khan</h3>
+        <p style="font-size:.92rem;color:var(--t-muted);margin:0;font-weight:600;">Senior SEO & Digital Marketing Strategist | Local & Programmatic SEO</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="https://wa.me/919824663320?text=Hi%20Altaf,%20we%20reviewed%20your%20Wify.ai%20Digital%20Strategy%20%26%20Hiring%20Portal%20deck%20and%20want%20to%20connect." target="_blank" 
+         style="display:inline-flex;align-items:center;gap:8px;background:#22C55E;color:#FFFFFF;padding:12px 22px;border-radius:10px;font-weight:800;text-decoration:none;font-size:.92rem;box-shadow:0 6px 18px rgba(34,197,94,0.3);transition:all .2s ease;">
+        💬 +91 98246 63320 (WhatsApp)
+      </a>
+      <a href="https://www.linkedin.com/in/altafkhan-seo/" target="_blank" 
+         style="display:inline-flex;align-items:center;gap:8px;background:#0A66C2;color:#FFFFFF;padding:12px 22px;border-radius:10px;font-weight:800;text-decoration:none;font-size:.92rem;box-shadow:0 6px 18px rgba(10,102,194,0.3);transition:all .2s ease;">
+        🔗 Connect on LinkedIn
+      </a>
+    </div>
   </div>
 </section>
 
