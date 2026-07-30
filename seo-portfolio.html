@@ -45,17 +45,17 @@ body {
 
 .nav-brand {
   display: flex; flex-direction: column; justify-content: center; flex-shrink: 0;
-  border-right: 2px solid var(--border); padding-right: 28px;
+  border-right: 2px solid var(--border); padding-right: 24px;
 }
 .nav-brand-name { font-size: 1.25rem; font-weight: 900; letter-spacing: -0.4px; line-height: 1.15; color: var(--navy-dark); }
-.nav-brand-sub { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--teal); margin-top: 3px; }
+.nav-brand-sub { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--teal); margin-top: 3px; }
 
 .nav-tabs { display: flex; align-items: center; gap: 6px; overflow-x: auto; scrollbar-width: none; }
 .nav-tabs::-webkit-scrollbar { display: none; }
 
 .nav-tab {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 16px; border: 1.5px solid transparent;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border: 1.5px solid transparent;
   border-radius: 12px; background: transparent; cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   text-align: left; flex-shrink: 0;
@@ -67,8 +67,8 @@ body {
   transition: all 0.2s ease;
 }
 .nav-tab-label { display: flex; flex-direction: column; }
-.nav-tab-title { font-size: 0.88rem; font-weight: 800; color: var(--t-base); letter-spacing: -0.2px; transition: color 0.2s ease; }
-.nav-tab-sub { font-size: 0.65rem; font-weight: 600; color: var(--t-muted); transition: color 0.2s ease; }
+.nav-tab-title { font-size: 0.86rem; font-weight: 800; color: var(--t-base); letter-spacing: -0.2px; transition: color 0.2s ease; }
+.nav-tab-sub { font-size: 0.63rem; font-weight: 600; color: var(--t-muted); transition: color 0.2s ease; }
 
 /* Active State Custom Colors */
 .nav-tab.active { background: #F0FDFA; border-color: #99F6E4; box-shadow: 0 4px 15px -4px rgba(0,166,153,0.25); }
@@ -77,19 +77,21 @@ body {
 .nav-tab.active .nav-tab-sub { color: var(--teal); }
 
 .nav-author-box {
-  display: flex; align-items: center; gap: 14px; flex-shrink: 0;
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
   background: #F8FAFC; border: 1px solid var(--border);
-  padding: 8px 16px; border-radius: 12px;
+  padding: 8px 14px; border-radius: 12px;
 }
 .author-label-group { display: flex; flex-direction: column; text-align: right; }
 .author-title { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--t-muted); }
-.author-name { font-size: 0.92rem; font-weight: 900; color: var(--navy-dark); line-height: 1.2; }
-.author-links { display: flex; gap: 8px; }
+.author-name { font-size: 0.9rem; font-weight: 900; color: var(--navy-dark); line-height: 1.2; }
+.author-links { display: flex; gap: 6px; }
 .author-btn {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 7px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 800;
+  padding: 7px 11px; border-radius: 8px; font-size: 0.75rem; font-weight: 800;
   text-decoration: none; transition: all 0.2s ease; white-space: nowrap;
 }
+.btn-cv { background: #0F172A; color: #FFFFFF; box-shadow: 0 2px 8px rgba(15,23,42,0.25); }
+.btn-cv:hover { background: #1E293B; transform: translateY(-1px); }
 .btn-wa { background: #22C55E; color: #FFFFFF; box-shadow: 0 2px 8px rgba(34,197,94,0.25); }
 .btn-wa:hover { background: #16A34A; transform: translateY(-1px); }
 .btn-li { background: #0A66C2; color: #FFFFFF; box-shadow: 0 2px 8px rgba(10,102,194,0.25); }
@@ -216,7 +218,7 @@ body {
       <span class="nav-tab-num">05</span>
       <div class="nav-tab-label">
         <span class="nav-tab-title">Resume & Connect</span>
-        <span class="nav-tab-sub">Instant Onboarding</span>
+        <span class="nav-tab-sub">Interactive PDF & DMs</span>
       </div>
     </button>
   </div>
@@ -227,6 +229,7 @@ body {
       <strong class="author-name">+91 98246 63320</strong>
     </div>
     <div class="author-links">
+      <a href="Altaf-Khan-SEO-Resume.pdf" target="_blank" class="author-btn btn-cv" title="Download Official PDF Resume">📄 CV (PDF)</a>
       <a href="https://wa.me/919824663320?text=Hi%20Altaf,%20reviewed%20your%20Technical%20SEO%20%26%20AI%20Portfolio." target="_blank" class="author-btn btn-wa">💬 WhatsApp</a>
       <a href="https://www.linkedin.com/in/altafkhan-seo/" target="_blank" class="author-btn btn-li">🔗 LinkedIn</a>
     </div>
@@ -243,14 +246,17 @@ body {
       <div class="hero-tag" id="target-pill">⚡ ENGINEERED FOR: <span id="dyn-company">PHARMEASY</span></div>
       <h1 class="hero-title" id="dyn-headline">Technical SEO & AEO Execution Demo for <span style="color:#5EEAD4;" id="dyn-company-hl">PharmEasy</span></h1>
       <p class="hero-desc" id="dyn-paragraph">
-        With millions of monthly organic users across your catalog and digital offerings, scaling organic growth requires high-precision Technical SEO and web architecture mastery. I combine strong analytical problem-solving with Python, JavaScript, HTML/CSS engineering, and AI automation to improve day-to-day SEO execution—without adding manual operational overhead.
+        With millions of monthly organic users across your catalog and healthcare offerings, scaling organic growth requires high-precision Technical SEO and web architecture mastery. I combine strong analytical problem-solving with Python, JavaScript, HTML/CSS engineering, and AI automation to improve day-to-day SEO execution—without adding manual operational overhead.
       </p>
       <div class="hero-footer">
         <div style="font-size:0.95rem;color:#94A3B8;">
           Prepared specifically for: <strong style="color:#FFF;" id="dyn-manager">Sarthak Upadhyay & SEO Leadership</strong>
         </div>
-        <div style="font-size:0.85rem;font-family:'JetBrains Mono',monospace;color:#38BDF8;">
-          [Target Role: <strong style="color:#FFF;" id="dyn-role">Senior SEO Executive / Specialist</strong>]
+        <div style="display:flex;gap:12px;align-items:center;">
+          <a href="Altaf-Khan-SEO-Resume.pdf" target="_blank" class="cta-btn" style="padding:10px 18px;font-size:0.85rem;background:#00A699;">📄 Download Resume (PDF)</a>
+          <div style="font-size:0.85rem;font-family:'JetBrains Mono',monospace;color:#38BDF8;">
+            [Target: <strong style="color:#FFF;" id="dyn-role">Senior SEO Executive</strong>]
+          </div>
         </div>
       </div>
     </div>
@@ -258,15 +264,16 @@ body {
     <div class="card" style="background:#FFFFFF; border-left: 6px solid var(--teal);">
       <h2 style="font-size:1.45rem;font-weight:900;color:var(--navy-dark);margin-bottom:12px;">🎯 Why This Interactive Demo Deck?</h2>
       <p style="font-size:1rem;color:var(--t-muted);margin-bottom:20px;line-height:1.7;">
-        You explicitly called out for candidates with a <strong>"general bent to build things independently with AI"</strong> and deep hands-on fluency in <strong>JavaScript, Python, HTML, and CSS</strong>. Rather than attaching a standard Word CV, I coded and deployed this customized interactive portfolio deck from scratch to demonstrate my practical execution workflow.
+        You explicitly called out for candidates with a <strong>"general bent to build things independently with AI"</strong> and deep hands-on fluency in <strong>JavaScript, Python, HTML, CSS, and WordPress/Multi-CMS architecture</strong>. Rather than sending a plain static email, I engineered this customized interactive portfolio deck from scratch to demonstrate my practical execution workflow.
       </p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <span class="badge-tag">✔ Advanced Technical SEO</span>
+        <span class="badge-tag">✔ 8+ Years SEO & Digital Growth</span>
+        <span class="badge-tag">✔ MSc in Information Technology (MSc IT & CA)</span>
+        <span class="badge-tag">✔ Healthcare & Fitness Lead Scaling</span>
         <span class="badge-tag">✔ JavaScript SSR & DOM Indexing</span>
         <span class="badge-tag">✔ Python Automation & Scraping</span>
-        <span class="badge-tag">✔ Answer Engine Optimization (AEO)</span>
-        <span class="badge-tag">✔ Custom E-E-A-T Schema Styling</span>
-        <span class="badge-tag">✔ Programmatic Landing Page Architectures</span>
+        <span class="badge-tag">✔ Answer Engine Optimization (AEO/GEO)</span>
+        <span class="badge-tag">✔ WordPress / Shopify / Magento Expert</span>
       </div>
     </div>
 
@@ -275,7 +282,7 @@ body {
       <div class="stat-card">
         <div class="stat-icon">🏥</div>
         <div class="stat-title">Web Architecture Mastery</div>
-        <div class="stat-desc">Managing crawl budgets across dynamic SKUs, category faceted filters, canonicalization, and canonical link redistribution on complex portals.</div>
+        <div class="stat-desc">Managing crawl budgets across dynamic SKUs, category faceted filters, canonicalization, and canonical link redistribution on complex platforms.</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon">🐍</div>
@@ -430,37 +437,65 @@ body {
        PANEL 5: RESUME & ACTION ALIGNMENT
   ────────────────────────────────────────────── -->
   <section id="p5" class="panel">
-    <div class="card" style="background:#FFFFFF;text-align:center;padding:50px 32px;">
-      <div style="width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--navy-dark),var(--teal));display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#FFF;font-weight:900;box-shadow:0 12px 25px rgba(0,166,153,0.3);margin:0 auto 18px;">
-        AK
-      </div>
-      <h2 style="font-size:2rem;font-weight:900;color:var(--navy-dark);margin-bottom:6px;">Altaf Khan</h2>
-      <p style="font-size:1.1rem;color:var(--teal-dark);font-weight:800;margin-bottom:16px;">Senior Technical SEO & AI Automation Specialist</p>
-      <p style="font-size:0.95rem;color:var(--t-muted);max-width:640px;margin:0 auto 30px;line-height:1.7;">
-        Equipped with 3+ years of rigorous SEO/AEO execution, Python script development, and web architecture auditing. Eager to plug into high-growth product teams to drive immediate organic acquisition efficiency.
-      </p>
+    <div class="card" style="background:#FFFFFF;padding:44px 40px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;border-bottom:2px solid var(--border);padding-bottom:32px;margin-bottom:32px;">
+        <div style="display:flex;align-items:center;gap:22px;">
+          <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--navy-dark),var(--teal));display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:#FFF;font-weight:900;box-shadow:0 10px 25px rgba(0,166,153,0.3);flex-shrink:0;">
+            AK
+          </div>
+          <div>
+            <div style="font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:4px;">CANDIDATE PORTFOLIO & CV</div>
+            <h2 style="font-size:2rem;font-weight:900;color:var(--navy-dark);margin:0 0 4px 0;">Altaf Khan</h2>
+            <p style="font-size:1.02rem;color:var(--t-muted);margin:0;font-weight:700;">SEO & Digital Growth Specialist | Technical Search & AI Operations (8+ Yrs Exp)</p>
+          </div>
+        </div>
 
-      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:700px;margin:0 auto 36px;">
-        <span class="badge-tag" style="background:#0F172A;color:#FFF;">Python Automation</span>
-        <span class="badge-tag" style="background:#0F172A;color:#FFF;">JavaScript / DOM SEO</span>
-        <span class="badge-tag" style="background:#0F172A;color:#FFF;">HTML5 / CSS3 Engineering</span>
-        <span class="badge-tag" style="background:#0F172A;color:#FFF;">AEO & AI Search (SGE)</span>
-        <span class="badge-tag" style="background:#0F172A;color:#FFF;">GA4 / GTM / Search Console</span>
-        <span class="badge-tag" style="background:#0F172A;color:#FFF;">Crawl Budget Optimization</span>
-        <span class="badge-tag" style="background:#0F172A;color:#FFF;">Programmatic SEO Architecture</span>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="Altaf-Khan-SEO-Resume.pdf" target="_blank" class="cta-btn" style="background:var(--navy-dark);box-shadow:0 6px 20px rgba(15,23,42,0.25);">
+            📄 Download Official CV (PDF)
+          </a>
+          <a href="https://wa.me/919824663320?text=Hi%20Altaf,%20reviewed%20your%20Technical%20SEO%20%26%20AI%20Portfolio%20and%20would%20love%20to%20connect." target="_blank" class="cta-btn" style="background:#22C55E;box-shadow:0 6px 20px rgba(34,197,94,0.3);">
+            💬 WhatsApp (+91 98246 63320)
+          </a>
+        </div>
       </div>
 
-      <div style="border-top:2px solid var(--border);padding-top:36px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-        <a href="https://wa.me/919824663320?text=Hi%20Altaf,%20we%20reviewed%20your%20Technical%20SEO%20%26%20AI%20Portfolio%20and%20would%20love%20to%20connect." target="_blank" class="cta-btn" style="background:#22C55E;box-shadow:0 8px 25px rgba(34,197,94,0.3);">
-          💬 Instant WhatsApp Chat
-        </a>
-        <a href="https://www.linkedin.com/in/altafkhan-seo/" target="_blank" class="cta-btn" style="background:#0A66C2;box-shadow:0 8px 25px rgba(10,102,194,0.3);">
-          🔗 Connect on LinkedIn
-        </a>
-        <a href="mailto:altafseo2026@gmail.com?subject=Technical%20SEO%20Role%20Discussion" class="cta-btn" style="background:var(--navy-dark);box-shadow:0 8px 25px rgba(15,23,42,0.3);">
-          ✉️ Send One-Line Email Reply
-        </a>
+      <div class="grid-2">
+        <div>
+          <h3 style="font-size:1.15rem;font-weight:900;color:var(--navy-dark);margin-bottom:12px;">🎓 Academic & Core Competencies</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-size:0.92rem;color:var(--t-muted);line-height:1.5;">
+            <li><strong>M.Sc. in Information Technology & CA</strong> — Rigorous coding foundation in SQL, PHP, HTML5, JavaScript, CSS3 & System Architecture.</li>
+            <li><strong>Next-Gen Search Mastery</strong> — Hands-on execution of AEO (Answer Engine Optimization), GEO, SXO, and AI-assisted programmatic workflows.</li>
+            <li><strong>Multi-CMS & Enterprise SEO</strong> — End-to-end site restructuring & indexing mastery across WordPress, Shopify, Magento, and SPA portals.</li>
+            <li><strong>Advanced Toolstack</strong> — Fluent in SEMrush, Ahrefs, GA4, GSC, SEO PowerSuite, and LLM-assisted SEO script deployment.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-size:1.15rem;font-weight:900;color:var(--navy-dark);margin-bottom:12px;">🏆 Recent Impact Highlights</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;font-size:0.92rem;color:var(--t-muted);line-height:1.5;">
+            <li><strong>Senior SEO Specialist (Hire Virtual Assistance)</strong> — Successfully scaled organic online visibility and built robust lead generation pipelines specifically within <strong>healthcare and fitness sectors</strong>.</li>
+            <li><strong>Independent Consultant & Global Prospect Lead</strong> — Spearheaded complex technical SEO restructuring, resolved crawlability & Core Web Vitals bottlenecks, and deployed intent-based content strategies resulting in measurable ROI multipliers.</li>
+          </ul>
+        </div>
       </div>
+
+      <div style="margin-top:36px;text-align:center;">
+        <h3 style="font-size:1.25rem;font-weight:900;color:var(--navy-dark);margin-bottom:12px;">📑 Official Formatted Resume Preview</h3>
+        <p style="font-size:0.9rem;color:var(--t-muted);margin-bottom:20px;">Scroll below to read the complete 2-page curriculum vitae, or <a href="Altaf-Khan-SEO-Resume.pdf" target="_blank" style="color:var(--teal-dark);font-weight:800;">click here to open/download PDF</a>.</p>
+        
+        <iframe src="Altaf-Khan-SEO-Resume.pdf" style="width:100%;height:680px;border:2px solid var(--border);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.06);background:#F1F5F9;">
+          Your browser does not support embedded PDFs. <a href="Altaf-Khan-SEO-Resume.pdf">Download the PDF here.</a>
+        </iframe>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;padding-top:28px;border-top:1px solid var(--border);">
+        <p style="font-size:0.95rem;color:var(--t-muted);margin-bottom:16px;">Ready to plug into your SEO & Growth team to drive immediate, code-enabled technical execution.</p>
+        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <a href="https://www.linkedin.com/in/altafkhan-seo/" target="_blank" class="cta-btn" style="background:#0A66C2;">🔗 Connect on LinkedIn</a>
+          <a href="mailto:altafkhan.pathan@gmail.com?subject=Technical%20SEO%20Role%20Discussion" class="cta-btn" style="background:var(--navy-dark);">✉️ Email: altafkhan.pathan@gmail.com</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
